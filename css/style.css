@@ -327,6 +327,13 @@ section.section {
 	font-weight: 700;
 }
 
+
+
+.bf-install a,
+.bf-install a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
 /* ==========================
  --- Parallax ---
 ============================= */
@@ -404,6 +411,27 @@ section.section {
 	padding-bottom: 22px;
 }
 
+.header_nav_button_cta {
+	background: #48c019;
+	border: 1px solid #48c019;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.07);
+	-moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,.07);
+	-o-box-shadow: inset 0 -1px 0 rgba(0,0,0,.07);
+	-ms-box-shadow: inset 0 -1px 0 rgba(0,0,0,.07);
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.07);
+	color: #fff;
+	border-radius: 8px;
+}
+.header_nav_button {
+	border: 1px solid rgba(255,255,255,255);
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	color: #1eaedb;
+	font-size: 15px;
+	padding: 5px 12px 6px;
+	text-transform: uppercase;
+}
 h1 a.navbar-brand {
 	font-size: 24px;
 	color: #fff;

@@ -136,4 +136,14 @@
 	$(window).load(initNice);
 	$(window).resize(initNice);
 
+
+	$('#signUpModal').click(function(){
+		$('#myModal').modal('show');
+	})
+
+	$('#loginBtn').click(function(){
+		$('#loginModal').modal('show');
+	})
+
+	
 })(jQuery);
