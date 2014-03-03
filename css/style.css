@@ -185,7 +185,7 @@ header  .navbar-nav > li > a {
 
 header .nav .caret {
     border-bottom-color: #f5f5f5;
-    border-top-color: #f5f5f5;
+    
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -384,7 +384,7 @@ section.callaction {
 	margin-bottom: 20px;
 }
 .box-bottom {
-	padding: 20px 0;
+	padding: 5px 0;
 	text-align: center;
 }
 .box-bottom a {
@@ -497,7 +497,18 @@ form#contactform input[type="text"] {
           box-sizing: border-box;
 
 }
+form#contactform input[type="password"] {
+  width: 100%;
+  border: 1px solid #f5f5f5;
+  min-height: 40px;
+  padding-left:20px;
+  font-size:13px;
+  padding-right:20px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 
+}
 form#contactform textarea {
 border: 1px solid #f5f5f5;
   width: 100%;
@@ -1974,3 +1985,16 @@ article img.pull-right, article .align-right{
 @media (max-width: 360px) {
 
 }
+.member-photo {
+	box-sizing:border-box;
+	-webkit-border-radius:50%;
+		-moz-border-radius:50%;
+			border-radius:50%;	
+	margin: 0 0 20px 0;
+}
+.member-photo img {
+	-webkit-border-radius:50%;
+		-moz-border-radius:50%;
+			border-radius:50%;	
+}
+
