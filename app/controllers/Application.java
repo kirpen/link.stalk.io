@@ -65,7 +65,7 @@ public class Application extends Controller {
 			jongo = new Jongo(db);
 			
 			MongoCollection collection = jongo.getCollection(Constants.M_COLL_STALK_APPS);
-			exist =  collection.find("{userId:"+session().get("email")+"}").as(StalkApplication.class).iterator();
+			exist =  collection.find("{userId:'"+session().get("email")+"'}").as(StalkApplication.class).iterator();
 			
 			while(exist.hasNext()){
 				list.add(exist.next());
@@ -75,7 +75,7 @@ public class Application extends Controller {
 		}finally{
 			mongo.close();
 		}
-		
+		//
         return ok(views.html.info.render(list));
     }
     
