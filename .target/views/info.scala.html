@@ -1,0 +1,149 @@
+@(apps: List[StalkApplication])
+
+
+@import helper._
+
+@main("Todo list") {
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+					<li><a href="#">Info</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="row">	
+			
+				<h3>Your stalk.io info</h3>
+				<p>Regist URL & Enjoy</p>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th>
+                                       ID
+                                    </th>
+                                    <th>
+                                       Name
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @form(action = routes.Stalk.deleteStalkUser(), 'id -> "delForm"){
+                                   		<input type="hidden" id="deleteId" name="deleteId" value=""/>
+                                   }
+                            @for(app <- apps) {
+                                <tr>
+                                	<td><button type="button" onclick="deleteStalkUser('@app.get_id()');" class="btn btn-default btn-danger"><i class="fa fa-times"></i></button></td>
+                                    <td>@app.getApp()</td>
+                                    <td><pre class="prettyprint linenums">
+&lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
+var conf = {
+            key: '@app.getApp()',
+            id: '페이지타이틀',
+            userId: @app.getUserId()
+        };
+&lt;script&gt;STALK.init(conf);&lt;/script&gt;</pre></td>  
+                                    <td>
+                                    	<button class="btn btn-primary" ><a href="@routes.Application.chat()?appId=@app.getApp()">Go Chat!</a></button>
+                                    </td>
+                                    
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" id="newUrl">New</button>
+                    </div>
+                 </div>
+			</div>
+		
+		</div>
+
+		
+		
+	</div>
+	</section>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+           
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Regist New Site</h4>
+                </div>
+                <div class="modal-body">
+                        <h3>URL</h3>
+					    <div class="form-group input-group">
+					    	<input class="form-control"  type="text" id="url" name="url" value=''>
+                            
+                        </div>
+
+						
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                </div>
+            </div>
+			
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+	
+@footer()
+
+	 <script type="text/javascript">
+	 
+        $(function(){
+        	$('#newUrl').click(function(){
+        		$('#myModal').modal('show');
+        	});
+        	
+        	$('#saveBtn').click(function(){
+        		var url = $('#url').val();
+        		
+        		$.post("@routes.Stalk.registStalkUser()"
+	    		, {'app' : $('#url').val()}
+	    		, function(result) {
+	    			
+	    			if(result == "ok"){
+	    				alert("Success Saved");
+	    				document.location.href='/info'
+	    			}else {
+	    				alert("Fail");
+	    				
+	    			}
+	    		});
+        		
+        		
+        	});
+        	
+        	
+        })
+        function deleteStalkUser(stalkId){
+    		$('#deleteId').val(stalkId);
+    		alert(stalkId)
+    		if(confirm("Are you sure?")){
+    			$("#delForm").submit();
+    		}
+    	}
+        </script>
+}
