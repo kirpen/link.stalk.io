@@ -29,17 +29,7 @@ object pricing extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendabl
 
 Seq[Any](format.raw/*3.1*/("""
 """),_display_(Seq[Any](/*4.2*/main("Todo list")/*4.19*/ {_display_(Seq[Any](format.raw/*4.21*/("""
-<section id="inner-headline">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<ul class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-					<li><a href="#">Pricing</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+
 	<section id="content">
 	<div class="container">
 		<div class="row">
@@ -216,8 +206,8 @@ Seq[Any](format.raw/*3.1*/("""
 		</div>
 	</div>
 	</section>
-	"""),_display_(Seq[Any](/*192.3*/footer())),format.raw/*192.11*/("""
-""")))})),format.raw/*193.2*/("""
+	"""),_display_(Seq[Any](/*182.3*/footer())),format.raw/*182.11*/("""
+""")))})),format.raw/*183.2*/("""
 """))}
     }
     
@@ -230,11 +220,11 @@ Seq[Any](format.raw/*3.1*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sat Mar 08 20:35:39 KST 2014
+                    DATE: Thu Mar 13 22:25:42 KST 2014
                     SOURCE: /Users/eskozz/xpush/stalk.io/app/views/pricing.scala.html
-                    HASH: 299fc968843f9471e92cbf76fe8657b2a1fbcb7a
-                    MATRIX: 873->18|909->20|934->37|973->39|7058->6088|7089->6096|7123->6098
-                    LINES: 30->3|31->4|31->4|31->4|219->192|219->192|220->193
+                    HASH: e776a256ffeb60edb012814a2e6a7c933d9070ef
+                    MATRIX: 873->18|909->20|934->37|973->39|6765->5795|6796->5803|6830->5805
+                    LINES: 30->3|31->4|31->4|31->4|209->182|209->182|210->183
                     -- GENERATED --
                 */
             

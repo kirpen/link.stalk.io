@@ -30,19 +30,7 @@ object install extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendabl
 Seq[Any](format.raw/*3.1*/("""
 """),_display_(Seq[Any](/*4.2*/main("Todo list")/*4.19*/ {_display_(Seq[Any](format.raw/*4.21*/("""
 
-<section id="inner-headline">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<ul class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-					<li><a href="#">Install</a></li>
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-	</section>
+
 	<section id="content">
 	<div class="container">
 		
@@ -88,7 +76,7 @@ Just copy the script code and paste it into your HTML code.</p>
 &lt;script&gt;TALK.init();&lt;/script&gt;</pre>
 						</div>
                     	<div class="col-lg-6">
-	                        <img src=""""),_display_(Seq[Any](/*64.37*/routes/*64.43*/.Assets.at("img/stalk/install01.jpg"))),format.raw/*64.80*/("""" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
+	                        <img src=""""),_display_(Seq[Any](/*52.37*/routes/*52.43*/.Assets.at("img/stalk/install01.jpg"))),format.raw/*52.80*/("""" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
 	                    </div>    
                     </div>
                    
@@ -106,16 +94,16 @@ Just copy the script code and paste it into your HTML code.</p>
 	                        <pre class="prettyprint linenums">
 &lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
 &lt;script>
-    var conf = """),format.raw/*82.16*/("""{"""),format.raw/*82.17*/("""
+    var conf = """),format.raw/*70.16*/("""{"""),format.raw/*70.17*/("""
         screenMode:'inner', // mandatory
         height: '200px', // optional (default 200px)
         width: '100%'    // optional (default 100%)
-    """),format.raw/*86.5*/("""}"""),format.raw/*86.6*/(""";
+    """),format.raw/*74.5*/("""}"""),format.raw/*74.6*/(""";
     STALK.init(conf);
 &lt;/script&gt;	                        
 						</div>
                     	<div class="col-lg-6">
-	                        <img src=""""),_display_(Seq[Any](/*91.37*/routes/*91.43*/.Assets.at("img/stalk/install02.jpg"))),format.raw/*91.80*/("""" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
+	                        <img src=""""),_display_(Seq[Any](/*79.37*/routes/*79.43*/.Assets.at("img/stalk/install02.jpg"))),format.raw/*79.80*/("""" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
 	                    </div>    
 					</div>
 					
@@ -134,7 +122,7 @@ Just copy the script code and paste it into your HTML code.</p>
                 <div class="col-md-6 text-center">
                     <br>
                     <p>sample for blogger.com</p>
-                    <img src=""""),_display_(Seq[Any](/*110.32*/routes/*110.38*/.Assets.at("img/stalk/si001.png"))),format.raw/*110.71*/("""" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
+                    <img src=""""),_display_(Seq[Any](/*98.32*/routes/*98.38*/.Assets.at("img/stalk/si001.png"))),format.raw/*98.71*/("""" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
                 </div>
                 <div class="col-md-6 text-center">
                     <br>
@@ -148,8 +136,8 @@ Just copy the script code and paste it into your HTML code.</p>
 	</div>
 
 	</section>
-	"""),_display_(Seq[Any](/*124.3*/footer())),format.raw/*124.11*/("""
-""")))})),format.raw/*125.2*/("""
+	"""),_display_(Seq[Any](/*112.3*/footer())),format.raw/*112.11*/("""
+""")))})),format.raw/*113.2*/("""
 """))}
     }
     
@@ -162,11 +150,11 @@ Just copy the script code and paste it into your HTML code.</p>
 }
                 /*
                     -- GENERATED --
-                    DATE: Sat Mar 08 20:35:39 KST 2014
+                    DATE: Thu Mar 13 22:25:52 KST 2014
                     SOURCE: /Users/eskozz/xpush/stalk.io/app/views/install.scala.html
-                    HASH: 845f7ddfe2a9a4334615dc05e86d248f4f074cc2
-                    MATRIX: 873->18|909->20|934->37|973->39|3108->2138|3123->2144|3182->2181|4197->3168|4226->3169|4404->3320|4432->3321|4626->3479|4641->3485|4700->3522|5622->4407|5638->4413|5694->4446|6312->5028|6343->5036|6377->5038
-                    LINES: 30->3|31->4|31->4|31->4|91->64|91->64|91->64|109->82|109->82|113->86|113->86|118->91|118->91|118->91|137->110|137->110|137->110|151->124|151->124|152->125
+                    HASH: 43fb06e14e93699c92429db7a603bc0104dca913
+                    MATRIX: 873->18|909->20|934->37|973->39|2797->1827|2812->1833|2871->1870|3886->2857|3915->2858|4093->3009|4121->3010|4315->3168|4330->3174|4389->3211|5310->4096|5325->4102|5380->4135|5998->4717|6029->4725|6063->4727
+                    LINES: 30->3|31->4|31->4|31->4|79->52|79->52|79->52|97->70|97->70|101->74|101->74|106->79|106->79|106->79|125->98|125->98|125->98|139->112|139->112|140->113
                     -- GENERATED --
                 */
             

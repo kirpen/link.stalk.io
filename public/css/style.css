@@ -115,7 +115,7 @@ header .navbar {
     font-weight: 700;
     line-height: 1em;
 	letter-spacing: -1px;
-    margin-top: 30px;
+    margin-top: 15px;
     padding: 0 0 0 15px;
 }
 
@@ -126,7 +126,7 @@ header .navbar-collapse  ul.navbar-nav {
 }
 
 header .navbar-default{
-    background-color: #fff;
+    background-color: #3D3A3A;
 }
 
 header .nav li a:hover,
@@ -157,11 +157,11 @@ header .navbar-default .navbar-nav > .open > a:focus {
 
 
 header .navbar {
-    min-height: 100px;
+    min-height: 50px;
 }
 
 header .navbar-nav > li  {
-    padding-bottom: 30px;
+    
     padding-top: 30px;
 }
 
@@ -169,7 +169,7 @@ header  .navbar-nav > li > a {
     padding-bottom: 6px;
     padding-top: 5px;
     margin-left: 2px;
-    line-height: 30px;
+    
 	font-weight: 700;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -246,7 +246,7 @@ header ul.nav li ul li a {
 
 
 .navbar .nav > li > a {
-  color: #111;
+  color: #fff;
   text-shadow: none;
 }
 
@@ -1840,6 +1840,7 @@ article img.pull-right, article .align-right{
 	}
 	.navbar-header {
 		margin-top: 20px;
+		margin-bottom : 20px;
 		border-bottom: none;
 	}
 	

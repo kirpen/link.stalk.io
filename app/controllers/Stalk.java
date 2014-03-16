@@ -1,6 +1,7 @@
 package controllers;
 
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Map;
 
 import models.User;
@@ -16,10 +17,12 @@ import play.libs.WS.WSRequestHolder;
 import play.mvc.Controller;
 import play.mvc.Result;
 import util.Constants;
+import util.MongodbDataManager;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.mongodb.DB;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class Stalk extends Controller {
@@ -108,7 +111,7 @@ public class Stalk extends Controller {
 			  mongo.close();
 		  }
     	
-		  return ok(views.html.loginSuccess.render());
+		  return redirect(routes.Application.info());
         
     }
 
@@ -224,7 +227,7 @@ public class Stalk extends Controller {
     
     
     
-public static Result auth() {
+    public static Result auth() {
     	
     	Map<String, String[]> queryParameters = request().body().asFormUrlEncoded();
     	
@@ -283,5 +286,19 @@ public static Result auth() {
     	
     }
     
+    public static Result operator() {
     	
+    	Map<String, String[]> queryParameters = request().queryString();
+		String appId = queryParameters.get("appId")[0];
+		
+		System.out.println(appId);
+		
+		MongodbDataManager mm = new MongodbDataManager();
+		List<DBObject> docu = mm.getDocumentList(Constants.MONGO_IP, Constants.MONGO_PORT, Constants.MONGO_DB, Constants.M_COLL_STALK_APPS, "{app:'"+appId+"'}","{_id:0,app:1,userId:1}");
+	 
+	    
+	
+		
+        return ok(docu.toString());
+    }	
 }

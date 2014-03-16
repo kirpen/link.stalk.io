@@ -19,6 +19,7 @@ POST    /login					controllers.Stalk.login()
 POST    /regist					controllers.Stalk.registStalkUser()
 POST    /delete					controllers.Stalk.deleteStalkUser()
 POST    /auth					controllers.Stalk.auth()
+GET    /operator					controllers.Stalk.operator()
 
 
 # Map static resources from the /public folder to the /assets URL path

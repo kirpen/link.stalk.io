@@ -30,19 +30,7 @@ object feature extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendabl
 Seq[Any](format.raw/*2.1*/("""
 """),_display_(Seq[Any](/*3.2*/main("Todo list")/*3.19*/ {_display_(Seq[Any](format.raw/*3.21*/("""
 
-<section id="inner-headline">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<ul class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-					<li><a href="#">Features</a></li>
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-	</section>
+
 	<section id="content">
 	<div class="container">
 		<div class="row">
@@ -51,7 +39,7 @@ Seq[Any](format.raw/*2.1*/("""
 				<p>Those who access your web sites will be able to talk to each other after login with Facebook / Twitter / Google+.</p>
 			</div>
 			<div class="col-lg-9">
-                 <img src=""""),_display_(Seq[Any](/*26.29*/routes/*26.35*/.Assets.at("img/stalk/ss001.png"))),format.raw/*26.68*/("""" style="max-width: 100%; height: auto;" />
+                 <img src=""""),_display_(Seq[Any](/*14.29*/routes/*14.35*/.Assets.at("img/stalk/ss001.png"))),format.raw/*14.68*/("""" style="max-width: 100%; height: auto;" />
             </div>
 
 
@@ -64,14 +52,14 @@ Seq[Any](format.raw/*2.1*/("""
                 
             </div>
 			<div class="col-lg-9">
-				<img src=""""),_display_(Seq[Any](/*39.16*/routes/*39.22*/.Assets.at("img/stalk/ss002.jpg"))),format.raw/*39.55*/("""" style="max-width: 100%; height: auto;" />
+				<img src=""""),_display_(Seq[Any](/*27.16*/routes/*27.22*/.Assets.at("img/stalk/ss002.jpg"))),format.raw/*27.55*/("""" style="max-width: 100%; height: auto;" />
 			</div>
 			
 		</div>
 		
 	</div>
 	</section>
-	"""),_display_(Seq[Any](/*46.3*/footer())),format.raw/*46.11*/("""
+	"""),_display_(Seq[Any](/*34.3*/footer())),format.raw/*34.11*/("""
 """)))})))}
     }
     
@@ -84,11 +72,11 @@ Seq[Any](format.raw/*2.1*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sat Mar 08 20:35:39 KST 2014
+                    DATE: Thu Mar 13 22:26:04 KST 2014
                     SOURCE: /Users/eskozz/xpush/stalk.io/app/views/feature.scala.html
-                    HASH: d7c5f19a87508efd366c2ed9543870e1ca011b2c
-                    MATRIX: 873->17|909->19|934->36|973->38|1649->678|1664->684|1719->717|2155->1117|2170->1123|2225->1156|2352->1248|2382->1256
-                    LINES: 30->2|31->3|31->3|31->3|54->26|54->26|54->26|67->39|67->39|67->39|74->46|74->46
+                    HASH: dde0b372c11f74bc2394c5d72c1b3ea777b554c2
+                    MATRIX: 873->17|909->19|934->36|973->38|1337->366|1352->372|1407->405|1843->805|1858->811|1913->844|2040->936|2070->944
+                    LINES: 30->2|31->3|31->3|31->3|42->14|42->14|42->14|55->27|55->27|55->27|62->34|62->34
                     -- GENERATED --
                 */
             

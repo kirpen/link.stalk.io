@@ -1,6 +1,6 @@
 // @SOURCE:/Users/eskozz/xpush/stalk.io/conf/routes
-// @HASH:8b015027ebef7b6f879365f084c8ca63cf7a1c35
-// @DATE:Wed Mar 12 16:17:45 KST 2014
+// @HASH:9249f4d17198602977cc3ee57f9ddcfd7df404f2
+// @DATE:Thu Mar 13 15:13:11 KST 2014
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,7 +13,8 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:25
+// @LINE:26
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -31,11 +32,11 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:25
+// @LINE:26
 class ReverseAssets {
     
 
-// @LINE:25
+// @LINE:26
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -44,6 +45,7 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -73,6 +75,12 @@ def signup(): Call = {
 // @LINE:19
 def registStalkUser(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "regist")
+}
+                                                
+
+// @LINE:22
+def operator(): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "operator")
 }
                                                 
 
@@ -164,7 +172,8 @@ def login(): Call = {
                   
 
 
-// @LINE:25
+// @LINE:26
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -182,11 +191,11 @@ def login(): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:25
+// @LINE:26
 class ReverseAssets {
     
 
-// @LINE:25
+// @LINE:26
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -200,6 +209,7 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -247,6 +257,17 @@ def registStalkUser : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "regist"})
+      }
+   """
+)
+                        
+
+// @LINE:22
+def operator : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Stalk.operator",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "operator"})
       }
    """
 )
@@ -395,7 +416,8 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:25
+// @LINE:26
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -414,11 +436,11 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:25
+// @LINE:26
 class ReverseAssets {
     
 
-// @LINE:25
+// @LINE:26
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -427,6 +449,7 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -456,6 +479,12 @@ def signup(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 // @LINE:19
 def registStalkUser(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Stalk.registStalkUser(), HandlerDef(this, "controllers.Stalk", "registStalkUser", Seq(), "POST", """""", _prefix + """regist""")
+)
+                      
+
+// @LINE:22
+def operator(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Stalk.operator(), HandlerDef(this, "controllers.Stalk", "operator", Seq(), "GET", """""", _prefix + """operator""")
 )
                       
 

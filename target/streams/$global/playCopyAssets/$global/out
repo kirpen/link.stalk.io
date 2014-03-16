@@ -1,19 +1,5 @@
 [0m[[0mdebug[0m] [0mCopy play resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/blog.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/blog.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/chat.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/chat.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/components.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/components.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/contact.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/contact.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/feature.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/feature.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/index.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/index.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/install.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/install.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/login.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/login.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/loginSuccess.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/loginSuccess.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/portfolio.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/portfolio.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/pricing.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/pricing.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/pricingbox.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/pricingbox.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/signup.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/signup.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/signupSuccess.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/signupSuccess.html)[0m
-[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/typography.html,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/typography.html)[0m
+[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/audio/noti.mp3,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/audio/noti.mp3)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/css/animate.css,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/css/animate.css)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/css/bootstrap.min.css,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/css/bootstrap.min.css)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/css/custom-fonts.css,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/css/custom-fonts.css)[0m
@@ -37,6 +23,10 @@
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/fonts/customicon/Icons.ttf,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/fonts/customicon/Icons.ttf)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/fonts/customicon/Icons.woff,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/fonts/customicon/Icons.woff)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/images/favicon.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/images/favicon.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/images/stalk-favicon.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/images/stalk-favicon.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/images/stalk-logo.jpg,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/images/stalk-logo.jpg)[0m
+[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/images/stalkio-logo.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/images/stalkio-logo.png)[0m
+[0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/images/stalkio_logo.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/images/stalkio_logo.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/img/avatar.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/img/avatar.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/img/bg_direction_nav.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/img/bg_direction_nav.png)[0m
 [0m[[0mdebug[0m] [0m	(/Users/eskozz/xpush/stalk.io/public/img/glyphicons-halflings-white.png,/Users/eskozz/xpush/stalk.io/target/scala-2.10/classes/public/img/glyphicons-halflings-white.png)[0m

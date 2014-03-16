@@ -3,6 +3,22 @@
 
 @main("Todo list") {
 <style>
+.well {
+min-height: 20px;
+padding: 19px;
+margin-bottom: 20px;
+background-color: #E4F6E9;
+border: 0px;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.nav-tabs {
+	border-bottom: none;
+	margin-top: -1px;
+}
+
 .chat
 {
     list-style: none;
@@ -112,6 +128,10 @@ text-align: center;
 color: #ccc;
 font-size: 12px;
 }
+
+.twinkle{
+background-color: salmon;
+}
 </style>
   <section id="content">
   <!-- <div class="map">
@@ -121,49 +141,46 @@ font-size: 12px;
   
   <div class="container container-full">
     
-
+	  <div id="sound"></div>
       <div class="col-lg-3">
         
-          <div class="panel panel-primary">
+          <div class="panel panel-default">
             <div class="panel-heading">
-              <span class="fa fa-user"></span> Operator
+              <span class="fa fa-user"></span> Operators
             </div>
-            <div class="panel-body">
-              asdf
+            <div class="panel-body" id="operator">
+              
             </div>
           </div>
         
-          <div class="panel panel-primary">
+          <div class="panel panel-warning">
             <div class="panel-heading">
-              <span class="fa fa-user"></span> Recent Conversions
+              <span class="fa fa-user"></span> Recent Conversations
             </div>
-            <div class="panel-body">
-              asdf
+            <div class="panel-body" id="recent">
+              
             </div>
           </div>
         
-          <div class="panel panel-primary">
+          <div class="panel panel-danger">
             <div class="panel-heading">
               <span class="fa fa-user"></span> Visitors
             </div>
-            <div class="panel-body">
-              asdf
+            <div class="panel-body" id="visitor">
             </div>
           </div>
-        
+         
       </div>
 
       <div class="col-lg-9">
         
         <div class="tabbable">
-          <ul class="nav nav-tabs" id="myTab">
-              
-             
-          </ul>
+         
           <div class="tab-content">
             
           </div>
-   
+   		   <ul class="nav nav-tabs" id="myTab">
+          </ul>
         </div>
 
         </div>
@@ -176,230 +193,205 @@ font-size: 12px;
   </section>
   <script src="@routes.Assets.at("js/socket.io.js")" type="text/javascript"></script>
   <script type="text/javascript">
-  
- 
-
-  var currentTab;
-  var composeCount = 0;
-  
-  var Application = {
-		  appId : $('#stalkAppId').val()
-  };
-  
+	  var currentTab;
+	  var composeCount = 0;
+	  var Application = {
+			  appId : $('#stalkAppId').val()
+	  };  
+	  var chatObj={};
+	  
+	  var userId = '@session().get("email")';
+	  var Users = {
+	      '@session().get("email")': {
+	      								userId : '@session().get("email")',
+	    								password: 'qwer',
+	    								deviceId: 'web'
+	  								 }
 	
-	// 테스트 사용자 정보들 (4명)
-	//
-	// 편의를 위하여 userId 를 간단하게 표기하였다.
-	var Users = {
-	  '@session().get("email")': {
-	    userId : '@session().get("email")',
-	    password: 'qwer',
-	    deviceId: 'web'
-	  }
+		};
+
+	function getTimeStamp() {
+		  var d = new Date();
 	
-	};
-//initilize tabs
-$(function () {
-
-    //when ever any tab is clicked this method will be call
-    $("#myTab").on("click", "a", function (e) {
-        e.preventDefault();
-
-        $(this).tab('show');
-        $currentTab = $(this);
-    });
-
-
-    //registerComposeButtonEvent();
-    registerCloseEvent();
-});
-
-function getTimeStamp() {
-	  var d = new Date();
-
-	  var s =
-	    leadingZeros(d.getFullYear(), 4) + '-' +
-	    leadingZeros(d.getMonth() + 1, 2) + '-' +
-	    leadingZeros(d.getDate(), 2) + ' ' +
-
-	    leadingZeros(d.getHours(), 2) + ':' +
-	    leadingZeros(d.getMinutes(), 2) + ':' +
-	    leadingZeros(d.getSeconds(), 2);
-
-	  return s;
-	}
-function leadingZeros(n, digits) {
-	  var zero = '';
-	  n = n.toString();
-
-	  if (n.length < digits) {
-	    for (i = 0; i < digits - n.length; i++)
-	      zero += '0';
-	  }
-	  return zero + n;
+		  var s =
+		    leadingZeros(d.getFullYear(), 4) + '-' +
+		    leadingZeros(d.getMonth() + 1, 2) + '-' +
+		    leadingZeros(d.getDate(), 2) + ' ' +
+	
+		    leadingZeros(d.getHours(), 2) + ':' +
+		    leadingZeros(d.getMinutes(), 2) + ':' +
+		    leadingZeros(d.getSeconds(), 2);
+	
+		  return s;
 	}
 
-var chatObj={}
-
-//this method will demonstrate how to add tab dynamically
-function openChatArea(data) {
-    /* just for this demo */
-	 
+	function leadingZeros(n, digits) {
+		  var zero = '';
+		  n = n.toString();
 	
-    var tabId = "tab" + composeCount; //this is id on tab content div where the
-    chatObj[data.channel] = tabId;
-   	composeCount++;
+		  if (n.length < digits) {
+		    for (i = 0; i < digits - n.length; i++)
+		      zero += '0';
+		  }
+		  return zero + n;
+	}
+
+
+
+
+	function openChatArea(data) {
+		
+	    var tabId = "tab" + composeCount; //this is id on tab content div where the
+	    chatObj[data.channel] = tabId;
+	   	composeCount++;
+		
+		
+	    var fromMessage = decodeURIComponent(data.data.message);
+	    
+	    var timestamp = getTimeStamp();
+	    var clientId = data.data.sender;
 	
+	    var location = "To-do";
+	    var ipAddress = "To-do";
 	
-    var fromMessage = data.data.message;
-    
-    var timestamp = getTimeStamp();
-    var clientId = data.data.sender+tabId;
-
-    var location = "To-do";
-    var ipAddress = "To-do";
-
-    var tabContent = "";
-    tabContent+='<div class="tab-pane" id="' + tabId + '">                                                                                           ';
-    tabContent+='    <div class="col-lg-7">                                                                                                        ';
-    tabContent+='        <div class="panel panel-primary">                                                                                         ';
-    tabContent+='            <div class="panel-heading">                                                                                           ';
-    tabContent+='                <span class="fa fa-comment"></span> Chat                                                                          ';
-    tabContent+='                <div class="btn-group pull-right">                                                                                ';
-    tabContent+='                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">                  ';
-    tabContent+='                        <span class="fa fa-chevron-down"></span>                                                                  ';
-    tabContent+='                    </button>                                                                                                     ';
-    tabContent+='                    <ul class="dropdown-menu slidedown">                                                                          ';
-    tabContent+='                        <li><a href="#"><span class="fa fa-refresh"></span>Refresh</a></li>                                       ';
-    tabContent+='                    </ul>                                                                                                         ';
-    tabContent+='                </div>                                                                                                            ';
-    tabContent+='            </div>                                                                                                                ';
-    tabContent+='            <div id="panel'+tabId+'" class="panel-body panel-body-chat">                                                                              ';
-    tabContent+='                <div class="timestamp">'+timestamp+'</div>                                                        ';
-    tabContent+='                <div class="message from-visitor">'+fromMessage+'</div>                                                                  ';
-    tabContent+='            </div>                                                                                                                ';
-    tabContent+='            <div class="panel-footer">                                                                                            ';
-    tabContent+='                <div class="input-group">                                                                                         ';
-    tabContent+='                    <input type="text" id="input'+tabId+'" class="form-control input-sm" placeholder="Type your message here..." />    ';
-    tabContent+='                    <span class="input-group-btn">                                                                                ';
-    tabContent+="                        <button class='btn btn-warning btn-sm' id='btn"+tabId+"'";
-    tabContent+='onclick=sendMsg(';
-    tabContent+='"'+tabId+'"';
-    tabContent+=',"'+data.channel+'");>';
-    
-    tabContent+='                            Send</button>                                                                                         ';
-    tabContent+='                    </span>                                                                                                       ';
-    tabContent+='                </div>                                                                                                            ';
-    tabContent+='            </div>                                                                                                                ';
-    tabContent+='        </div>                                                                                                                    ';
-    tabContent+='    </div>                                                                                                                        ';
-    tabContent+='    <div class="col-lg-5">                                                                                                        ';
-    tabContent+='    <div class="well well-sm">                                                                                                    ';
-    tabContent+='        <div class="media">                                                                                                       ';
-    tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
-    tabContent+='                <img class="media-object" src="http://www.gravatar.com/avatar/a13ac7aed64918b6354f48da59490e3a?s=80">             ';
-    tabContent+='            </a>                                                                                                                  ';
-    tabContent+='            <div class="media-body">                                                                                              ';
-    tabContent+='                <h3 class="media-heading">'+clientId+'</h3>                                                                      ';
-    tabContent+='                <p>'+location+'</p>                                                                                           ';
-    tabContent+='                <p><b>This is a returning customer</b></p>                                                                        ';
-    tabContent+='                <p>This is your first conversation.</p>                                                                           ';
-    tabContent+='                <p><b>Viewed 1 page since a few seconds ago</b></p>                                                               ';
-    tabContent+='                <p>looking at localhost:9000/chefServer?code=&msg=                                                                ';
-    tabContent+='                    referred from localhost:9000/chefServer/node/sw?swType=SMS</p>                                                ';
-    tabContent+='                <p><b>Advanced Info</b></p>                                                                                       ';
-    tabContent+='                <p>IP Address: '+ipAddress+'</p>                                                                                   ';
-    tabContent+='            </div>                                                                                                                ';
-    tabContent+='        </div>                                                                                                                    ';
-    tabContent+='    </div>                                                                                                                        ';
-    tabContent+='  </div>                                                                                                                          ';
-    tabContent+='</div>                                                                                                                            ';
-
+	    var tabContent = "";
+	    tabContent+='<div class="tab-pane" id="' + tabId + '">                                                                                           ';
+	    tabContent+='    <div class="col-lg-7">                                                                                                        ';
+	    tabContent+='        <div class="panel panel-info">                                                                                         ';
+	    tabContent+='            <div class="panel-heading">                                                                                           ';
+	    tabContent+='                <span class="fa fa-comment"></span> Chat                                                                          ';
+	    tabContent+='                <div class="btn-group pull-right">                                                                                ';
+	    tabContent+='                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">                  ';
+	    tabContent+='                        <span class="fa fa-chevron-down"></span>                                                                  ';
+	    tabContent+='                    </button>                                                                                                     ';
+	    tabContent+='                    <ul class="dropdown-menu slidedown">                                                                          ';
+	    tabContent+='                        <li><a href="#"><span class="fa fa-refresh"></span>Refresh</a></li>                                       ';
+	    tabContent+='                    </ul>                                                                                                         ';
+	    tabContent+='                </div>                                                                                                            ';
+	    tabContent+='            </div>                                                                                                                ';
+	    tabContent+='            <div id="panel'+tabId+'" class="panel-body panel-body-chat">                                                                              ';
+	    tabContent+='                <div class="timestamp">'+timestamp+'</div>                                                        ';
+	    tabContent+='                <div class="message from-visitor">'+fromMessage+'</div>                                                                  ';
+	    tabContent+='            </div>                                                                                                                ';
+	    tabContent+='            <div class="panel-footer">                                                                                            ';
+	    tabContent+='                <div class="input-group">                                                                                         ';
+	    tabContent+='                    <input type="text" id="input'+tabId+'" class="form-control input-sm" placeholder="Type your message here..." />    ';
+	    tabContent+='                    <span class="input-group-btn">                                                                                ';
+	    tabContent+="                        <button class='btn btn-warning btn-sm' id='btn"+tabId+"'";
+	    tabContent+='onclick=sendMsg(';
+	    tabContent+='"'+tabId+'"';
+	    tabContent+=',"'+data.channel+'");>';
+	    
+	    tabContent+='                            Send</button>                                                                                         ';
+	    tabContent+='                    </span>                                                                                                       ';
+	    tabContent+='                </div>                                                                                                            ';
+	    tabContent+='            </div>                                                                                                                ';
+	    tabContent+='        </div>                                                                                                                    ';
+	    tabContent+='    </div>                                                                                                                        ';
+	    tabContent+='    <div class="col-lg-5">                                                                                                        ';
+	    tabContent+='    <div class="well well-sm">                                                                                                    ';
+	    tabContent+='        <div class="media">                                                                                                       ';
+	    tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
+	    tabContent+='                <img class="media-object" src="http://www.gravatar.com/avatar/a13ac7aed64918b6354f48da59490e3a?s=80">             ';
+	    tabContent+='            </a>                                                                                                                  ';
+	    tabContent+='            <div class="media-body">                                                                                              ';
+	    tabContent+='                <h3 class="media-heading">'+clientId+'</h3>                                                                      ';
+	    tabContent+='                <p>'+location+'</p>                                                                                           ';
+	    tabContent+='                <p><b>This is a returning customer</b></p>                                                                        ';
+	    tabContent+='                <p>This is your first conversation.</p>                                                                           ';
+	    tabContent+='                <p><b>Viewed 1 page since a few seconds ago</b></p>                                                               ';
+	    tabContent+='                <p>looking at localhost:9000/chefServer?code=&msg=                                                                ';
+	    tabContent+='                    referred from localhost:9000/chefServer/node/sw?swType=SMS</p>                                                ';
+	    tabContent+='                <p><b>Advanced Info</b></p>                                                                                       ';
+	    tabContent+='                <p>IP Address: '+ipAddress+'</p>                                                                                   ';
+	    tabContent+='            </div>                                                                                                                ';
+	    tabContent+='        </div>                                                                                                                    ';
+	    tabContent+='    </div>                                                                                                                        ';
+	    tabContent+='  </div>                                                                                                                          ';
+	    tabContent+='</div>                                                                                                                            ';
 	
-    
+	    $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
+	    $('.tab-content').append(tabContent);
+	
+	  
+	    $(this).tab('show');
+	    showTab(tabId);
+	    registerCloseEvent();
+	    setEnterKeyEvent(tabId);
+	}
 
-    $('.nav-tabs').append('<li><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
+	function setEnterKeyEvent(tabId){
+		$('#input'+tabId).on('keydown', function(e) { 
+	    	if (e.which == 13) { 
+	    		e.preventDefault(); 
+	    		$('#btn'+tabId).click();
+	    		
+	    	} 
+	    });
+	}
+	function emailToFlatStr(em){
+		return em.replace("@@","").replace(".","");
+	}
+	//this method will register event on close icon on the tab..
+	function registerCloseEvent() {
+	
+	    $(".closeTab").click(function () {
+	
+	        //there are multiple elements which has .closeTab icon so close the tab whose close icon is clicked
+	        var tabContentId = $(this).parent().attr("href"); 
+	        $(this).parent().parent().remove(); //remove li of tab
+	        $('#myTab a:last').tab('show'); // Select first tab
+	        $(tabContentId).remove(); //remove respective tab content
+	        
+	        for(var o in chatObj){
+	        	if(chatObj[o]==tabContentId.replace("#","")){
+	        		Library.leaveChannel(userId,o);
+	        		
+	        		$("#"+emailToFlatStr(o.split("^")[2])).remove();
+	        		$('#recent'+emailToFlatStr(o.split("^")[2])).remove();
+	        	}
+	        }
+	
+	    });
+	}
 
-    $('.tab-content').append(tabContent);
+	//shows the tab with passed content div id..paramter tabid indicates the div where the content resides
+	function showTab(tabId) {
+	    $('#myTab a[href="#' + tabId + '"]').tab('show');
+	}
+	//return current active tab
+	function getCurrentTab() {
+	    return currentTab;
+	}
 
-    //craeteNewTabAndLoadUrl("", "./SamplePage.html", "#" + tabId);
+	//This function will create a new tab here and it will load the url content in tab content div.
+	function craeteNewTabAndLoadUrl(parms, url, loadDivSelector) {
+	
+	    $("" + loadDivSelector).load(url, function (response, status, xhr) {
+	        if (status == "error") {
+	            var msg = "Sorry but there was an error getting details ! ";
+	            $("" + loadDivSelector).html(msg + xhr.status + " " + xhr.statusText);
+	            $("" + loadDivSelector).html("Load Ajax Content Here...");
+	        }
+	    });
+	
+	}
 
-    //$('#btn'+tabId).click(function(){
-     
-      
-    //  sendMsg(data.channel, $('#input'+tabId).val());
-
-    //});
-
-
-    $(this).tab('show');
-    showTab(tabId);
-    registerCloseEvent();
-    setEnterKeyEvent(tabId);
-}
-
-function setEnterKeyEvent(tabId){
-	$('#input'+tabId).on('keydown', function(e) { 
-    	if (e.which == 13) { 
-    		e.preventDefault(); 
-    		$('#btn'+tabId).click();
-    		
-    	} 
-    });
-}
-
-//this method will register event on close icon on the tab..
-function registerCloseEvent() {
-
-    $(".closeTab").click(function () {
-
-        //there are multiple elements which has .closeTab icon so close the tab whose close icon is clicked
-        var tabContentId = $(this).parent().attr("href");
-        $(this).parent().parent().remove(); //remove li of tab
-        $('#myTab a:last').tab('show'); // Select first tab
-        $(tabContentId).remove(); //remove respective tab content
-
-    });
-}
-
-//shows the tab with passed content div id..paramter tabid indicates the div where the content resides
-function showTab(tabId) {
-    $('#myTab a[href="#' + tabId + '"]').tab('show');
-}
-//return current active tab
-function getCurrentTab() {
-    return currentTab;
-}
-
-//This function will create a new tab here and it will load the url content in tab content div.
-function craeteNewTabAndLoadUrl(parms, url, loadDivSelector) {
-
-    $("" + loadDivSelector).load(url, function (response, status, xhr) {
-        if (status == "error") {
-            var msg = "Sorry but there was an error getting details ! ";
-            $("" + loadDivSelector).html(msg + xhr.status + " " + xhr.statusText);
-            $("" + loadDivSelector).html("Load Ajax Content Here...");
-        }
-    });
-
-}
-
-//this will return element from current tab
-//example : if there are two tabs having  textarea with same id or same class name then when $("#someId") whill return both the text area from both tabs
-//to take care this situation we need get the element from current tab.
-function getElement(selector) {
-    var tabContentId = $currentTab.attr("href");
-    return $("" + tabContentId).find("" + selector);
-
-}
+	function getElement(selector) {
+	    var tabContentId = $currentTab.attr("href");
+	    return $("" + tabContentId).find("" + selector);
+	
+	}
 
 
-function removeCurrentTab() {
-    var tabContentId = $currentTab.attr("href");
-    $currentTab.parent().remove(); //remove li of tab
-    $('#myTab a:last').tab('show'); // Select first tab
-    $(tabContentId).remove(); //remove respective tab content
-}
+	function removeCurrentTab() {
+	    var tabContentId = $currentTab.attr("href");
+	    $currentTab.parent().remove(); //remove li of tab
+	    $('#myTab a:last').tab('show'); // Select first tab
+	    $(tabContentId).remove(); //remove respective tab content
+	    
+	    
+	}
 </script>
 
 <script>
@@ -458,7 +450,8 @@ var Library = {
 
   // #### 로그인하기.
   connect_session_socket: function(_userId, callback) {
-	
+	console.log(_userId);
+	console.log(Users[_userId]);
     // Session Socket Server 주소 가져오기. ( /node/session/ [User ID] )
     API.auth(Users[_userId].userId, function (data, _userId) {
       
@@ -473,16 +466,14 @@ var Library = {
       
       // Socket에 connect 이벤트 등록 ( connect 이벤트 발생 )
       Users[_userId].sessionSocket.on('connect', function() {
-    	
-    	 
         callback();
       });
       
       Users[_userId].sessionSocket.on('_event', function (data) {
             console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
             
-            
-            
+            $("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
+            playSound();
             openChatArea(data);
             joinChannel(data.channel);
 	  });
@@ -531,38 +522,39 @@ var Library = {
     API.node(Application.appId, _channel, function (data) {
       
       var query = 
-    	'app='+Application.appId+'&'+
-      'channel='+data.result.channel+'&'+
-      'server='+data.result.server+'&'+
-			'userId='+Users[_userId].userId+'&'+
-    	'deviceId='+Users[_userId].deviceId;
-      
-	  
-      
+    			'app='+Application.appId+'&'+
+      			'channel='+data.result.channel+'&'+
+      			'server='+data.result.server+'&'+
+				'userId='+Users[_userId].userId+'&'+
+    			'deviceId='+Users[_userId].deviceId;
       
       Users[_userId][_channel] = io.connect(data.result.server.url+'/channel?'+query, socketOptions);
       Users[_userId][_channel].on('connect', function(data) {
-        
-        
         callback(data);
         
       });
 
       Users[_userId][_channel].on('message', function (data) {
-        console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
+	        console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
+	        
+	        var chatText = '<div class="timestamp">'+getTimeStamp()+'</div>';
+	        var msgClass = data.sender==_userId?'from-op':'from-visitor';
+	        
+	        
+	        chatText +='<div class="message '+msgClass+'">'+decodeURIComponent(data.message)+'</div>';
+
+	    	$('#panel'+chatObj[data.channel]).append(chatText);
+	    	
+	    	var div_message = document.getElementById('panel'+chatObj[data.channel]);
+	        div_message.scrollTop = div_message.scrollHeight;
+	        
+	        $('a').each(function(){
+	        	if($(this).attr('href')=='#'+chatObj[data.channel] && !$(this).parent().hasClass('active')){
+	        		blinkTab($(this).parent());
+	        	}	
+	        	
+	        });
         
-        
-        var chatText = '<div class="timestamp">'+getTimeStamp()+'</div>';
-        var msgClass = data.sender==_userId?'from-op':'from-visitor';
-        chatText +='<div class="message '+msgClass+'">'+data.message+'</div>';
-        
-        
-    	$('#panel'+chatObj[data.channel]).append(chatText);
-    	
-    	var div_message = document.getElementById('panel'+chatObj[data.channel]);
-        div_message.scrollTop = div_message.scrollHeight;
-    	
-    	
       });
       
       Users[_userId][_channel].on('_event', function (data) {
@@ -578,6 +570,11 @@ var Library = {
     	 	  var div_message = document.getElementById('panel'+chatObj[data.channel]);
     	      div_message.scrollTop = div_message.scrollHeight;
     		  
+    	      delete chatObj[data.channel];
+    	      $('#'+emailToFlatStr(data.userId)).remove();
+    	      $('#recent'+emailToFlatStr(data.userId)).remove();
+    	      
+    	      
     	  }
     	  
     	  
@@ -591,7 +588,8 @@ var Library = {
   },
   
   // #### Channel 에서 나가기.
-  leaveChannel: function(_channel) {
+  leaveChannel: function(_userId,_channel) {
+	delete chatObj[_channel];
     Users[_userId][_channel].disconnect();
   },
   
@@ -603,7 +601,7 @@ var Library = {
       channel:  _channel,           // channel : Channel ID
       name:     _name,              // name : 이벤트 발생 ID
       data:     _datas };           // data : 전송할 데이터
-	console.log(param);
+	
     Users[_userId][_channel].emit('send', param, function (data) {
       callback(data);
     });
@@ -626,7 +624,7 @@ var Library = {
 
 
 };
-var userId = 'esko@@esko.com';
+
 Library.connect_session_socket(userId, function(result){
 	channels();
 	
@@ -656,15 +654,78 @@ function sendMsg(tabId, channel){
 	
 	
 	var msg = $('#input'+tabId).val();
+	msg = getEscapeHtml(msg.replace(/^\s+|\s+$/g, '')); 
+		
+	var spanId = emailToFlatStr(channel.split("^")[2]);
 	
 	
-	Library.sendMessage(userId, channel, 'message', { message: msg, sender: userId}, function(result){});
+	if(!document.getElementById("recent"+spanId)&&chatObj[channel]){
+		$("#"+spanId).remove();
+		$("#recent").append("<span id=recent"+spanId+">"+channel.split("^")[2]+"<span><br/>");
+		
+		
+	}
+	
+	if(chatObj[channel]){
+		Library.sendMessage(userId, channel, 'message', { message: msg, sender: userId}, function(result){});
+	}
+	
 	$('#input'+tabId).val('');
+	
 	
 }
 
+var blinkTimeout = '';
+function blinkTab(aObj,isDone){
+  if(isDone){
+    clearInterval(blinkTimeout);
+    aObj.removeClass('twinkle');
+  }else{
+    clearInterval(blinkTimeout);
+    blinkTimeout =
+      setInterval(function(){
+        
+        if(aObj.hasClass('twinkle')){
+        	aObj.removeClass('twinkle');
+        }else{
+        	aObj.addClass('twinkle');
+        }
+      },1000);
+  }
+}
 
+function clearTwinkle(li){
+	blinkTab($(li),true);
+	
+}
 
+function getOperators(){
+	$.get("/operator",{appId:$('#stalkAppId').val()},function(data){
+		
+		var ophtml = "";
+		var jd = JSON.parse(data);
+		
+		for(var d in jd){
+			ophtml+=jd[d].userId;
+			ophtml+="<br/>";
+		}
+		$("#operator").html(ophtml);
+	})
+}
+function playSound(){   
+    document.getElementById("sound").innerHTML='<audio autoplay="autoplay"><source src="@routes.Assets.at("audio/noti.mp3")" type="audio/mpeg" /><embed hidden="true" autostart="true" loop="false" src="@routes.Assets.at("audio/noti.mp3")" /></audio>';
+}
+
+function getEscapeHtml (html) {
+	  return String(html)
+	    .replace(/&/g, '&amp;')
+	    .replace(/"/g, '&quot;')
+	    .replace(/'/g, '&#39;')
+	    .replace(/</g, '&lt;')
+	    .replace(/>/g, '&gt;');
+	  }
+
+getOperators();
 </script>
       
 }

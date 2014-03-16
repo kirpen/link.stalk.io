@@ -29,18 +29,7 @@ object contact extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendabl
 
 Seq[Any](format.raw/*3.1*/("""
 """),_display_(Seq[Any](/*4.2*/main("Todo list")/*4.19*/ {_display_(Seq[Any](format.raw/*4.21*/("""
-<section id="inner-headline">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<ul class="breadcrumb">
-					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-					<li class="active">Contact</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	</section>
+
 	<section id="content">
 	<!-- <div class="map">
 		<iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Kuningan,+Jakarta+Capital+Region,+Indonesia&amp;aq=3&amp;oq=kuningan+&amp;sll=37.0625,-95.677068&amp;sspn=37.410045,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Kuningan&amp;t=m&amp;z=14&amp;ll=-6.238824,106.830177&amp;output=embed">
@@ -105,8 +94,8 @@ Seq[Any](format.raw/*3.1*/("""
 		</div>
 	</div>
 	</section>
-	"""),_display_(Seq[Any](/*81.3*/footer())),format.raw/*81.11*/("""
-""")))})),format.raw/*82.2*/("""
+	"""),_display_(Seq[Any](/*70.3*/footer())),format.raw/*70.11*/("""
+""")))})),format.raw/*71.2*/("""
 """))}
     }
     
@@ -119,11 +108,11 @@ Seq[Any](format.raw/*3.1*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sat Mar 08 20:35:38 KST 2014
+                    DATE: Thu Mar 13 22:25:29 KST 2014
                     SOURCE: /Users/eskozz/xpush/stalk.io/app/views/contact.scala.html
-                    HASH: 0086776c95792fc8745877b03276aa188ba67e92
-                    MATRIX: 873->18|909->20|934->37|973->39|3928->2961|3958->2969|3991->2971
-                    LINES: 30->3|31->4|31->4|31->4|108->81|108->81|109->82
+                    HASH: ef62ffe10e73f7b40ceffbb9df04d894831c6a1e
+                    MATRIX: 873->18|909->20|934->37|973->39|3624->2657|3654->2665|3687->2667
+                    LINES: 30->3|31->4|31->4|31->4|97->70|97->70|98->71
                     -- GENERATED --
                 */
             
