@@ -1,6 +1,6 @@
 // @SOURCE:/Users/eskozz/xpush/stalk.io/conf/routes
-// @HASH:9249f4d17198602977cc3ee57f9ddcfd7df404f2
-// @DATE:Thu Mar 13 15:13:11 KST 2014
+// @HASH:a09aeb75770b257fff15e78e1df5149e2fa104d5
+// @DATE:Sun Mar 16 15:45:10 KST 2014
 
 package controllers;
 

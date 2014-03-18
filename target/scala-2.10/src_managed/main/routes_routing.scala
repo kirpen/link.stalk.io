@@ -1,6 +1,6 @@
 // @SOURCE:/Users/eskozz/xpush/stalk.io/conf/routes
-// @HASH:9249f4d17198602977cc3ee57f9ddcfd7df404f2
-// @DATE:Thu Mar 13 15:13:11 KST 2014
+// @HASH:a09aeb75770b257fff15e78e1df5149e2fa104d5
+// @DATE:Sun Mar 16 15:45:10 KST 2014
 
 
 import play.core._
@@ -92,7 +92,7 @@ private[this] lazy val controllers_Stalk_auth14 = Route("POST", PathPattern(List
 private[this] lazy val controllers_Stalk_operator15 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("operator"))))
         
 
-// @LINE:26
+// @LINE:27
 private[this] lazy val controllers_Assets_at16 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
         
 def documentation = List(("""GET""", prefix,"""controllers.Application.index()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """feature""","""controllers.Application.feature()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """install""","""controllers.Application.install()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """pricing""","""controllers.Application.pricing()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """contact""","""controllers.Application.contact()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """signup""","""controllers.Application.signup()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Application.login()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """logout""","""controllers.Application.logout()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """info""","""controllers.Application.info()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """chat""","""controllers.Application.chat()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """signup""","""controllers.Stalk.signup()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """login""","""controllers.Stalk.login()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """regist""","""controllers.Stalk.registStalkUser()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """delete""","""controllers.Stalk.deleteStalkUser()"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """auth""","""controllers.Stalk.auth()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """operator""","""controllers.Stalk.operator()"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -231,7 +231,7 @@ case controllers_Stalk_operator15(params) => {
 }
         
 
-// @LINE:26
+// @LINE:27
 case controllers_Assets_at16(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
         invokeHandler(controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))

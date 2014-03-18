@@ -45,7 +45,7 @@
                                     <td><pre class="prettyprint linenums">
 &lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
 var conf = {
-            key: '@app.getApp()',
+            key: '@app.getUrl()',
             id: 'Page Title',
             userId: 'Your Client ID'
         };
@@ -141,7 +141,7 @@ var conf = {
         		var url = $('#url').val();
         		
         		$.post("@routes.Stalk.registStalkUser()"
-	    		, {'app' : $('#url').val()}
+	    		, {'app':'stalk-io','url' : $('#url').val()}
 	    		, function(result) {
 	    			
 	    			if(result == "ok"){

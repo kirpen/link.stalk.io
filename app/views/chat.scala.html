@@ -406,7 +406,7 @@ var API = {
   auth: function (_userId, callback) {
     
     var params = {
-      app: Application.appId,
+      app: 'stalk-io',
       userId: Users[_userId].userId,
       deviceId: Users[_userId].deviceId
     };   
@@ -456,11 +456,12 @@ var Library = {
     API.auth(Users[_userId].userId, function (data, _userId) {
       
       var query = 
-    	'app='+Application.appId+'&'+
-			'userId='+Users[_userId].userId+'&'+
+    	'app='+'stalk-io'+'&'+
+			'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
     	'deviceId='+Users[_userId].deviceId+'&'+
     	'token='+data.result.token;
-      
+      console.log(query);
+      console.log(data.result.serverUrl+'/session?'+query, socketOptions);
       // Session Socket 연결하기.
       Users[_userId].sessionSocket = io.connect(data.result.serverUrl+'/session?'+query, socketOptions);
       
@@ -491,8 +492,8 @@ var Library = {
   channels: function(_userId, callback) {
     
     // **channal-list** 이벤트 호출.
-	
-    Users[_userId].sessionSocket.emit('channel-list', function (data) {
+	console.log("channeeelkwlell")
+    Users[_userId].sessionSocket.emit('listChannel',{key:Application.appId}, function (data) {
         console.info('\t channels : '+JSON.stringify(data));
       callback(data);
     });
@@ -519,15 +520,15 @@ var Library = {
   connect_channel_socket: function(_userId, _channel, callback) {
     
     // Message Socket Server 주소 가져오기. ( /node/ [App ID] / [Channel ID] )
-    API.node(Application.appId, _channel, function (data) {
+    API.node('stalk-io', _channel, function (data) {
       
       var query = 
-    			'app='+Application.appId+'&'+
+    			'app='+'stalk-io'+'&'+
       			'channel='+data.result.channel+'&'+
       			'server='+data.result.server+'&'+
-				'userId='+Users[_userId].userId+'&'+
+				'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
     			'deviceId='+Users[_userId].deviceId;
-      
+      console.log(query);
       Users[_userId][_channel] = io.connect(data.result.server.url+'/channel?'+query, socketOptions);
       Users[_userId][_channel].on('connect', function(data) {
         callback(data);
@@ -597,7 +598,7 @@ var Library = {
   sendMessage: function(_userId, _channel, _name, _datas, callback) {
         
     var param = {
-      app:      Application.appId,  // app : Application ID
+      app:      'stalk-io',  // app : Application ID
       channel:  _channel,           // channel : Channel ID
       name:     _name,              // name : 이벤트 발생 ID
       data:     _datas };           // data : 전송할 데이터
@@ -634,10 +635,10 @@ function channels(){
 	Library.channels(userId, function(result){
     	
     	if(result.result.length<1){
-    		Library.createChannel(userId, null, [userId], function(result){
+    		//Library.createChannel(userId, null, [userId], function(result){
     	        
     	        //joinChannel(result.result[0].channel);
-    	      });
+    	     // });
     	}else{
     		//joinChannel(result.result[0].channel);
     	}

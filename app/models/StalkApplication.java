@@ -7,6 +7,17 @@ public class StalkApplication {
 
 	private ObjectId _id=null;
 	private String app="";
+	private String url="";
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
 	private String userId="";
 	private String deviceId="";
 	

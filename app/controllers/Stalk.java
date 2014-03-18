@@ -121,6 +121,7 @@ public class Stalk extends Controller {
     	String email = session().get("email");
     	
     	String app = queryParameters.get("app")[0];
+    	String url = queryParameters.get("url")[0];
     	
     	String password = "";
     	
@@ -140,7 +141,7 @@ public class Stalk extends Controller {
     		
     		
     		WSRequestHolder wsreqHolder = WS.url("http://chat.stalk.io:8000/user/register");
-        	wsreqHolder.setQueryParameter("app", "stalk-io:"+app)
+        	wsreqHolder.setQueryParameter("app", app)
     		    .setQueryParameter("userId", email)
     		    .setQueryParameter("deviceId", "web")
     		    .setQueryParameter("password", password);
@@ -156,6 +157,8 @@ public class Stalk extends Controller {
         	Json json = new Json();
         	JsonNode returnJson = json.parse(ret);
         	System.out.println(returnJson);
+        	
+        	System.out.println("user/register");
         	System.out.println(returnJson.get("status").toString());
         	
         	if(returnJson.get("status").toString().equals("\"ok\"")){
@@ -163,7 +166,8 @@ public class Stalk extends Controller {
         		
         		ObjectNode saveJson = json.newObject();
     			saveJson.put("userId", email);
-    			saveJson.put("app", "stalk-io:"+app);
+    			saveJson.put("app", app);
+    			saveJson.put("url", url);
     			saveJson.put("deviceId", "web");
     			saveJson.put("password", password);
     			
@@ -270,6 +274,8 @@ public class Stalk extends Controller {
         	
         	Json json = new Json();
         	returnJson = json.parse(ret);
+        	
+        	System.out.println("here here");
         	System.out.println(returnJson);
         	
         	
@@ -289,16 +295,13 @@ public class Stalk extends Controller {
     public static Result operator() {
     	
     	Map<String, String[]> queryParameters = request().queryString();
-		String appId = queryParameters.get("appId")[0];
+		String url = queryParameters.get("url")[0];
 		
-		System.out.println(appId);
+		System.out.println(url);
 		
 		MongodbDataManager mm = new MongodbDataManager();
-		List<DBObject> docu = mm.getDocumentList(Constants.MONGO_IP, Constants.MONGO_PORT, Constants.MONGO_DB, Constants.M_COLL_STALK_APPS, "{app:'"+appId+"'}","{_id:0,app:1,userId:1}");
+		List<DBObject> docu = mm.getDocumentList(Constants.MONGO_IP, Constants.MONGO_PORT, Constants.MONGO_DB, Constants.M_COLL_STALK_APPS, "{url:'"+url+"'}","{_id:0,app:1,userId:1,url:1}");
 	 
-	    
-	
-		
         return ok(docu.toString());
     }	
 }
