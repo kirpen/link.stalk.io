@@ -1,0 +1,89 @@
+{>"layouts/master" /}
+{<body}
+
+<link href="css/stalk.css" rel="stylesheet" />
+<section id="content">
+	<!-- <div class="map">
+		<iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Kuningan,+Jakarta+Capital+Region,+Indonesia&amp;aq=3&amp;oq=kuningan+&amp;sll=37.0625,-95.677068&amp;sspn=37.410045,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Kuningan&amp;t=m&amp;z=14&amp;ll=-6.238824,106.830177&amp;output=embed">
+		</iframe>
+	</div> -->
+	<div class="container container-full">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<h1>Now we’re talking!</h1>
+					<div class="team-member">
+						<figure class="member-photo"><img src="img/stalk/stalk_1.jpg" alt="" /></figure>
+					</div>
+		          	
+		          
+		          	<div class="col-lg-3"></div>
+				
+		          	<form id="contactform" class="col-lg-6 validateform" action="/signup" method="post">	
+		          	
+		          	
+		          		
+		          		<div class="panel panel-primary">
+		          		   <div class="panel-heading">
+						    <h3 class="panel-title">Fill your inforamtion</h3>
+						  </div>
+						  <div class="panel-body">
+							<div class="form-group">
+			                {?messages}
+			          			<div class="alert alert-danger">
+		          					
+				                    <ul>
+				                        {#messages}
+				                            {.}
+				                        {/messages}
+				                    </ul>
+			          			</div>
+			          		{/messages}	
+							</div> 
+							
+							<!-- <p>What is your website URL?</p> -->
+							<div class="col-lg-12 margintop10  field">
+								<input type="text" name="email" placeholder="* Enter your email address" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation">
+								</div>
+							</div>
+							<!-- <h4>What is your email address?</h4> -->
+							<div class="col-lg-12 margintop10  field">
+								<input type="text" name="name" placeholder="* Enter your name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation">
+								</div>
+							</div>
+							<!-- <h4>Names are great! Pick a username</h4> -->
+							<div class="col-lg-12 margintop10  field">
+								<input type="password" name="password" id="password" placeholder="* Enter your super secret password" data-rule="maxlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation">
+								</div>
+							</div>
+							<!-- <h4>Pick a super secret password</h4> -->
+							<div class="col-lg-12 margintop10  field">
+								<input type="password" name="repassword" id="repassword" placeholder="* Re enter your password" data-rule="password_confirm" data-msg="Not match with password" />
+								<div class="validation">
+								</div>
+							</div>
+							<!-- <h4>Re-enter your super secret password</h4> -->
+							<div class="col-lg-3"></div>
+							<input type="hidden" name="_csrf" value="{_csrf}"/>
+							<button type="submit" id="saveBtn" class="col-lg-6 btn btn-warning btn-lg">Save</button>
+							<div class="col-lg-3"></div>
+						  </div>
+						  
+						</div>
+
+						
+		          </form>
+		          <div class="col-lg-3"></div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	</section>
+	<script src="js/stalk/signup.js" type="text/javascript"></script>
+{>"footer" /}
+{/body}

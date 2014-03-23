@@ -1,0 +1,8 @@
+$(function(){
+
+    $('#password')
+
+    $('#repassword')
+
+});
+

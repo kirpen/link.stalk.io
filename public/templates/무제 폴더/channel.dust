@@ -1,0 +1,40 @@
+{>"layouts/master" /}
+
+{<body}
+    <div id="wrapper">
+
+    	{>"side-bar" /}
+        <div id="page-wrapper">
+
+            <div class="row">
+              <div class="col-lg-12">
+                <h1><span id="subMenuName"></span> <small>XPUSH channel info</small></h1>
+                <ol class="breadcrumb">
+                  <li class="active"><i class="fa fa-dashboard"></i> <span id="subMenuName2"></span></li>
+                </ol>
+                <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  Welcome to XPUSH Manager by <a class="alert-link" href="https://github.com/xpush/">XPUSH</a>! 
+                </div>
+              </div>
+            </div><!-- /.row -->
+            <div class="row">
+                
+                <div id="page"></div>
+            </div>
+
+
+            <div class="row">
+                <label>Add New Channel??</label><input class="form-control" id="appNm" type="text" value=""/>
+                <input type="submit" id="appCreate" value="Add" class="btn btn-primary"/>
+                <input type="text" id ="gw" name="gw" value="{gw}"/>
+                <input type="hidden" id ="csrf" name="_csrf" value="{_csrf}"/>
+            </div>
+            
+            
+        </div>  
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/xpush/channel.js"></script>
+    
+{/body}

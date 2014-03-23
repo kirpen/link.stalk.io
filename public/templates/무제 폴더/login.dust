@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{+title /}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    <!-- JavaScript -->
+    <script src="/js/jquery-1.10.2.js"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <!-- Page Specific Plugins -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+    <script src="/js/morris/chart-data-morris.js"></script>
+    <script src="/js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="/js/tablesorter/tables.js"></script>
+    <script src="/js/dust-full-0.3.0.min.js"></script>
+    <script src="/js/xpush/master.js"></script>
+
+  </head>
+
+    <body style="background-color:#1d2024;vertical-align:center">
+        <div class="row">
+        <div class="col-lg-12">
+    
+        <div class="col-lg-4"></div class="col-lg-4">
+        <div class="col-lg-4">
+        <div class="jumbotron" style="margin-top:100px">
+        <form id="loginForm" method="post">
+            <fieldset>
+                <h1 class="text-danger">XPUSH</h1>
+                {?messages}
+                    <ul>
+                        {#messages}
+                            <li>{.}</li>
+                        {/messages}
+
+                    </ul>
+                {/messages}
+                <table>
+                    <tr>
+                        <td><label for="username">ID: </label></td>
+                        <td><input class="form-control" id="username" name="username" type="text" value="kraken"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password: </label></td>
+                        <td><input class="form-control"  id="password" name="password" type="password" value="releaseMe"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Login" class="btn btn-primary"/>
+                            <input type="hidden" name="_csrf" value="{_csrf}"/>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+
+            </fieldset>
+        </form>
+
+        </div>
+        </div class="col-lg-4">
+        <div class="col-lg-4">
+            
+        </div class="col-lg-4">
+        </div class="col-lg-12">
+    </div>
+    </body>
+</html>

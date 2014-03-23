@@ -1,0 +1,139 @@
+{>"layouts/master" /}
+{<body}
+	
+	<section id="content">
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="row">	
+			
+				<h3>Your stalk.io info</h3>
+				<p>Regist URL & Enjoy</p>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th>
+                                       ID
+                                    </th>
+                                    <th>
+                                       Name
+                                    </th>
+                                    <th>
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <form action="delete" id="delForm" method="post">
+                                <input type="hidden" id="deleteId" name="deleteId" value=""/>
+                                <input type="hidden" id="_csrf" name="_csrf" value="{_csrf}"/>
+                            </form>
+
+                            {?apps}
+                                {#apps}
+                                    <tr>
+                                    <td><button type="button" onclick="deleteStalkUser('{_id}');" class="btn btn-default btn-danger"><i class="fa fa-times"></i></button></td>
+                                    <td>{app}</td>
+                                    <td><pre class="prettyprint linenums">
+&lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;<br/>
+&lt;script&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var conf = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: '{url}',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 'Page Title',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userId: 'Your Client ID'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STALK.init(conf);<br/>
+&lt;/script&gt;</pre></td>  
+                                    <td>
+                                        <button class="btn btn-default" >Add Operators</button>
+                                    </td>
+                                    
+                                    <td>
+                                        <button class="btn btn-primary" ><a href="/chat/{url}">Go Chat!</a></button>
+                                    </td>
+                                    
+                                </tr>  
+                                {/apps}
+                            {/apps}
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" id="newUrl">New</button>
+                    </div>
+                 </div>
+			</div>
+		
+		</div>
+
+		
+		
+	</div>
+	</section>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+           
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Regist New Site</h4>
+                </div>
+                <div class="modal-body">
+                        <h3>URL</h3>
+					    <div class="form-group input-group">
+					    	<input class="form-control"  type="text" id="url" name="url" value=''>
+                            
+                        </div>
+
+						
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                </div>
+            </div>
+			
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+	<div class="modal fade" id="opModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+           
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add Operators</h4>
+                </div>
+                <div class="modal-body">
+                        <h3>URL</h3>
+					    <div class="form-group input-group">
+					    	<input class="form-control"  type="text" id="url" name="url" value=''>
+                            
+                        </div>
+
+						
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                </div>
+            </div>
+			
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+	 <script src="js/stalk/info.js" type="text/javascript"></script>
+
+
+{>"footer" /}
+{/body}

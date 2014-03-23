@@ -1,0 +1,11 @@
+{
+	
+    "databaseConfig": {
+        "host": "localhost:27017",
+        "database": "stalk"
+    },
+
+    "bcrypt": {
+        "difficulty": 8
+    }
+}
