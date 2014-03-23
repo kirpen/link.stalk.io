@@ -31,13 +31,13 @@
 						  <div class="panel-body">
 						  
 							<div class="col-lg-12 margintop10  field">
-								<input type="text" name="username" placeholder="* Email" data-rule="emails" data-msg="Please enter a valid email" value="kraken"/>
+								<input type="text" name="username" placeholder="* Email" data-rule="emails" data-msg="Please enter a valid email" value=""/>
 								<div class="validation">
 								</div>
 							</div>
 							<!-- <p>What is your website URL?</p> -->
 							<div class="col-lg-12 margintop10  field">
-								<input type="password" name="password" placeholder="* Password" value="releaseMe"/>
+								<input type="password" name="password" placeholder="* Password" value=""/>
 								<div class="validation">
 								</div>
 							</div>

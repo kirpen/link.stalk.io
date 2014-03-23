@@ -63,6 +63,8 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
     server.use(passport.session());
     server.use(flash());
     server.use(auth.injectUser);
+    server.set("jsonp callback", true);
+
 };
 
 
