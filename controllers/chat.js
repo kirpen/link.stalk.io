@@ -178,7 +178,7 @@ module.exports = function (app) {
                     if(d){
                         callback(k,d);    
                     }else{
-                        callbakc(k,null);
+                        callback(k,null);
                     }
                     
                 });
