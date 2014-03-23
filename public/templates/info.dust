@@ -56,7 +56,7 @@
                                     </td>
                                     
                                     <td>
-                                        <button class="btn btn-primary" ><a href="/chat/{url}">Go Chat!</a></button>
+                                        <button class="btn btn-primary" ><a href="/chat/{app}">Go Chat!</a></button>
                                     </td>
                                     
                                 </tr>  
