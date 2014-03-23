@@ -275,6 +275,7 @@ var Library = {
             console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
             
             $("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
+            
             playSound();
             openChatArea(data);
             joinChannel(data.channel);
@@ -339,7 +340,7 @@ var Library = {
       Users[_userId][_channel].on('message', function (data) {
             console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
             
-            var chatText = '<div class="timestamp">'+getTimeStamp()+'</div>';
+            var chatText = '<div class="timestamp">'+getTimeStamp()+':'+data.sender+'</div>';
             var msgClass = data.sender==_userId?'from-op':'from-visitor';
             
             
@@ -515,7 +516,7 @@ function getOperators(){
     })
 }
 function playSound(){   
-    document.getElementById("sound").innerHTML='<audio autoplay="autoplay"><source src="audio/noti.mp3" type="audio/mpeg" /><embed hidden="true" autostart="true" loop="false" src="audio/noti.mp3" /></audio>';
+    document.getElementById("sound").innerHTML='<audio autoplay="autoplay"><source src="/audio/noti.mp3" type="audio/mpeg" /><embed hidden="true" autostart="true" loop="false" src="/audio/noti.mp3" /></audio>';
 }
 
 function getEscapeHtml (html) {
