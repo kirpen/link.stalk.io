@@ -324,7 +324,7 @@ var Library = {
     API.node(Application.appId, _channel, function (data) {
       
       var query = 
-                'app='Application.appId+'&'+
+                'app='+Application.appId+'&'+
                 'channel='+data.result.channel+'&'+
                 'server='+data.result.server+'&'+
                 'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
