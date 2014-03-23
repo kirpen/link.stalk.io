@@ -1,8 +1,0 @@
-$(function(){
-
-    $('#password')
-
-    $('#repassword')
-
-});
-
