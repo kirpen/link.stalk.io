@@ -127,7 +127,7 @@ module.exports = function (app) {
         
         console.log(sessions);
 
-        if(count==0) response.json(callback+'('+[]+')');
+        if(count==0) response.send(callback+'('+JSON.stringify(operators)+')');
 
         for(var s in sessions){
             var sessionObj = JSON.parse(sessions[s]);
@@ -149,7 +149,7 @@ module.exports = function (app) {
         function getOperator(operators){
             var opcnt = 0;
             if(operators.length==0){
-                response.json(callback+'('+[]+')');   
+                response.send(callback+'('+JSON.stringify(operators)+')');   
             }
             for(var o in operators){
                 getUser(o,operators[o].user, function(k, doc){
@@ -160,7 +160,7 @@ module.exports = function (app) {
                     }
                     
                     if(opcnt==operators.length-1){
-                        response.json(callback+'('+operators+')');        
+                        response.send(callback+'('+JSON.stringify(operators)+')');        
                     }
                     opcnt++
                 });
