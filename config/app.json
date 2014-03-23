@@ -5,6 +5,8 @@
         "database": "stalk"
     },
 
+   
+
     "bcrypt": {
         "difficulty": 8
     }

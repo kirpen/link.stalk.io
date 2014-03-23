@@ -82,10 +82,6 @@ jQuery(document).ready(function($) {
 		    }
 		});
 		if( ferror ) return false; 
-<<<<<<< HEAD
-=======
-			
->>>>>>> 20a494206e4ba0c6b73ac084c9ae9097199089c5
 	});
 
 });

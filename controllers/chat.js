@@ -114,6 +114,10 @@ module.exports = function (app) {
         
         var url = request.params.url;
 
+        var callback = request.query.callback;
+
+
+
         var sessions = request.sessionStore.sessions;
         var operators = [];
         var cnt = 0;
@@ -123,7 +127,7 @@ module.exports = function (app) {
         
         console.log(sessions);
 
-        if(count==0) response.json([]);
+        if(count==0) response.json(callback+'('+[]+')');
 
         for(var s in sessions){
             var sessionObj = JSON.parse(sessions[s]);
@@ -145,7 +149,7 @@ module.exports = function (app) {
         function getOperator(operators){
             var opcnt = 0;
             if(operators.length==0){
-                response.json([]);   
+                response.json(callback+'('+[]+')');   
             }
             for(var o in operators){
                 getUser(o,operators[o].user, function(k, doc){
@@ -156,7 +160,7 @@ module.exports = function (app) {
                     }
                     
                     if(opcnt==operators.length-1){
-                        response.json(operators);        
+                        response.json(callback+'('+operators+')');        
                     }
                     opcnt++
                 });

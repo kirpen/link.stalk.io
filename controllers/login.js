@@ -28,7 +28,7 @@ module.exports = function (app) {
      * Failed authentications will go back to the login page with a helpful error message to be displayed.
      */
     app.post('/login', function (req, res) {
-
+        
         passport.authenticate('local', {
             successRedirect: '/',
             failureRedirect: "/login",
