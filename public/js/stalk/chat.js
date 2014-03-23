@@ -208,7 +208,7 @@ var API = {
   auth: function (_userId, callback) {
     
     var params = {
-      app: 'stalk-io:'+Application.appId,
+      app:  Application.appId,
       userId: Users[_userId].userId,
       deviceId: Users[_userId].deviceId,
       _csrf:$("#_csrf").val()
@@ -257,7 +257,7 @@ var Library = {
     API.auth(Users[_userId].userId, function (data, _userId) {
       
       var query = 
-        'app='+'stalk-io:'+Application.appId+'&'+
+        'app='+Application.appId+'&'+
             'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
         'deviceId='+Users[_userId].deviceId+'&'+
         'token='+data.result.token;
@@ -321,10 +321,10 @@ var Library = {
   connect_channel_socket: function(_userId, _channel, callback) {
     
     // Message Socket Server 주소 가져오기. ( /node/ [App ID] / [Channel ID] )
-    API.node('stalk-io:'+Application.appId, _channel, function (data) {
+    API.node(Application.appId, _channel, function (data) {
       
       var query = 
-                'app='+'stalk-io:'+Application.appId+'&'+
+                'app='Application.appId+'&'+
                 'channel='+data.result.channel+'&'+
                 'server='+data.result.server+'&'+
                 'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
@@ -399,7 +399,7 @@ var Library = {
   sendMessage: function(_userId, _channel, _name, _datas, callback) {
         
     var param = {
-      app:      'stalk-io',  // app : Application ID
+      app:      Application.appId,  // app : Application ID
       channel:  _channel,           // channel : Channel ID
       name:     _name,              // name : 이벤트 발생 ID
       data:     _datas };           // data : 전송할 데이터

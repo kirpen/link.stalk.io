@@ -55,7 +55,7 @@ module.exports = function (app) {
 
         
         var param = {
-            app: "stalk-io:"+app,
+            app: "stalk-io",
             url : url,
             userId: email,
             deviceId: 'web',
@@ -63,7 +63,7 @@ module.exports = function (app) {
         }
 
         var saveObj = {
-            app: app,
+            app: "stalk-io",
             url : url,
             userId: email,
             deviceId: 'web',
