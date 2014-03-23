@@ -150,7 +150,8 @@ module.exports = function (app) {
             for(var o in operators){
                 getUser(o,operators[o].user, function(k, doc){
                     if(doc){
-                        operators[k].login = doc.userId;
+                        operators[k].userId = doc.userId;
+                        operators[k].deviceId = 'web';
                         
                     }
                     
