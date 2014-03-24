@@ -58,7 +58,7 @@ module.exports = function (app) {
             app: "stalk-io",
             url : url,
             userId: email,
-            deviceId: 'web',
+            deviceId: 'WEB',
             password: password
         }
 
@@ -66,7 +66,7 @@ module.exports = function (app) {
             app: "stalk-io",
             url : url,
             userId: email,
-            deviceId: 'web',
+            deviceId: 'WEB',
             password: password
         }
         client.post('/user/register', param, function (err, req, res, data) {

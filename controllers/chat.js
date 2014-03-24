@@ -155,7 +155,7 @@ module.exports = function (app) {
                 getUser(o,operators[o].user, function(k, doc){
                     if(doc){
                         operators[k].userId = doc.userId;
-                        operators[k].deviceId = 'web';
+                        operators[k].deviceId = 'WEB';
                         
                     }
                     

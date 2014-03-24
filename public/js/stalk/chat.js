@@ -10,7 +10,7 @@ var userId = $('#email').val();
 Users[userId]={
                 userId : $('#email').val(),
                 password: 'qwer',
-                deviceId: 'web'
+                deviceId: 'WEB'
               };
 
 
