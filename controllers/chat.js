@@ -2,8 +2,10 @@
 
 var User = require('../models/user'),
 	AppModel = require('../models/app'),
+    XpushModel = require('../models/xpushuser'),
     stalk = require('../config/stalk'),
     auth = require('../lib/auth'),
+    async   = require('async'),
     restify = require('restify');
     
 
@@ -17,7 +19,7 @@ module.exports = function (app) {
 
         var appId = req.params.appId;
 
-        console.log(appId);
+        
         res.render('chat', {appId:appId, email:req.user.login});
     	
     });
@@ -42,17 +44,13 @@ module.exports = function (app) {
             password: password
         }
 
-        console.log(param);
+        
 
         
         client.post('/auth', param, function (err, req, res, data) {
             if(err) {
                 console.log("An error ocurred:", err);
             }
-
-            console.log(data);
-            
-
             User.findOne({login:userId}, function(err, doc){
         
                 if (err) {}
@@ -72,10 +70,7 @@ module.exports = function (app) {
                             sessions[s] = JSON.stringify(sessionObj);
                         
                         }
-                        if(cnt==count-1){
-                            console.log(":::::::");
-                            console.log(sessions);
-                        }
+                        
                         cnt++
 
                     }
@@ -103,8 +98,7 @@ module.exports = function (app) {
             if (err) {
                 
             }
-            
-            console.log(doc);
+
             response.json(doc);
         });
 
@@ -113,61 +107,85 @@ module.exports = function (app) {
     app.get('/operator/session/:url', function (request, response) {
         
         var url = request.params.url;
-
-        var callback = request.query.callback;
-
-
+        var cb = request.query.callback;
 
         var sessions = request.sessionStore.sessions;
         var operators = [];
-        var cnt = 0;
-
+        var allOperators=[];
 
         var count = Object.keys(sessions).length;
-        
+        var opCnt = 0;
+        var cnt = 0;
+
         console.log(sessions);
 
-        if(count==0) response.send(callback+'('+JSON.stringify(operators)+')');
-
-        for(var s in sessions){
-            var sessionObj = JSON.parse(sessions[s]);
-            
-            if('user' in sessionObj.passport){
-                var _id = sessionObj.passport.user;
-                if('auth' in sessionObj.passport){
-                    var op = {user:_id, auth:sessionObj.passport.auth};
-                    operators.push(op);    
-                }
-                
-            }
-            if(cnt==count-1){
-                getOperator(operators);      
-            }
-            cnt++
-        }
-
-        function getOperator(operators){
-            var opcnt = 0;
-            if(operators.length==0){
-                response.send(callback+'('+JSON.stringify(operators)+')');   
-            }
-            for(var o in operators){
-                getUser(o,operators[o].user, function(k, doc){
-                    if(doc){
-                        operators[k].userId = doc.userId;
-                        operators[k].deviceId = 'WEB';
+        if(count==0) response.send(cb+'('+JSON.stringify(operators)+')');
+    
+        async.waterfall([
+            function (callback){
+                for(var s in sessions){
+                    var sessionObj = JSON.parse(sessions[s]);
+                    
+                    if('user' in sessionObj.passport){
+                        var _id = sessionObj.passport.user;
+                        if('auth' in sessionObj.passport){
+                            var op = {user:_id, auth:sessionObj.passport.auth};
+                            operators.push(op);    
+                        }
                         
                     }
-                    
-                    if(opcnt==operators.length-1){
-                        response.send(callback+'('+JSON.stringify(operators)+')');        
+                    if(cnt==count-1){
+                        callback(null,operators);
                     }
-                    opcnt++
-                });
-            }
-        }
-        
+                    cnt++
+                }
+            },
+            function(operators, callback){
+                var opcnt = 0;
+                if(operators.length==0){
+                    response.send(cb+'('+JSON.stringify(operators)+')');   
+                }
+                for(var o in operators){
+                    getUser(o,operators[o].user, function(k, doc){
+                        
+                        if(doc){
+                            console.log(doc);
+                            operators[k].userId = doc.userId;
+                            operators[k].deviceId = 'WEB';
+                            operators[k].name = doc.name;
+                            
+                        }
+                        
+                        if(opcnt==operators.length-1){
+                             callback(null,operators);
+                        }
+                        opcnt++
+                    });
+                }
 
+            },
+            function(operators, callback){
+                var cnt=0;
+                for(var op in operators){
+                    var userId = operators[op].userId;
+                    var userName = operators[op].name;
+                    getXpushUser(userId,userName,function(){
+                        
+                        if(cnt==operators.length-1){
+                            callback(null);
+                        }
+                        cnt++;
+                    });
+                    
+                }
+             
+            }
+
+        ],function(err, result){
+
+            response.send(cb+'('+JSON.stringify(allOperators)+')');
+
+        });
 
         function getUser(k, id,callback){
             User.findOne({_id:id}, function(err, doc){
@@ -176,20 +194,33 @@ module.exports = function (app) {
                     
                 }
                 
-                console.log(doc);
-                AppModel.findOne({userId:doc.login,url:url}, function(err, d){
+                AppModel.findOne({userId:doc.login,url:url}, function(err, d){   
 
-                    
                     if(d){
-                        callback(k,d);    
+                        
+                        callback(k,{userId:d.userId,name:doc.name});    
                     }else{
                         callback(k,null);
-                    }
-                    
+                    } 
                 });
-                
-                
             });
+        }
+
+
+        
+        function getXpushUser(userId,userName,callback){
+            XpushModel.find({app:'stalk-io',userId:userId},{ userId: 1, deviceId: 1, token:1, _id:0 }, function(err, xUsers){
+                    
+                for(var xu in xUsers){
+
+                    allOperators.push({deviceId:xUsers[xu].deviceId, userId:xUsers[xu].userId, name:userName, token:xUsers[xu].token});
+                    
+                }
+                callback();
+                
+            });   
+
+
         }
 
             

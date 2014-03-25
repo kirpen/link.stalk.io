@@ -1,6 +1,11 @@
 {
 
-	"sessionServer" : "http://chat.stalk.io:8000"
+	"sessionServer" : "http://chat.stalk.io:8000",
+
+	"xpushDatabaseConfig": {
+        "host": "54.199.240.37:27017",
+        "database": "xpush"
+    }
 
 	
 }
