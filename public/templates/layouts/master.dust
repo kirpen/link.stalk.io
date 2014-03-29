@@ -162,15 +162,16 @@
     <script>
     $('#saveBtn').click(function(){
         var url = $('#url').val();
+        var name = $('#name').val();
         
         $.post("/regist"
-        , {'app':$('#url').val(),'url' : $('#url').val(),
-        'name':$('#name').val(), _csrf:$("#_csrf").val()}
+        , {'app':url,'url' : url,
+        'name': name, _csrf:$("#_csrf").val()}
         , function(result) {
             
             if(result.msg == "ok"){
                 alert("Success Saved");
-                document.location.href='/info'
+                document.location.href='/info/'+name+'/settings'
             }else {
                 alert("Fail");
                 
