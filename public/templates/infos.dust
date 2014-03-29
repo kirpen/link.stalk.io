@@ -1,0 +1,23 @@
+{>"layouts/master" /}
+{<body}
+<div class="container">
+    {?apps}
+        {#apps}
+
+	<div class="row">
+		<div class="col-sm-6 col-md-3">
+			<div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">{name}</h3>
+              </div>
+              <div class="panel-body">
+                Data is ready.
+              </div>
+            </div>			
+		</div>
+	</div>
+
+		{/apps}
+	{/apps}
+</div>
+{/body}

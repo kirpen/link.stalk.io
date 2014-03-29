@@ -52,18 +52,111 @@
         </div>
       </div>
     </div>
-    <div class="previews">
+
+
+    <div id="developers" class="previews">
       <div class="container">
-        <h2>Preview</h2>
-        <p>You will find Buttons, Text edits, Menus, Sliders and more, Beautiful Complex Blocks and many other useful web elements. </p>
+        <h2>Developers</h2>
+        <p>Developer who subconsciously views himself as an artist will enjoy what he does and will do it better. </p>
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail">
+                <img class="img-rounded" src="/img/team/johnkim.jpg" >
+                <div class="caption text-center">
+                  <h3>John Kim</h3>
+                  <div class="social-developer">
+                    <a title="Twitter" href="https://twitter.com/flathemes" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe121"></i></a>&nbsp;&nbsp;
+                    <a title="Google+" href="https://plus.google.com/u/0/" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe110"></i></a>&nbsp;&nbsp;
+                    <a title="Facebook" href="https://www.facebook.com/JohnKim0331" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10b"></i></a>&nbsp;&nbsp;
+                    <a title="Github" href="https://github.com/JohnKim" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10e"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail">
+                <img class="img-rounded" src="/img/team/johnko.jpg">
+                <div class="caption text-center">
+                  <h3>John Ko</h3>
+                  <div class="social-developer">
+                    <a title="Facebook" href="https://www.facebook.com/john.ko.54" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10b"></i></a>&nbsp;&nbsp;
+                    <a title="Github" href="https://github.com/EunsanKo" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10e"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail">
+                <img class="img-rounded" src="/img/team/luffy.jpg">
+                <div class="caption text-center">
+                  <h3>Luffy</h3>
+                  <div class="social-developer">
+                    <a title="Facebook" href="https://www.facebook.com/jung.jinyung.9" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10b"></i></a>&nbsp;&nbsp;
+                    <a title="Github" href="https://github.com/0nlyoung7" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10e"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail">
+                <img class="img-rounded" src="/img/team/notdol.jpg">
+                <div class="caption text-center">
+                  <h3>Notdol</h3>
+                  <div class="social-developer">
+                    <a title="Facebook" href="https://www.facebook.com/notdol" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10b"></i></a>&nbsp;&nbsp;
+                    <a title="Github" href="https://github.com/notdol" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10e"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
       </div>
-      <img src="img/bootflat-ui-kit.jpg" alt="Bootflat UI Kit" />
+      
+    </div>
+    <div id="contact" class="previews">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div id="map"></div>
+      </div>
       <div class="container">
         <h2>Thanks for watching!</h2>
-        <p>I hope you will enjoy this new product, and if you use it, do not forget to share your projects with us. I love to see all the great things you are working on!</p>
+        <p>I hope you will enjoy this new product, and if you use it, do not forget to share your projects with us. I love to see all the great things you are working on!.....</p>
       </div>
+
     </div>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+
+    <script type="text/javascript">
+            // When the window has finished loading create our google map below
+            google.maps.event.addDomListener(window, 'load', init);
+        
+            function init() {
+                // Basic options for a simple Google Map
+                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                var mapOptions = {
+                    // How zoomed in you want the map to start at (always required)
+                    zoom: 11,
+
+                    // The latitude and longitude to center the map (always required)
+                    center: new google.maps.LatLng(40.6700, -73.9400), // New York
+
+                    // How you would like to style the map. 
+                    // This is where you would paste any style found on Snazzy Maps.
+                    styles: [ {   featureType:"all",    elementType:"all",    stylers:[   {     invert_lightness:true   },    {     saturation:10   },    {     lightness:30    },    {     gamma:0.5   },    {     hue:"#1C705B"   }   ] } ]
+                };
+
+
+alert('ddddd');
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('map');
+
+                // Create the Google Map using out element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+            }
+        </script>
 
 
 {/body}
