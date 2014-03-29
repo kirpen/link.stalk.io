@@ -26,6 +26,18 @@ module.exports = function (app) {
     	
     });
 
+    app.get('/info/:name/settings',auth.isAuthenticated('admin'), function (req, res) {
+        console.log("===== info/:name",req.param('name'));
+        console.log(req.user.login);
+        var name = req.param('name');
+
+        var query = {userId : req.user.login, name: name};
+        AppModel.findOne(query, function(err, app) {
+            res.render('info', {app:app , hostname: name});
+        });
+        
+    });
+
     /**
      * Receive the login credentials and authenticate.
      * Successful authentications will go to /profile or if the user was trying to access a secured resource, the URL
@@ -41,13 +53,12 @@ module.exports = function (app) {
 
     app.post('/regist',auth.isAuthenticated('admin'), function (request, response) {
 
-    	
        	var email = request.user.login;
     	var app = request.param("app");
     	var url = request.param("url");
+        var name = request.param("name");
         var password = request.user.password;
-    
-
+        console.log('/regist',request.param('name'));
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
             version: '*'
@@ -59,6 +70,7 @@ module.exports = function (app) {
             url : url,
             userId: email,
             deviceId: 'WEB',
+            name : name,
             password: password
         }
 
@@ -66,6 +78,7 @@ module.exports = function (app) {
             app: "stalk-io",
             url : url,
             userId: email,
+            name: name,
             deviceId: 'WEB',
             password: password
         }
@@ -103,11 +116,13 @@ module.exports = function (app) {
             
         });
 
-        
-        response.redirect("/info");
-        
-        
-        
+        response.redirect("/infos");
     });
 
+    app.get('/infos',auth.isAuthenticated('admin'), function (req, res) {
+        var query = {userId : req.user.login};
+        AppModel.find(query, function(err, apps) {
+            res.render('infos', {apps:apps});
+        });
+    });
 };
