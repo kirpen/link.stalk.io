@@ -1,21 +1,30 @@
 {>"layouts/master" /}
 {<body}
 
-<link href="css/stalk.css" rel="stylesheet" />
-<section id="content">
-	<!-- <div class="map">
-		<iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Kuningan,+Jakarta+Capital+Region,+Indonesia&amp;aq=3&amp;oq=kuningan+&amp;sll=37.0625,-95.677068&amp;sspn=37.410045,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Kuningan&amp;t=m&amp;z=14&amp;ll=-6.238824,106.830177&amp;output=embed">
-		</iframe>
-	</div> -->
+
+
+
+
+<section id="content" class="login">
+	
 	<div class="container container-full">
-		<div class="row">
-			<div class="col-lg-12">
-				<div>
+		<div class="row mar-bot40">
+			<div class="col-md-offset-3 col-md-6">
+				<div class="section-header">
 					<h1>Now we’re talking!</h1>
 					<div class="team-member">
 						<figure class="member-photo"><img src="img/stalk/stalk_1.jpg" alt="" /></figure>
 					</div>
 		          	
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					
 		          
 		          	<div class="col-lg-3"></div>
 				
@@ -84,6 +93,6 @@
 
 	</div>
 	</section>
-	<script src="js/stalk/signup.js" type="text/javascript"></script>
-{>"footer" /}
+	
+
 {/body}

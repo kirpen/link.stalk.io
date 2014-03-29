@@ -110,6 +110,118 @@ module.exports = function (app) {
         var cb = request.query.callback;
 
         var sessions = request.sessionStore.sessions;
+        
+        var allOperators=[];
+
+        var count = Object.keys(sessions).length;
+        var opCnt = 0;
+        var cnt = 0;
+
+        console.log(sessions);
+
+               
+    
+        async.waterfall([
+            function (callback){
+                AppModel.find({url:url}, function(err, apps){   
+                    
+                    callback(null, apps)
+                });
+            },
+            function (apps, callback){
+                var cnt=0;
+                var operators = [];
+                for(var s in sessions){
+                    var sessionObj = JSON.parse(sessions[s]);
+                    
+                    if('user' in sessionObj.passport){
+                        var _id = sessionObj.passport.user;
+                        if('auth' in sessionObj.passport){
+                            var op = {user:_id, auth:sessionObj.passport.auth};
+                            operators.push(op);    
+                        }
+                        
+                    }
+                    if(cnt==count-1){
+                        callback(null,operators,apps);
+                    }
+                    cnt++
+                } 
+            },
+            function (operatros, apps, callback){
+                var userArray = [];
+                for(var app in apps){
+                    userArray[app] = apps[app].userId;
+                    if(app==apps.length-1){
+                        callback(null, userArray);
+                    }
+                }
+
+            },
+            function (userArray, callback){
+                console.log(userArray);
+
+                XpushModel.find( { app:'stalk-io', userId:{$in:userArray} }
+                                ,{ userId: 1, deviceId: 1, token:1, _id:0 }, function(err, xUsers){
+                    callback(null, xUsers);
+                });
+             
+            },
+            function (xUsers, callback){
+                callback(null, xUsers);
+            }
+
+        ],function (err, result){
+
+            response.send(cb+'('+JSON.stringify(result)+')');
+
+        });
+
+        function getUser(k, id,callback){
+            User.findOne({_id:id}, function(err, doc){
+    
+                if (err) {
+                    
+                }
+                
+                AppModel.findOne({userId:doc.login,url:url}, function(err, d){   
+
+                    if(d){
+                        
+                        callback(k,{userId:d.userId,name:doc.name});    
+                    }else{
+                        callback(k,null);
+                    } 
+                });
+            });
+        }
+
+
+        
+        function getXpushUser(userId,userName,callback){
+            XpushModel.find({app:'stalk-io',userId:userId},{ userId: 1, deviceId: 1, token:1, _id:0 }, function(err, xUsers){
+                    
+                for(var xu in xUsers){
+
+                    allOperators.push({deviceId:xUsers[xu].deviceId, userId:xUsers[xu].userId, name:userName, token:xUsers[xu].token});
+                    
+                }
+                callback();
+                
+            });   
+
+
+        }
+
+            
+    });
+
+    app.get('/operator/session2/:url', function (request, response) {
+        
+        var url = request.params.url;
+        var cb = request.query.callback;
+
+        var sessions = request.sessionStore.sessions;
         var operators = [];
         var allOperators=[];
 

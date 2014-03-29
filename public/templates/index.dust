@@ -1,205 +1,347 @@
 {>"layouts/master" /}
 {<body}
 
-    <!-- end header -->
-	<section id="featured">
-	<!-- start slider -->
-	<div class="container">
-		<div class="row">
-		    
-		    
-			<div class="col-lg-12">
-		    
-	<!-- Slider -->
-        <div id="main-slider" class="flexslider">
-            <ul class="slides">
-              <li>
-              
-              
-              
-                <img src="img/opcon_front.png" alt="" />
-                <div class="flex-caption">
-                    <h3>stalk.io</h3> 
-					<p>You can install this right where you want it.
-For Wordpress, Tumblr, Blogger and your Any Web Sites</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
+		<section class="featured appear">
+			<div class="container"> 
+				<div class="row mar-bot40">
+					<div class="col-md-6 col-md-offset-3">
+						
+						<div class="align-center">
+							<i class="fa fa-desktop fa-5x mar-bot20"></i>
+							<h1 class="slogan">stalk.io</h1>
+							<br/>
+							<h3 class="slogan">Live web chat service on your web pages</h3>  
+							<p class="txt-bold">
+							
+ just by very simple installation.
+ 
+				
+							</p>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- services -->
+		<section id="section-services" class="section pad-bot30 bg-white">
+		<div class="container"> 
+		
+			<div class="row mar-bot40">
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<i class="fa fa-code fa-5x mar-bot20"></i>
+						<h4 class="text-bold">No Active-X</h4>
+						<p>It’s a useful communication tool for your web sites that lets you create free and multi-user live chat with no Active-X and no plugins
+						</p>
+					</div>
+				</div>
+					
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<i class="fa fa-terminal fa-5x mar-bot20"></i>
+						<h4 class="text-bold">Responsive</h4>
+						<p>Anyone who visits the same URL in your web sites can join the chat.
+						</p>
+					</div>
+				</div>
+			
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<i class="fa fa-bolt fa-5x mar-bot20"></i>
+						<h4 class="text-bold">Install</h4>
+						<p>Very simple installation.
+						</p>
+					</div>
+				</div>
+			
+			</div>	
+
+		</div>
+		</section>
+			
+		<!-- spacer section:testimonial -->
+		<section id="parallax" class="section" data-stellar-background-ratio="0.5">
+		<div class="container">
+			<div class="row">				
+				<div class="col-lg-12">
+						<div class="align-center">
+							<div class="testimonial pad-top40 pad-bot40 clearfix">
+								<blockquote class="bigquote color-white">You can install this right where you want it.</blockquote>
+								<p class="color-white">For Wordpress, Tumblr, Blogger and your Any Web Sites</p>
+								<br/>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>	
+		</section>
+		<!-- features -->
+		<section id="section-feature" class="section appear clearfix bg-white">
+		<div class="container">
+
+			<div class="row mar-bot40">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="section-header">
+						<h2 class="section-heading animated" data-animation="bounceInUp"><i class="fa fa-bullhorn"></i>&nbsp;Features</h2>
+						<h3>with Social Network Service</h3>
+						<p>Those who access your web sites will be able to talk to each other after login with Facebook / Twitter / Google+.</p>
+					</div>
+				</div>
+				<div class="row">
+	                <div class="col-md-12 text-center">
+	                    <img src="img/stalk/ss001.png" style="max-width: 100%; height: auto;" />
+	                </div>
+	            </div>
+			</div>
+
+			<div class="row align-center mar-bot40">
+	            <div class="row">
+	                <div class="col-md-12">
+	                    <h3>for Every Web Browsers</h3>
+	                    <p>"stalk.io service" works in <strong>IE 6+, chrome, safari and all mobile browsers</strong>. <br/><em>" Cross Browser Compatibility "</em><br/></p>
+	                </div>
+	            </div>
+	            <div class="row" style="margin-bottom: 40px;">
+	                <div class="col-md-12 text-center">
+	                    <img src="img/stalk/ss002.jpg" style="max-width: 100%; height: auto;" />
+	                </div>
+	            </div>
+	        </div> 
+		</div>
+		</section>
+		<!-- /features -->
+		<!-- install -->
+		<section id="section-install" class="section appear clearfix bg-white">
+		<div class="container">
+
+			<div class="row mar-bot40">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="section-header">
+						<h2 class="section-heading animated" data-animation="bounceInUp"><i class="fa fa-code"></i>&nbsp;How to install</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<div class="section-header">
+						<p for="name">Very simple scripts that you can add to your Web pages in minutes, no knowing coding required.<br/>Just copy the script code and paste it into your HTML code.</p><br/>
+
+						<p class="txt-bold">Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page</p>
+					</div>
+					<br/><br/>
+					<div class="highlight">
+						<pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.stalk.io/stalk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>STALK.init();<span class="nt">&lt;/script&gt;</span></code></pre>
+			</div>
+			<br/><br/>
+                    <h3 class="float-right">How <b>SIMPLE</b>, isn't it?</h3>
+				
+				</div>
+			
+			</div>
+						
+		</div>
+		<br/><br/>
+		 <div class="container">
+            <div class="section-header">
+            
+                <h4 class="lead"><i class="fa fa-arrow-down"></i> More detailed </h4>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a class="tab-default" href="#default" data-toggle="tab">Default Mode</a></li>
+                    <li><a class="tab-default" href="#inner" data-toggle="tab">Inner Mode &nbsp;<span class="badge badge-square badge-primary">NEW!</span></a></li>
+                </ul>
+            
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="default">
+                        <div class="col-md-6 text-left">
+                            <p>This is the simplest way in the world to install the live web chat service on your website.</p>
+                            <p><strong>Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page.</strong> And then, You can see the dark little box on the right bottom like this page.</p>
+                            <div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.stalk.io/stalk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>STALK.init();<span class="nt">&lt;/script&gt;</span></code></pre></div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="img/stalk/install01.jpg" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="inner">
+                        <div class="col-md-6 text-left">
+                            <p>You can locate the live chat box in the location you specified. </p>
+                            <p>At the first, <strong>Put <code>&lt;div&gt;</code> tag in the location you want.</strong></p>
+                            <div class="highlight"><pre><code class="html"><span class="nt">&lt;div </span><span class="na">id=</span><span class="s">"STALK_SCREEN"</span><span class="nt">&gt;&lt;/div&gt;</span></code></pre></div>
+                            
+                            <p>And, <strong>Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page.</strong> And then, You can see the live chat box dark in the location you specified.</p>
+                            <div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.stalk.io/stalk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    var conf = {
+        screenMode:'inner', <small>// mandatory</small>
+        height: '200px', <small>// optional (default 200px)</small>
+        width: '100%'    <small>// optional (default 100%)</small>
+    };
+    STALK.init(conf);
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="img/stalk/install02.jpg" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
+                        </div>
+                    </div>
                 </div>
-              </li>
-              
-            </ul>
+        
+            </div>
+            
+            <hr>
+            
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    <h4>You can install this right where you want it.  For Wordpress, Tumblr, Blogger and your ALL websites.</h4> 
+                    <p>You can check out <a href="http://stalk-io.blogspot.com/2013/03/InstallLiveChatServiceForYourBlog.html" target="_blank">this link</a> 
+			or watch <a href="https://vimeo.com/63335017" target="_blank">this video</a> for more detail.</p>
+                </div>
+            </div>
+            
+            <div class="row" style="margin-bottom: 40px;">
+                <div class="col-md-6 text-center">
+                    <br>
+                    <p>sample for blogger.com</p>
+                    <img src="img/stalk/si001.png" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
+                </div>
+                <div class="col-md-6 text-center">
+                    <br>
+                    <p>sample for tumblr</p>
+                    <p id="videoStalk" style="margin-top: 18px;">
+                    <iframe src="//player.vimeo.com/video/63335017?portrait=0" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </p>
+                    
+                </div>
+            </div>
         </div>
-	<!-- end slider -->
+		</section>
+		<!-- /install -->
+		<!-- about -->
+		<section id="section-about" class="section appear clearfix bg-white">
+		<div class="container">
+
+				<div class="row mar-bot40">
+					<div class="col-md-offset-3 col-md-6">
+						<div class="section-header">
+							<h2 class="section-heading animated" data-animation="bounceInUp"><i class="fa fa-hand-o-right"></i>&nbsp;Our Team</h2>
+							<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+						</div>
+					</div>
+				</div>
+
+					<div class="row align-center mar-bot40">
+						<div class="col-md-3">
+							<div class="team-member">
+								<figure class="member-photo"><img src="img/team/johnkim.jpg" alt="" /></figure>
+								<div class="team-detail">
+									<h4>John Kim</h4>
+									<span>CEO</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="team-member">
+								<figure class="member-photo"><img src="img/team/notdol.jpg" alt="" /></figure>
+								<div class="team-detail">
+									<h4>Pu-suk Paek</h4>
+									<span>CTO</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="team-member">
+								<figure class="member-photo"><img src="img/team/luffy.jpg" alt="" /></figure>
+								<div class="team-detail">
+								<h4>Jin-yeong Jung</h4>
+									<span>CTO</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="team-member">
+								<figure class="member-photo"><img src="img/team/johnko.jpg" alt="" /></figure>
+								<div class="team-detail">
+								<h4>John Ko</h4>
+									<span>CTO</span>
+								</div>
+							</div>
+						</div>
+					</div>
+						
+		</div>
+		</section>
+		<!-- /about -->
+		
+		<!-- spacer section:stats -->
+		<section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
+			<div class="container">
+            <div class="align-center pad-top40 pad-bot40">
+                <blockquote class="bigquote color-white">Join us. & Enjoy with us</blockquote>
+				<p class="color-white">stalk.io</p>
+            </div>
+			</div>	
+		</section>
+		
+		
+		
+
+		<section class="featured bf-install appear" id="section-contact">
+			<div class="container"> 
+				<div class="row mar-bot40">
+					<div class="col-md-6 col-md-offset-3">
+						
+						<div class="align-center">
+							<i class="fa fa-pencil-square-o fa-5x mar-bot20"></i>
+							<h1 class="slogan">CONTACT US</h1>
+							<br/>
+							<h3 class="slogan">stalk.io</h3>  
+							<h3 class="slogan"><i class="fa fa-envelope-o"></i> &nbsp;&nbsp;&nbsp;<a href="mailto:stalkio@gmail.com">stalkio@gmail.com</a><br/><i class="fa fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com/stalkio" target="_blank">www.facebook.com/JohnKim0331</a></h3>  
+							<p class="txt-bold">
+							
+ 								just by very simple installation.
+ 
+				
+							</p>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		
+		
+		
+	<section id="footer" class="section footer">
+		<div class="container">
+			<div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+				<div class="col-sm-12 align-center">
+					<ul>
+						 <li>
+			                "stalk.io" was built with the auto distributed system architecture <br>
+			                - <a href="http://vertx.io" target="_blank">vert.x</a>, <a href="http://zookeeper.apache.org" target="_blank">zookeeper</a>, <a href="http://redis.io" target="_blank">redis</a> and <a href="http://nosql-database.org" target="_blank">NoSql</a> servers. 
+			            </li>
+		        	</ul>
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>				
+				</div>
+			</div>
+
+			<div class="row align-center copyright">
+					<div class="col-sm-12"><p>Copyright &copy; 2014 Amoeba - by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
 			</div>
 		</div>
-	</div>	
+
+	</section>
+
 	
-	
 
-	</section>
-	<section class="callaction">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="big-cta">
-					<div class="cta-text">
-						<h2><span>stalk.io</span> Live web chat service on your web page</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</section>
-	<section id="content">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="row">
-					<div class="col-lg-3">
-						<div class="box">
-							<div class="box-bottom">
-								<h4>No Active-X</h4>
-							</div>
-							<div class="box-gray aligncenter">
-								
-								<div class="icon">
-								<i class="fa fa-code fa-3x"></i>
-								</div>
-								<p>
-								 It’s a useful communication tool for your web sites that lets you create free and multi-user live chat with no Active-X and no plugins
-								</p>
-									
-							</div>
-							
-						</div>
-					</div>
+	<a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>	
 
-
-					<div class="col-lg-3">
-						<div class="box">
-							<div class="box-bottom">
-								<h4>Responsive</h4>
-							</div>
-							<div class="box-gray aligncenter">
-								
-								<div class="icon">
-								<i class="fa fa-terminal fa-3x"></i>
-								</div>
-								<p>
-								 Anyone who visits the same URL in your web sites can join the chat.
-								</p>
-									
-							</div>
-							
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div class="box">
-							<div class="box-bottom">
-								<h4>Customizable</h4>
-							</div>
-							<div class="box-gray aligncenter">
-								
-								<div class="icon">
-								<i class="fa fa-edit fa-3x"></i>
-								</div>
-								<p>
-								Make Customers Happy, One Chat At A Time
-								
-								</p>
-									
-							</div>
-							
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div class="box">
-							<div class="box-bottom">
-								<h4>Install</h4>
-							</div>
-							<div class="box-gray aligncenter">
-								
-								<div class="icon">
-								<i class="fa fa-bolt fa-3x"></i>
-								</div>
-								<p>
-								 Very simple installation.<br/>&nbsp;
-								</p>
-									
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- divider -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="solidline">
-				</div>
-			</div>
-		</div>
-		<!-- end divider -->
-		<!-- Portfolio Projects -->
-		<div class="row">
-			<div class="col-lg-12">
-				<h4 class="heading">Recent Works</h4>
-				<div class="row">
-					<section id="projects">
-					<ul id="thumbs" class="portfolio">
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 design" data-id="id-0" data-type="web">
-						<div class="item-thumbs">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Work 1" href="img/works/1.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="img/works/1.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 design" data-id="id-1" data-type="icon">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Work 2" href="img/works/2.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="img/works/2.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Work 3" href="img/works/3.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="img/works/3.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
-						<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-						<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="Work 4" href="img/works/4.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-						<!-- Thumb Image and Description -->
-						<img src="img/works/4.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-					</ul>
-					</section>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	</section>
-	{>"footer" /}
 {/body}

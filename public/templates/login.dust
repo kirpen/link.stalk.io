@@ -1,18 +1,21 @@
 {>"layouts/master" /}
 {<body}
 
-<link href="css/stalk.css" rel="stylesheet" />
-<section id="content">
-<div class="container container-full">
+<!-- signup -->
+<section id="section-signup" class="login">
+	<div class="container">
+		
+		<div class="row mar-bot40">
+			<div class="col-md-offset-3 col-md-6">
+				<div class="section-header">
+					<h1 class="slogan">LOGIN</h1>
+				</div>
+			</div>
+		</div>
 		<div class="row">
-			<div class="col-lg-12">
-				<div>
-					<h1>LOGIN</h1>
-					
-		          	<div class="col-lg-3"></div>
-				
-		          	  
-		          	<form id="contactform" class="col-lg-6" action="/login" method="post">	
+			<div class="col-md-8 col-md-offset-2">
+				<div class="cform" id="contact-form">
+					<form id="contactform" action="/login" method="post">	
 		          		<div class="panel panel-primary">
 		          		  <div class="form-group">
 			                {?messages}
@@ -53,13 +56,14 @@
 
 						
 		         </form>
-		          <div class="col-lg-3"></div>
+					
 				</div>
-
 			</div>
+			<!-- ./span12 -->
 		</div>
-
+		
 	</div>
-	</section>
-	{>"footer" /}
+</section>
+
+	
 {/body}

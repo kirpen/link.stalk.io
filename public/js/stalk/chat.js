@@ -60,7 +60,7 @@ function openChatArea(data) {
 
     var tabContent = "";
     tabContent+='<div class="tab-pane" id="' + tabId + '">                                                                                           ';
-    tabContent+='    <div class="col-lg-7">                                                                                                        ';
+    tabContent+='    <div class="col-lg-12">                                                                                                        ';
     tabContent+='        <div class="panel panel-info">                                                                                         ';
     tabContent+='            <div class="panel-heading">                                                                                           ';
     tabContent+='                <span class="fa fa-comment"></span> Chat                                                                          ';
@@ -92,7 +92,7 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-    tabContent+='    <div class="col-lg-5">                                                                                                        ';
+   /* tabContent+='    <div class="col-lg-5">                                                                                                        ';
     tabContent+='    <div class="well well-sm">                                                                                                    ';
     tabContent+='        <div class="media">                                                                                                       ';
     tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
@@ -111,7 +111,7 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-    tabContent+='  </div>                                                                                                                          ';
+    tabContent+='  </div> ';*/                                                                                                                         
     tabContent+='</div>                                                                                                                            ';
 
     $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
