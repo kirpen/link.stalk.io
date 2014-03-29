@@ -7,6 +7,7 @@ var appModel = function () {
         userId: String,
         app: String,
         url: String,
+        name: String,
         deviceId: String,
         password: String        
     });

@@ -3,28 +3,16 @@ $(function(){
         $('#myModal').modal('show');
     });
     
-    $('#saveBtn').click(function(){
-        var url = $('#url').val();
-        
-        $.post("/regist"
-        , {'app':$('#url').val(),'url' : $('#url').val(), _csrf:$("#_csrf").val()}
-        , function(result) {
-            
-            if(result.msg == "ok"){
-                alert("Success Saved");
-                document.location.href='/info'
-            }else {
-                alert("Fail");
-                
-            }
-        });
-        
-    });
     
 })
 
+function gotoChat(id){
+    location.href = '/chat/'+id;
+}
+
 
 function deleteStalkUser(stalkId){
+    console.log('delete : ',stalkId);
 	$('#deleteId').val(stalkId);
 	
 	if(confirm("Are you sure?")){

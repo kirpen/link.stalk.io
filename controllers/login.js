@@ -17,7 +17,7 @@ module.exports = function (app) {
         
         //Include any error messages that come from the login process.
         model.messages = req.flash('error');
-
+				model.loginPage = "true";
         res.render('login', model);
     });
 
@@ -31,7 +31,7 @@ module.exports = function (app) {
     app.post('/login', function (req, res) {
 
         passport.authenticate('local', {
-            successRedirect: '/info',
+            successRedirect: '/',
             failureRedirect: "/login",
             failureFlash: true
         })(req, res);

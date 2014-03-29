@@ -1,69 +1,73 @@
 {>"layouts/master" /}
 {<body}
 
-<!-- signup -->
-<section id="section-signup" class="login">
-	<div class="container">
-		
-		<div class="row mar-bot40">
-			<div class="col-md-offset-3 col-md-6">
-				<div class="section-header">
-					<h1 class="slogan">LOGIN</h1>
+<style>
+	.login-panel {
+		background-color: #fff;
+		border-color: #e6e9ed;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		box-shadow: 0 1px 2px rgba(0,0,0,.2);
+		margin-bottom: 20px;
+		background-color: #fff;
+		border: 1px solid #e6e9ed;		
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-offset-4 col-lg-4">
+					<h3>Login</h3>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="cform" id="contact-form">
-					<form id="contactform" action="/login" method="post">	
-		          		<div class="panel panel-primary">
-		          		  <div class="form-group">
-			                {?messages}
-			          			<div class="alert alert-danger">
-		          					
-				                    <ul>
-				                        {#messages}
-				                            {.}
-				                        {/messages}
-
-				                    </ul>
-				                
-			          			</div>
-			          		{/messages}	
-							</div> 
+			<div class="row">
+				<div class="col-lg-offset-4 col-lg-4">
+					<form id="contactform" action="/login" method="post">
+						<div class="login-panel">													  
 						  <div class="panel-body">
+								<div class="form-group">
+			          	{?messages}
+			          		<div class="alert alert-danger">
+											<ul>
+												{#messages}
+													{.}
+												{/messages}
+				              </ul>
+			          		</div>
+			          	{/messages}	
+								</div>						  
 						  
-							<div class="col-lg-12 margintop10  field">
-								<input type="text" name="username" placeholder="* Email" data-rule="emails" data-msg="Please enter a valid email" value=""/>
-								<div class="validation">
+						  	<div class="row">
+									<div class="col-lg-12">
+										<input type="text" name="username" class="form-control" placeholder="* Email" data-rule="emails" data-msg="Please enter a valid email" value=""/>
+										<div class="validation">
+										</div>
+									</div>
+								</div><p/>
+								<div class="row">
+									<div class="col-lg-12">
+										<input type="password" name="password" class="form-control" placeholder="* Password" value=""/>
+										<div class="validation">
+										</div>
+									</div>
+								</div><p/>
+								<div class="row">
+									<div class="col-lg-offset-4 col-lg-4">
+										<input type="hidden" name="_csrf" value="{_csrf}"/>
+										<button type="submit" id="saveBtn" class="btn btn-primary btn-block">Sign in</button>
+									</div>
 								</div>
-							</div>
-							<!-- <p>What is your website URL?</p> -->
-							<div class="col-lg-12 margintop10  field">
-								<input type="password" name="password" placeholder="* Password" value=""/>
-								<div class="validation">
-								</div>
-							</div>
-							
-							<!-- <h4>Re-enter your super secret password</h4> -->
-							<div class="col-lg-3"></div>
-							<input type="hidden" name="_csrf" value="{_csrf}"/>
-							<button type="submit" id="saveBtn" class="col-lg-6 btn btn-warning btn-lg">Sign in</button>
-							<div class="col-lg-3"></div>
-						  </div>
-						  
-						</div>
-
-						
-		         </form>
-					
+							</div> <!-- panal-body -->
+						</div> <!-- panel -->
+					</form>
 				</div>
-			</div>
-			<!-- ./span12 -->
-		</div>
-		
-	</div>
-</section>
-
-	
+			</div> <!-- row -->
+		</div> <!-- col-lg-12 -->
+	</div> <!-- row -->
+</div> <!-- example -->
 {/body}

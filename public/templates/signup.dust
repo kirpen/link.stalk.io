@@ -1,98 +1,73 @@
 {>"layouts/master" /}
 {<body}
 
-
-
-
-
-<section id="content" class="login">
-	
-	<div class="container container-full">
-		<div class="row mar-bot40">
-			<div class="col-md-offset-3 col-md-6">
-				<div class="section-header">
-					<h1>Now we’re talking!</h1>
-					<div class="team-member">
-						<figure class="member-photo"><img src="img/stalk/stalk_1.jpg" alt="" /></figure>
-					</div>
-		          	
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-offset-4 col-lg-4">
+					<h3>Now we’re talking!</h3>
 				</div>
 			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-lg-12">
-				<div>
-					
-		          
-		          	<div class="col-lg-3"></div>
-				
-		          	<form id="contactform" class="col-lg-6 validateform" action="/signup" method="post">	
-		          	
-		          	
-		          		
-		          		<div class="panel panel-primary">
-		          		   <div class="panel-heading">
-						    <h3 class="panel-title">Fill your inforamtion</h3>
-						  </div>
+			<div class="row">
+				<div class="col-lg-offset-4 col-lg-4">
+					<form id="contactform" action="/signup" method="post">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Fill your inforamtion</h3>
+							</div>
 						  <div class="panel-body">
-							<div class="form-group">
-			                {?messages}
-			          			<div class="alert alert-danger">
-		          					
-				                    <ul>
-				                        {#messages}
-				                            {.}
-				                        {/messages}
-				                    </ul>
-			          			</div>
-			          		{/messages}	
-							</div> 
-							
-							<!-- <p>What is your website URL?</p> -->
-							<div class="col-lg-12 margintop10  field">
-								<input type="text" name="email" placeholder="* Enter your email address" data-rule="email" data-msg="Please enter a valid email" />
-								<div class="validation">
+								<div class="form-group">
+			          	{?messages}
+			          		<div class="alert alert-danger">
+											<ul>
+												{#messages}
+													{.}
+												{/messages}
+				              </ul>
+			          		</div>
+			          	{/messages}	
+								</div>						  
+						  	<div class="row">
+									<div class="col-lg-12">
+										<input type="text" name="email" class="form-control" placeholder="* Enter your email address" data-rule="emails" data-msg="Please enter a valid email" value=""/>
+										<div class="validation">
+										</div>
+									</div>
+								</div><p/>
+						  	<div class="row">
+									<div class="col-lg-12">
+										<input type="text" name="name" class="form-control" placeholder="* Enter your name" data-rule="emails" data-msg="Please enter a valid email" value=""/>
+										<div class="validation">
+										</div>
+									</div>
+								</div><p/>								
+								<div class="row">
+									<div class="col-lg-12">
+										<input type="password" name="password" id="password" class="form-control" placeholder="* Enter your super secret password" value=""/>
+										<div class="validation">
+										</div>
+									</div>
+								</div><p/>
+								<div class="row">
+									<div class="col-lg-12">
+										<input type="password" name="repassword" id="repassword" class="form-control" placeholder="* Re enter your password" value=""/>
+										<div class="validation">
+										</div>
+									</div>
+								</div><p/>								
+								<div class="row">
+									<div class="col-lg-offset-4 col-lg-4">
+										<input type="hidden" name="_csrf" value="{_csrf}"/>
+										<button type="submit" id="saveBtn" class="btn btn-warning btn-block">Save</button>
+									</div>
 								</div>
-							</div>
-							<!-- <h4>What is your email address?</h4> -->
-							<div class="col-lg-12 margintop10  field">
-								<input type="text" name="name" placeholder="* Enter your name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-								<div class="validation">
-								</div>
-							</div>
-							<!-- <h4>Names are great! Pick a username</h4> -->
-							<div class="col-lg-12 margintop10  field">
-								<input type="password" name="password" id="password" placeholder="* Enter your super secret password" data-rule="maxlen:4" data-msg="Please enter at least 4 chars" />
-								<div class="validation">
-								</div>
-							</div>
-							<!-- <h4>Pick a super secret password</h4> -->
-							<div class="col-lg-12 margintop10  field">
-								<input type="password" name="repassword" id="repassword" placeholder="* Re enter your password" data-rule="password_confirm" data-msg="Not match with password" />
-								<div class="validation">
-								</div>
-							</div>
-							<!-- <h4>Re-enter your super secret password</h4> -->
-							<div class="col-lg-3"></div>
-							<input type="hidden" name="_csrf" value="{_csrf}"/>
-							<button type="submit" id="saveBtn" class="col-lg-6 btn btn-warning btn-lg">Save</button>
-							<div class="col-lg-3"></div>
-						  </div>
-						  
-						</div>
-
-						
-		          </form>
-		          <div class="col-lg-3"></div>
+							</div> <!-- panal-body -->
+						</div> <!-- panel -->
+					</form>
 				</div>
-
-			</div>
-		</div>
-
-	</div>
-	</section>
-	
-
+			</div> <!-- row -->
+		</div> <!-- col-lg-12 -->
+	</div> <!-- row -->
+</div> <!-- example -->
 {/body}
