@@ -188,7 +188,7 @@ module.exports = function (app) {
                     if('user' in sessionObj.passport){
                         var userId = sessionObj.passport.userId;
                         if('auth' in sessionObj.passport){
-                            var op = {user:userId, deviceId:'WEB'};
+                            var op = {userId:userId, deviceId:'WEB'};
                             xUsers.push(op);    
                         }
                         
