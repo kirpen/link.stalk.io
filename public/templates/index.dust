@@ -1,347 +1,204 @@
 {>"layouts/master" /}
 {<body}
 
-		<section class="featured appear">
-			<div class="container"> 
-				<div class="row mar-bot40">
-					<div class="col-md-6 col-md-offset-3">
-						
-						<div class="align-center">
-							<i class="fa fa-desktop fa-5x mar-bot20"></i>
-							<h1 class="slogan">stalk.io</h1>
-							<br/>
-							<h3 class="slogan">Live web chat service on your web pages</h3>  
-							<p class="txt-bold">
-							
- just by very simple installation.
- 
-				
-							</p>	
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		
-		<!-- services -->
-		<section id="section-services" class="section pad-bot30 bg-white">
-		<div class="container"> 
-		
-			<div class="row mar-bot40">
-				<div class="col-lg-4" >
-					<div class="align-center">
-						<i class="fa fa-code fa-5x mar-bot20"></i>
-						<h4 class="text-bold">No Active-X</h4>
-						<p>It’s a useful communication tool for your web sites that lets you create free and multi-user live chat with no Active-X and no plugins
-						</p>
-					</div>
-				</div>
-					
-				<div class="col-lg-4" >
-					<div class="align-center">
-						<i class="fa fa-terminal fa-5x mar-bot20"></i>
-						<h4 class="text-bold">Responsive</h4>
-						<p>Anyone who visits the same URL in your web sites can join the chat.
-						</p>
-					</div>
-				</div>
-			
-				<div class="col-lg-4" >
-					<div class="align-center">
-						<i class="fa fa-bolt fa-5x mar-bot20"></i>
-						<h4 class="text-bold">Install</h4>
-						<p>Very simple installation.
-						</p>
-					</div>
-				</div>
-			
-			</div>	
+    <div class="docs-header">
+      <!--nav-->
+      <nav class="navbar navbar-default navbar-custom" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" height="40"></a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
 
-		</div>
-		</section>
-			
-		<!-- spacer section:testimonial -->
-		<section id="parallax" class="section" data-stellar-background-ratio="0.5">
-		<div class="container">
-			<div class="row">				
-				<div class="col-lg-12">
-						<div class="align-center">
-							<div class="testimonial pad-top40 pad-bot40 clearfix">
-								<blockquote class="bigquote color-white">You can install this right where you want it.</blockquote>
-								<p class="color-white">For Wordpress, Tumblr, Blogger and your Any Web Sites</p>
-								<br/>
-							</div>
-						</div>
-					</div>
-			</div>
-		</div>	
-		</section>
-		<!-- features -->
-		<section id="section-feature" class="section appear clearfix bg-white">
-		<div class="container">
+              <li><a class="nav-link current" href="#features">Features</a></li>
+              <li><a class="nav-link" href="#services">Services</a></li>
+              <li><a class="nav-link" href="#contact">Contact</a></li>
 
-			<div class="row mar-bot40">
-				<div class="col-md-offset-3 col-md-6">
-					<div class="section-header">
-						<h2 class="section-heading animated" data-animation="bounceInUp"><i class="fa fa-bullhorn"></i>&nbsp;Features</h2>
-						<h3>with Social Network Service</h3>
-						<p>Those who access your web sites will be able to talk to each other after login with Facebook / Twitter / Google+.</p>
-					</div>
-				</div>
-				<div class="row">
-	                <div class="col-md-12 text-center">
-	                    <img src="img/stalk/ss001.png" style="max-width: 100%; height: auto;" />
-	                </div>
-	            </div>
-			</div>
+                {?user}
+                  <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                  <li><a class="nav-link" href="/logout">LOGOUT</a></li>
+                {:else}
+                  <li><a class="nav-link" href="/login">LOG IN</a></li>
+                  <li><a class="nav-link" href="/signup">SIGN UP</a></li>
+                {/user}
 
-			<div class="row align-center mar-bot40">
-	            <div class="row">
-	                <div class="col-md-12">
-	                    <h3>for Every Web Browsers</h3>
-	                    <p>"stalk.io service" works in <strong>IE 6+, chrome, safari and all mobile browsers</strong>. <br/><em>" Cross Browser Compatibility "</em><br/></p>
-	                </div>
-	            </div>
-	            <div class="row" style="margin-bottom: 40px;">
-	                <div class="col-md-12 text-center">
-	                    <img src="img/stalk/ss002.jpg" style="max-width: 100%; height: auto;" />
-	                </div>
-	            </div>
-	        </div> 
-		</div>
-		</section>
-		<!-- /features -->
-		<!-- install -->
-		<section id="section-install" class="section appear clearfix bg-white">
-		<div class="container">
-
-			<div class="row mar-bot40">
-				<div class="col-md-offset-3 col-md-6">
-					<div class="section-header">
-						<h2 class="section-heading animated" data-animation="bounceInUp"><i class="fa fa-code"></i>&nbsp;How to install</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-offset-2 col-md-8">
-					<div class="section-header">
-						<p for="name">Very simple scripts that you can add to your Web pages in minutes, no knowing coding required.<br/>Just copy the script code and paste it into your HTML code.</p><br/>
-
-						<p class="txt-bold">Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page</p>
-					</div>
-					<br/><br/>
-					<div class="highlight">
-						<pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.stalk.io/stalk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>STALK.init();<span class="nt">&lt;/script&gt;</span></code></pre>
-			</div>
-			<br/><br/>
-                    <h3 class="float-right">How <b>SIMPLE</b>, isn't it?</h3>
-				
-				</div>
-			
-			</div>
-						
-		</div>
-		<br/><br/>
-		 <div class="container">
-            <div class="section-header">
-            
-                <h4 class="lead"><i class="fa fa-arrow-down"></i> More detailed </h4>
-                <ul class="nav nav-tabs">
-                    <li class="active"><a class="tab-default" href="#default" data-toggle="tab">Default Mode</a></li>
-                    <li><a class="tab-default" href="#inner" data-toggle="tab">Inner Mode &nbsp;<span class="badge badge-square badge-primary">NEW!</span></a></li>
-                </ul>
-            
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="default">
-                        <div class="col-md-6 text-left">
-                            <p>This is the simplest way in the world to install the live web chat service on your website.</p>
-                            <p><strong>Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page.</strong> And then, You can see the dark little box on the right bottom like this page.</p>
-                            <div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.stalk.io/stalk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>STALK.init();<span class="nt">&lt;/script&gt;</span></code></pre></div>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="img/stalk/install01.jpg" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="inner">
-                        <div class="col-md-6 text-left">
-                            <p>You can locate the live chat box in the location you specified. </p>
-                            <p>At the first, <strong>Put <code>&lt;div&gt;</code> tag in the location you want.</strong></p>
-                            <div class="highlight"><pre><code class="html"><span class="nt">&lt;div </span><span class="na">id=</span><span class="s">"STALK_SCREEN"</span><span class="nt">&gt;&lt;/div&gt;</span></code></pre></div>
-                            
-                            <p>And, <strong>Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page.</strong> And then, You can see the live chat box dark in the location you specified.</p>
-                            <div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://www.stalk.io/stalk.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>
-    var conf = {
-        screenMode:'inner', <small>// mandatory</small>
-        height: '200px', <small>// optional (default 200px)</small>
-        width: '100%'    <small>// optional (default 100%)</small>
-    };
-    STALK.init(conf);
-<span class="nt">&lt;/script&gt;</span></code></pre></div>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="img/stalk/install02.jpg" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
-                        </div>
-                    </div>
-                </div>
-        
-            </div>
-            
-            <hr>
-            
-            <div class="row">
-                <div class="col-md-12 text-left">
-                    <h4>You can install this right where you want it.  For Wordpress, Tumblr, Blogger and your ALL websites.</h4> 
-                    <p>You can check out <a href="http://stalk-io.blogspot.com/2013/03/InstallLiveChatServiceForYourBlog.html" target="_blank">this link</a> 
-			or watch <a href="https://vimeo.com/63335017" target="_blank">this video</a> for more detail.</p>
-                </div>
-            </div>
-            
-            <div class="row" style="margin-bottom: 40px;">
-                <div class="col-md-6 text-center">
-                    <br>
-                    <p>sample for blogger.com</p>
-                    <img src="img/stalk/si001.png" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
-                </div>
-                <div class="col-md-6 text-center">
-                    <br>
-                    <p>sample for tumblr</p>
-                    <p id="videoStalk" style="margin-top: 18px;">
-                    <iframe src="//player.vimeo.com/video/63335017?portrait=0" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </p>
-                    
-                </div>
-            </div>
+            </ul>
+          </div>
         </div>
-		</section>
-		<!-- /install -->
-		<!-- about -->
-		<section id="section-about" class="section appear clearfix bg-white">
-		<div class="container">
+      </nav>
 
-				<div class="row mar-bot40">
-					<div class="col-md-offset-3 col-md-6">
-						<div class="section-header">
-							<h2 class="section-heading animated" data-animation="bounceInUp"><i class="fa fa-hand-o-right"></i>&nbsp;Our Team</h2>
-							<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
-						</div>
-					</div>
-				</div>
+      <!--header-->
+      <div class="topic">
+        <div class="container">
+          <h2>STALK . I/O</h2>
+          <h3>live web chat service on your web pages</h3>
+          <h4>It’s a useful communication tool for your web sites that lets you create free and multi-user live chat with no Active-X and no plugins, just by very simple installation.</h4>
 
-					<div class="row align-center mar-bot40">
-						<div class="col-md-3">
-							<div class="team-member">
-								<figure class="member-photo"><img src="img/team/johnkim.jpg" alt="" /></figure>
-								<div class="team-detail">
-									<h4>John Kim</h4>
-									<span>CEO</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="team-member">
-								<figure class="member-photo"><img src="img/team/notdol.jpg" alt="" /></figure>
-								<div class="team-detail">
-									<h4>Pu-suk Paek</h4>
-									<span>CTO</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="team-member">
-								<figure class="member-photo"><img src="img/team/luffy.jpg" alt="" /></figure>
-								<div class="team-detail">
-								<h4>Jin-yeong Jung</h4>
-									<span>CTO</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="team-member">
-								<figure class="member-photo"><img src="img/team/johnko.jpg" alt="" /></figure>
-								<div class="team-detail">
-								<h4>John Ko</h4>
-									<span>CTO</span>
-								</div>
-							</div>
-						</div>
-					</div>
-						
-		</div>
-		</section>
-		<!-- /about -->
-		
-		<!-- spacer section:stats -->
-		<section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
-			<div class="container">
-            <div class="align-center pad-top40 pad-bot40">
-                <blockquote class="bigquote color-white">Join us. & Enjoy with us</blockquote>
-				<p class="color-white">stalk.io</p>
+
+          {?user}
+            <a class="btn btn-primary" href="/dashboard">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          {:else}
+
+            <a class="btn btn-primary" href="/login">Login and go to dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-danger" href="/signup">Let's Sign Up for free chat services</a>
+          {/user}
+
+          <span class="github github-watch">
+            <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=543747469030440";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                    </script>
+                                    
+                    <div class="fb-like" data-href="http://stalk.io" data-width="The pixel width of the plugin" data-height="The pixel height of the plugin" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="false" data-send="true"></div>
+          </span>
+
+        </div>
+        <div class="topic__infos">
+          <div class="container">
+              You can install this right where you want it. For Wordpress, Tumblr, Blogger and your Any Web Sites
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="psd-download">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <h2>Overview</h2>
+            <p class="infos">We love the new graphic design trend, and Bootflat UI Kit is a kind of style. Simple, rich and colorful and graphic design of components of the UI almost any project is perfect, from the complex Web applications and small start-up project website, and follow the Bootflat Frame update.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-4"><img src="img/fast.png" /></div>
+                  <div class="col-md-8">
+                    <h4>Save your time</h4>
+                    <p>Don't waste your time on the composition of the same. Use your time to develop new ideas and projects.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-4"><img src="img/design.png" /></div>
+                  <div class="col-md-8">
+                    <h4>Elaborate design</h4>
+                    <p>All the components are independent, easy to be integrated into the design and layout of any project.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-			</div>	
-		</section>
-		
-		
-		
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-4"><img src="img/together.png" /></div>
+                  <div class="col-md-8">
+                    <h4>Components fit together</h4>
+                    <p>All components to use the same style. You can easily apply them in the design projects of various.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 clearfix">
+                <div class="row">
+                  <div class="col-md-4"><img src="img/prototyping.png" /></div>
+                  <div class="col-md-8">
+                    <h4>Fast prototyping</h4>
+                    <p>You will be able to quickly develop high-quality prototypes in full-color. Your clients will appreciate prototypes with beautiful components.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="previews">
+      <div class="container">
+        <h2>Preview</h2>
+        <p>You will find Buttons, Text edits, Menus, Sliders and more, Beautiful Complex Blocks and many other useful web elements. </p>
+      </div>
+      <img src="img/bootflat-ui-kit.jpg" alt="Bootflat UI Kit" />
+      <div class="container">
+        <h2>Thanks for watching!</h2>
+        <p>I hope you will enjoy this new product, and if you use it, do not forget to share your projects with us. I love to see all the great things you are working on!</p>
+      </div>
+    </div>
+    <!--footer-->
+    <div class="site-footer">
+      <div class="container">
+        <div class="download">
+          <span class="download__infos">You can <b>free</b> download it.</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="btn btn-primary" href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD/archive/master.zip">Download Bootflat UI Kit PSD</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <!-- SmartAddon BEGIN -->
+          <script type="text/javascript">
+          (function() {
+          var s=document.createElement('script');s.type='text/javascript';s.async = true;
+          s.src='http://s1'+'.smartaddon.com/share_addon.js';
+          var j =document.getElementsByTagName('script')[0];j.parentNode.insertBefore(s,j);
+          })();
+          </script>
 
-		<section class="featured bf-install appear" id="section-contact">
-			<div class="container"> 
-				<div class="row mar-bot40">
-					<div class="col-md-6 col-md-offset-3">
-						
-						<div class="align-center">
-							<i class="fa fa-pencil-square-o fa-5x mar-bot20"></i>
-							<h1 class="slogan">CONTACT US</h1>
-							<br/>
-							<h3 class="slogan">stalk.io</h3>  
-							<h3 class="slogan"><i class="fa fa-envelope-o"></i> &nbsp;&nbsp;&nbsp;<a href="mailto:stalkio@gmail.com">stalkio@gmail.com</a><br/><i class="fa fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com/stalkio" target="_blank">www.facebook.com/JohnKim0331</a></h3>  
-							<p class="txt-bold">
-							
- 								just by very simple installation.
- 
-				
-							</p>	
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-		
-		
-		
-	<section id="footer" class="section footer">
-		<div class="container">
-			<div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
-				<div class="col-sm-12 align-center">
-					<ul>
-						 <li>
-			                "stalk.io" was built with the auto distributed system architecture <br>
-			                - <a href="http://vertx.io" target="_blank">vert.x</a>, <a href="http://zookeeper.apache.org" target="_blank">zookeeper</a>, <a href="http://redis.io" target="_blank">redis</a> and <a href="http://nosql-database.org" target="_blank">NoSql</a> servers. 
-			            </li>
-		        	</ul>
-                    <ul class="social-network social-circle">
-                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>				
-				</div>
-			</div>
-
-			<div class="row align-center copyright">
-					<div class="col-sm-12"><p>Copyright &copy; 2014 Amoeba - by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
-			</div>
-		</div>
-
-	</section>
-
-	
-
-	<a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>	
+          <a href="http://www.smartaddon.com/?share" title="Share Button" onclick="return sa_tellafriend('','bookmarks')"><img alt="Share" src="http://bootflat.github.io/img/share.gif" border="0" /></a>
+          <!-- SmartAddon END -->
+        </div>
+        <hr class="dashed" />
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Get involved</h3>
+            <p>Bootflat is hosted on <a href="https://github.com/bootflat/Bootflat.UI.Kit.PSD" target="_blank" rel="external nofollow">GitHub</a> and open for everyone to contribute. Please give us some feedback and join the development!</p>
+          </div>
+          <div class="col-md-4">
+            <h3>Contribute</h3>
+            <p>You want to help us and participate in the development or the documentation? Just fork Bootflat on <a href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD" target="_blank" rel="external nofollow">GitHub</a> and send us a pull request.</p>
+          </div>
+          <div class="col-md-4">
+            <h3>Found a bug?</h3>
+            <p>Open a <a href="https://github.com/bootflat/Bootflat.UI.Kit.PSD/issues" target="_blank" rel="external nofollow">new issue</a> on GitHub. Please search for existing issues first and make sure to include all relevant information.</p>
+          </div>
+        </div>
+        <hr class="dashed" />
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Talk to us</h3>
+            <ul>
+              <li>Tweet us at <a href="https://twitter.com/flathemes" target="_blank">@flathemes</a>&nbsp;&nbsp;&nbsp;&nbsp;Email us at <span class="connect">info@flathemes.com</span></li>
+              <li>
+                <a title="Twitter" href="https://twitter.com/flathemes" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe121"></i></a>
+                <a title="Facebook" href="https://www.facebook.com/Flathemes" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10b"></i></a>
+                <a title="Google+" href="https://plus.google.com/u/0/" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe110"></i></a>
+                <a title="Github" href="https://github.com/bootflat/bootflat.github.io" target="_blank" rel="external nofollow"><i class="icon" data-icon="&#xe10e"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+            <div id="mc_embed_signup">
+            <h3 style="margin-bottom: 15px;">Newsletter</h3>
+            <form action="http://flathemes.us3.list-manage.com/subscribe/post?u=faba9adaea2b85dc9a5c496bd&amp;id=acd08a1b0f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <input style="margin-bottom: 10px;" type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
+                <span class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary"></span>
+            </form>
+            </div>
+            <!--End mc_embed_signup-->
+          </div>
+        </div>
+        <hr class="dashed" />
+        <div class="copyright clearfix">
+          <p><b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;<a href="documentation.html">Documentation</a>&nbsp;&bull;&nbsp;<a href="free-psd.html">Free PSD</a></p>
+          <p>&copy; 2014 <a href="http://www.flathemes.com" target="_blank">FLATHEMES</a>, Inc. All rights reserved. &nbsp;&nbsp;Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
+        </div>
+      </div>
+    </div>
 
 {/body}
