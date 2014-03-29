@@ -15,9 +15,9 @@
         </div>		
 	</div>
 	<br />
+		<ul class="media-list">
     {?apps}
         {#apps}
-	<div class="row">
 		<li class="media">
 			<a class="pull-left" href="/info/{name}/settings"><img class="media-object img-rounded" src="/img/apps.png"></a>
 			<div class="media-body">
@@ -35,10 +35,10 @@
               </div>
             </div>			
 		</div-->
-	</div>
 
 		{/apps}
 	{/apps}
+		</ul>
 </div>
 <script>
       $('.btnCreateNewSite').click(function(){
