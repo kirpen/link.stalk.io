@@ -1,111 +1,164 @@
-{>"layouts/master" /}
+{>"layouts/master-blank" /}
 {<body}
 
+    <div class="docs-header">
+      <!--nav-->
+      <nav class="navbar navbar-default navbar-custom" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" height="40"></a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="nav-link current" href="getting-started.html">Getting Started</a></li>
+              <li><a class="nav-link" href="documentation.html">Documentation</a></li>
+              <li><a class="nav-link" href="free-psd.html">Free PSD</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--header-->
+      <div class="topic">
+        <div class="container">
+          <h3>Getting Started with Bootflat Framework</h3>
+          <h4>An overview of Bootflat, why we built it, how to use it, and what you should know along the way.</h4>
+<!--           <div class="advertisement">
+            <span class="advertisement-image">
+              <img src="" title="bootflat" alt="bootflat" border="0" height="90">
+            </span>
+            <p class="advertisement-text"></p>
+          </div> -->
+        </div>
+        <div class="topic__infos">
+          <div class="container">
+            Getting started With Bootflat is easy. Whether you are a master of Sass, building a new app, we've got you covered.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--documents-->
+    <div class="container documents">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Overview
+          ================================================== -->
+          <div class="docs-article docs--start" id="overview">
+            <h3>Overview</h3>
+            <p>Why is this important? Bootstrap is a reliable and proven tool for developers, validated in the field. It reminds us of Superman, a friend you can trust completely with a serious project.</p>
+            <dl>
+              <dt>OOCSS Approach</dt>
+              <dd>Object-based coding method encourages code reuse and creates faster and more efficient style sheets, which are easier to add to and maintain.</dd>
+              <dt>Bootstrap 3.1.0 Support</dt>
+              <dd>Now Bootflat is supporting Bootstrap 3.1.0 as well.</dd> 
+              <dt>Configurable Color Scheme</dt>
+              <dd>You can change any or all of the colors if you wish. Bootflat is easy to configure and match to your brand's color scheme.</dd>
+              <dt>Easy Installation</dt>
+              <dd>Upload all Bootflat files and paste one line of code at the bottom of your <code>head</code> tag. That’s it!</dd>
+              <dt>Bootflat UI Kit Free Download</dt>
+              <dd><a href="free-psd.html">Bootflat UI Kit</a> is PSD User Interface Pack including a set of beautiful and pure components, which you can use to create startup projects, websites or iOS/Android Apps.</dd>
+            </dl>
+          </div>
+          <!-- Download
+          ================================================== -->
+          <div class="docs-article docs--start" id="download">
+            <h3>Download</h3>
+            <p>Download the latest official release of Bootflat and get started!</p>
+            <ul class="item__infos">
+              <li>Version 2.0.0</li>
+              <li>Released December 18th, 2013</li>
+            </ul>
+            <p><a class="btn btn-primary" href="https://github.com/bootflat/bootflat.github.io/archive/master.zip">Download Bootflat Framework (v2.0.0)</a></p>
+            <p>You can also <a href="https://github.com/bootflat/bootflat.github.io">clone it on GitHub</a> to get the bleeding edge release. </p>
+          </div>
+          <!-- What's included
+          ================================================== -->
+          <div class="docs-article docs--start" id="included">
+            <h3>What's included</h3>
+            <p>Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations.</p>
+            <p>Once downloaded, unzip the compressed folder to see the structure of (the compiled) Bootflat. You'll see something like this:</p>
+<pre><code class="bash">bootflat/
+├── css/
+│   ├── bootflat.css
+│   ├── bootflat.min.css
+├── js/
+│   ├── icheck.min.js
+│   ├── jquery.collapse.js
+├── fonts/
+│   ├── glyphicons-halflings-regular.eot
+│   ├── glyphicons-halflings-regular.svg
+│   ├── glyphicons-halflings-regular.ttf
+│   ├── glyphicons-halflings-regular.woff
+├── sass/
+│   ├── bootflat.scss
+│   ├── bootflat/
+│       ├── global.scss
+│       ├── typography.scss
+│       ├── button.scss
+│       ├── button_group.scss
+│       ├── label_badge.scss
+│       ├── tooltip.scss
+│       ├── progress.scss
+│       ├── breadcrumb.scss
+│       ├── pagination.scss
+│       ├── pager.scss
+│       ├── form.scss
+│       ├── checkbox_radio.scss
+│       ├── alert.scss
+│       ├── tab.scss
+│       ├── pill.scss
+│       ├── navbar.scss
+│       ├── list.scss
+│       ├── media_list.scss
+│       ├── modal.scss
+│       ├── well.scss
+│       ├── thumbnail.scss
+│       ├── jumbotron.scss
+│       ├── panel.scss
+│       ├── accordion.scss
+│       ├── footer.scss
+│       ├── dropdown.scss
+└── img/
+    └── check_flat/
+        └── default.png
+</code></pre>
+          </div>
+          <!-- CSS/SASS
+          ================================================== -->
+          <div class="docs-article docs--start" id="css-sass">
+            <h3>CSS/SASS</h3>
+            <p>The CSS can stand on its own, but it is also built to be enhanced by the developer. For simplicity you can always just add in your own CSS and override default properties. And for even more power and flexibility, the core is written with <a href="http://sass-lang.com/" target="_blank" rel="external nofollow">Sass 3.3.3</a> and includes easily customized variables and mixins. We feel we’ve left the CSS in a state which can be easily extended to get your own look and feel.</p>
+          </div>
+          <!-- Browser Support
+          ================================================== -->
+          <div class="docs-article docs--start" id="browser-support">
+            <h3>Browser Support</h3>
+            <p>As such, our browser support tends to be whatever Web View API is available to native on a given platform. For Bootflat v2.0.0, that means UIWebView for E8, IE9, IE10, IE11, Firefox, Safari, Opera, Chrome.</p>
+          </div>
+          <!-- Free PSD
+          ================================================== -->
+          <div class="docs-article docs--start" id="download">
+            <h3>Bootflat UI Kit</h3>
+            <p>For the designers, we offer a free PSD file for you, it including a set of beautiful and pure components, which you can use to create startup projects, websites or iOS/Android Apps.</p>
+            <p><a class="btn btn-primary" href="free-psd.html">Download Bootflat UI Kit (v2.0.0)</a></p>
+          </div>
+          <!-- Licensing
+          ================================================== -->
+          <div class="docs-article docs--start" id="licensing">
+            <h3>Licensing</h3>
+            <p>Bootflat is an open source framework released under a permisive <a href="http://opensource.org/licenses/MIT">MIT</a> license. This means you can use Bootflat in your own personal or commercial projects for free. MIT is the same license used by such popular projects as jQuery and Ruby on Rails.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--footer-->
 
-	<section id="content">
-	<div class="container">
-		
-		<div class="row">
-			<div class="col-lg-12">
-				<h2><i class="fa fa-code"></i>&nbsp;How to install</h2>
-				<p class="lead">Very simple scripts that you can add to your Web pages in minutes, no knowing coding required.
-Just copy the script code and paste it into your HTML code.</p>
-				<p>
-					<em>
-					Put the tags and the javascript codes before the last &lt;/body&gt; tag in your HTML page </em>
-				</p>
-				<pre class="prettyprint linenums">
-&lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
-&lt;script&gt;TALK.init();&lt;/script&gt;</pre>
-				<dl class="dl-horizontal">
-					<dt>How <b>SIMPLE</b>, isn't it?</dt>
-				</dl>
-				
-			</div>
-		</div>
 
 
 
-		<div class="row">
-
-			<div class="col-lg-12">
-				<h4><i class="fa fa-arrow-down"></i> More detailed </h4>
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#one" data-toggle="tab"><i class="icon-briefcase"></i> Default Mode</a></li>
-					<li><a href="#two" data-toggle="tab">Inner Mode</a></li>
-					
-				</ul>
-				<div class="tab-content">
-
-					<div class="tab-pane active" id="one">
-						<div class="col-lg-6">
-							<p>This is the simplest way in the world to install the live web chat service on your website.</p>
-	                        <p><strong>Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page.</strong> And then, You can see the dark little box on the right bottom like this page.</p>
-	                        
-	                        <pre class="prettyprint linenums">
-&lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
-&lt;script&gt;TALK.init();&lt;/script&gt;</pre>
-						</div>
-                    	<div class="col-lg-6">
-	                        <img src="img/stalk/install01.jpg" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
-	                    </div>    
-                    </div>
-                   
-					<div class="tab-pane" id="two">
-						<div class="col-lg-6">
-							<p>You can locate the live chat box in the location you specified. </p>
-                            <p>At the first, <strong>Put <code>&lt;div&gt;</code> tag in the location you want.</strong></p>
-                            
-                            <pre class="prettyprint linenums">
-&lt;div id="STALK_SCREEN"&gt;&lt;/div&gt;</pre>;
-						
-                            
-                            <p>And, <strong>Put the tags and the javascript codes before the last <em>&lt;/body&gt;</em> tag in your HTML page.</strong> And then, You can see the live chat box dark in the location you specified.</p> 
-
-	                        <pre class="prettyprint linenums">
-&lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
-&lt;script>
-    var conf = {
-        screenMode:'inner', // mandatory
-        height: '200px', // optional (default 200px)
-        width: '100%'    // optional (default 100%)
-    };
-    STALK.init(conf);
-&lt;/script&gt;	                        
-						</div>
-                    	<div class="col-lg-6">
-	                        <img src="img/stalk/install02.jpg" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
-	                    </div>    
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		<div class="row">
-                <div class="col-md-12 text-left">
-                    <h4>You can install this right where you want it.  For Wordpress, Tumblr, Blogger and your ALL websites.</h4> 
-                    <p>You can check out <a href="http://stalk-io.blogspot.com/2013/03/InstallLiveChatServiceForYourBlog.html" target="_blank">this link</a> 
-			or watch <a href="https://vimeo.com/63335017" target="_blank">this video</a> for more detail.</p>
-                </div>
-            </div>
-            
-            <div class="row" style="margin-bottom: 40px;">
-                <div class="col-md-6 text-center">
-                    <br>
-                    <p>sample for blogger.com</p>
-                    <img src="img/stalk/si001.png" alt="example for blogger.com" style="max-width: 100%; height: auto;" />
-                </div>
-                <div class="col-md-6 text-center">
-                    <br>
-                    <p>sample for tumblr</p>
-                    <p id="videoStalk" style="margin-top: 18px;">
-                    <iframe src="//player.vimeo.com/video/63335017?portrait=0" width="500" height="375" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </p>
-                    
-                </div>
-            </div>
-	</div>
-
-	</section>
-{>"footer" /}
 {/body}
