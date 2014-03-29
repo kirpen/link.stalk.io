@@ -51,6 +51,32 @@ module.exports = function (app) {
             if(err) {
                 console.log("An error ocurred:", err);
             }
+
+
+
+            /*
+            var sessions = request.sessionStore.sessions;
+            var count = Object.keys(sessions).length;
+            console.log("::::::::::::::");
+            console.log(request.user);
+            console.log(sessions);
+            for(var s in sessions){
+                var sessionObj = JSON.parse(sessions[s]);
+                
+                
+                if(sessionObj.passport.user==userId){
+
+
+                    sessionObj.passport.auth=true; 
+
+                    
+                    sessions[s] = JSON.stringify(sessionObj);
+                    console.log(sessions);
+                }
+            }
+            console.log(sessions);*/
+
+
             User.findOne({login:userId}, function(err, doc){
         
                 if (err) {}
@@ -58,15 +84,19 @@ module.exports = function (app) {
                 if(doc){
                     
                     
+                    
                     var sessions = request.sessionStore.sessions;
                     var count = Object.keys(sessions).length;
                     var cnt = 0;
+
+                    
                     for(var s in sessions){
                         var sessionObj = JSON.parse(sessions[s]);
                         
                         if(sessionObj.passport.user==doc._id){
                     
-                            sessionObj.passport.auth=true; 
+                            sessionObj.passport.auth=true;
+                            sessionObj.passport.userId=doc.login; 
                             sessions[s] = JSON.stringify(sessionObj);
                         
                         }
@@ -76,11 +106,11 @@ module.exports = function (app) {
                     }
                 }
                 
-            });    
+            }); 
 
             
             
-           
+
             response.json(data);  
             
         });
@@ -110,7 +140,7 @@ module.exports = function (app) {
         var cb = request.query.callback;
 
         var sessions = request.sessionStore.sessions;
-        
+        var operators = [];
         var allOperators=[];
 
         var count = Object.keys(sessions).length;
@@ -119,7 +149,7 @@ module.exports = function (app) {
 
         console.log(sessions);
 
-               
+        
     
         async.waterfall([
             function (callback){
@@ -129,26 +159,6 @@ module.exports = function (app) {
                 });
             },
             function (apps, callback){
-                var cnt=0;
-                var operators = [];
-                for(var s in sessions){
-                    var sessionObj = JSON.parse(sessions[s]);
-                    
-                    if('user' in sessionObj.passport){
-                        var _id = sessionObj.passport.user;
-                        if('auth' in sessionObj.passport){
-                            var op = {user:_id, auth:sessionObj.passport.auth};
-                            operators.push(op);    
-                        }
-                        
-                    }
-                    if(cnt==count-1){
-                        callback(null,operators,apps);
-                    }
-                    cnt++
-                } 
-            },
-            function (operatros, apps, callback){
                 var userArray = [];
                 for(var app in apps){
                     userArray[app] = apps[app].userId;
@@ -156,19 +166,40 @@ module.exports = function (app) {
                         callback(null, userArray);
                     }
                 }
-
             },
             function (userArray, callback){
                 console.log(userArray);
 
-                XpushModel.find( { app:'stalk-io', userId:{$in:userArray} }
-                                ,{ userId: 1, deviceId: 1, token:1, _id:0 }, function(err, xUsers){
+                XpushModel.find( { app:'stalk-io', deviceId:{$nin:['web','WEB'] }, userId:{$in:userArray} }
+                                ,{ userId: 1, deviceId: 1, _id:0 }, function(err, xUsers){
                     callback(null, xUsers);
                 });
              
             },
             function (xUsers, callback){
-                callback(null, xUsers);
+                var cnt=0;
+                if(count==0){
+                    callback(null, xUsers);
+                }
+
+                for(var s in sessions){
+                    var sessionObj = JSON.parse(sessions[s]);
+                    
+                    if('user' in sessionObj.passport){
+                        var userId = sessionObj.passport.userId;
+                        if('auth' in sessionObj.passport){
+                            var op = {user:userId, deviceId:'WEB'};
+                            xUsers.push(op);    
+                        }
+                        
+                    }
+                    if(cnt==count-1){
+                        callback(null, xUsers);
+                    }
+                    cnt++
+                }
+
+                
             }
 
         ],function (err, result){

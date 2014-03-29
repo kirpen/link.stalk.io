@@ -8,7 +8,6 @@ var kraken = require('kraken-js'),
     User = require('./models/user'),
     io      = require('socket.io-client'),
     stalk = require('./config/stalk'),
-    socketio,
     app = {};
 
 
@@ -25,7 +24,6 @@ app.configure = function configure(nconf, next) {
 
     //Give passport a way to serialize and deserialize a user. In this case, by the user's id.
     passport.serializeUser(function (user, done) {
-
         done(null, user.id);
     });
 
@@ -58,15 +56,6 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
 app.requestAfterRoute = function requestAfterRoute(server) {
     // Run after all routes have been added.
 };
-
-
-var socketOptions ={
-      transports: ['websocket'],
-      'force new connection': true
-    };
-
-var managerSocket;
-var gatewaySocket;
 
 if (require.main === module) {
     kraken.create(app).listen(8080,function (err, server) {
