@@ -20,12 +20,65 @@
   </head>
   <body>
 
+    <div class="docs-header">
+      <!--nav-->
+      <nav class="navbar navbar-default navbar-custom" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" height="40"></a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+
+              <li><a class="nav-link current" href="#features">Features</a></li>
+              <li><a class="nav-link" href="#services">Services</a></li>
+              <li><a class="nav-link" href="#contact">Contact</a></li>
+
+                {?user}
+                  <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                  <li><a class="nav-link" href="/logout">LOGOUT</a></li>
+                {:else}
+                  <li><a class="nav-link" href="/login">LOG IN</a></li>
+                  <li><a class="nav-link" href="/signup">SIGN UP</a></li>
+                {/user}
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+     
+      
+
+    </div>
+
+
     {+body /}
+
+
+
+    <!--footer-->
+    <div class="site-footer">
+      <div class="container">
+
+        <div class="copyright clearfix">
+          <p><b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;<a href="documentation.html">Documentation</a>&nbsp;&bull;&nbsp;<a href="free-psd.html">Free PSD</a></p>
+          <p>&copy; 2014 <a href="http://www.flathemes.com" target="_blank">FLATHEMES</a>, Inc. All rights reserved. &nbsp;&nbsp;Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
+        </div>
+      </div>
+    </div>
+
 
     <script>
       // google-analytics 
     </script>
-    
+
   </body>
 </html>
 
