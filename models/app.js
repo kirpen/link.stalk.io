@@ -3,14 +3,18 @@ var mongoose = require('mongoose');
 
 var appModel = function () {
 
+    var userSchema = mongoose.Schema({
+      userId: { type: String, required: true, trim: true }
+    });
+
+
    	var appSchema = mongoose.Schema({
-        userId: String,
+        users: [userSchema],
         app: String,
         url: String,
         key: String,
-        name: String,
-        deviceId: String,
-        password: String
+        name: String
+
     });
 
     return mongoose.model('App', appSchema);

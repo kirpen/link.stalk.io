@@ -36,7 +36,6 @@ module.exports = function (app) {
             version: '*'
         });
 
-
         var param = {
             app: app,
             userId: userId,
@@ -44,37 +43,10 @@ module.exports = function (app) {
             password: password
         }
 
-
-
-
         client.post('/auth', param, function (err, req, res, data) {
             if(err) {
                 console.log("An error ocurred:", err);
             }
-
-
-
-            /*
-            var sessions = request.sessionStore.sessions;
-            var count = Object.keys(sessions).length;
-            console.log("::::::::::::::");
-            console.log(request.user);
-            console.log(sessions);
-            for(var s in sessions){
-                var sessionObj = JSON.parse(sessions[s]);
-
-
-                if(sessionObj.passport.user==userId){
-
-
-                    sessionObj.passport.auth=true;
-
-
-                    sessions[s] = JSON.stringify(sessionObj);
-                    console.log(sessions);
-                }
-            }
-            console.log(sessions);*/
 
 
             User.findOne({login:userId}, function(err, doc){
@@ -89,7 +61,6 @@ module.exports = function (app) {
                     var count = Object.keys(sessions).length;
                     var cnt = 0;
 
-
                     for(var s in sessions){
                         var sessionObj = JSON.parse(sessions[s]);
 
@@ -98,20 +69,15 @@ module.exports = function (app) {
                             sessionObj.passport.auth=true;
                             sessionObj.passport.userId=doc.login;
                             sessions[s] = JSON.stringify(sessionObj);
-
                         }
-
                         cnt++
-
                     }
-                }
 
+                }
             });
 
+						response.json(data);
 
-
-
-            response.json(data);
 
         });
 
@@ -147,66 +113,84 @@ module.exports = function (app) {
         var opCnt = 0;
         var cnt = 0;
 
-        console.log(sessions);
+        var host = request.headers.host.split(":")[0];
+
+				AppModel.findOne({key:key}, function(err, app){
+						console.log(host);
+						console.log(app.url);
+						if(app.url==host){
+							async.waterfall([
+									function (callback){
+											callback(null, app);
+									},
+									function (app, callback){
+											var userArray = [];
+
+											if(!app) callback(null, userArray);
+
+											var userLength = app.users.length;
+											var users = app.users;
+
+											for(var i=0;i<userLength;i++){
+													userArray[i] = users[i].userId;
+													if(i==userLength-1){
+															callback(null, userArray);
+													}
+											}
+									},
+									function (userArray, callback){
+
+											XpushModel.find( { app:'stalk-io', deviceId:{$nin:['web','WEB'] }, userId:{$in:userArray} }
+																			,{ userId: 1, deviceId: 1, _id:0 }, function(err, xUsers){
+													callback(null, xUsers, userArray);
+											});
+
+									},
+									function (xUsers, userArray, callback){
+
+											var cnt=0;
+											if(count==0){
+													callback(null, xUsers);
+											}
+											for(var i=0;i<userArray.length;i++){
+
+												for(var s in sessions){
+														var sessionObj = JSON.parse(sessions[s]);
+														console.log(sessionObj);
+														if('user' in sessionObj.passport){
+																var userId = sessionObj.passport.userId;
+																if('auth' in sessionObj.passport){
 
 
+																	if(userId==userArray[i]){
 
-        async.waterfall([
-            function (callback){
-                AppModel.find({key:key}, function(err, apps){
+																		var op = {userId:userId, deviceId:'WEB'};
+																		xUsers.push(op);
+																	}
+																}
+														}
 
-                    callback(null, apps)
-                });
-            },
-            function (apps, callback){
-                var userArray = [];
-                for(var app in apps){
-                    userArray[app] = apps[app].userId;
-                    if(app==apps.length-1){
-                        callback(null, userArray);
-                    }
-                }
-            },
-            function (userArray, callback){
-                console.log(userArray);
+												}
 
-                XpushModel.find( { app:'stalk-io', deviceId:{$nin:['web','WEB'] }, userId:{$in:userArray} }
-                                ,{ userId: 1, deviceId: 1, _id:0 }, function(err, xUsers){
-                    callback(null, xUsers);
-                });
+												if(cnt==userArray.length-1){
 
-            },
-            function (xUsers, callback){
-                var cnt=0;
-                if(count==0){
-                    callback(null, xUsers);
-                }
+														callback(null, xUsers);
+												}
+												cnt++
+											}
+									}
 
-                for(var s in sessions){
-                    var sessionObj = JSON.parse(sessions[s]);
+							],function (err, result){
 
-                    if('user' in sessionObj.passport){
-                        var userId = sessionObj.passport.userId;
-                        if('auth' in sessionObj.passport){
-                            var op = {userId:userId, deviceId:'WEB'};
-                            xUsers.push(op);
-                        }
+									response.send(cb+'('+JSON.stringify(result)+')');
 
-                    }
-                    if(cnt==count-1){
-                        callback(null, xUsers);
-                    }
-                    cnt++
-                }
+							});
+						}else{
+							response.send(cb+'('+JSON.stringify({error:"Host does not matched"})+')');
+						}
+				});
 
 
-            }
-
-        ],function (err, result){
-
-            response.send(cb+'('+JSON.stringify(result)+')');
-
-        });
 
         function getUser(k, id,callback){
             User.findOne({_id:id}, function(err, doc){

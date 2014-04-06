@@ -19,7 +19,7 @@ module.exports = function (app) {
         console.log(req.user.login);
 
 
-        var query = {userId : req.user.login};
+        var query = {"users.userId" : req.user.login};
         AppModel.find(query, function(err, apps) {
             res.render('info', {apps:apps});
         });
@@ -32,7 +32,7 @@ module.exports = function (app) {
         console.log(req.user.login);
         var name = req.param('name');
 
-        var query = {userId : req.user.login, name: name};
+        var query = {"users.userId" : req.user.login, name: name};
         AppModel.findOne(query, function(err, app) {
             res.render('info', {app:app , hostname: name});
         });
@@ -81,11 +81,11 @@ module.exports = function (app) {
             app: "stalk-io",
             url : url,
 						key : key,
-            userId: email,
-            deviceId: 'WEB',
-						name: name,
-            password: password
+            users: [{userId:email}],
+						name: name
         }
+
+
         client.post('/user/register', param, function (err, req, res, data) {
             if(err) {
                 console.log("An error ocurred:", err);
@@ -93,8 +93,21 @@ module.exports = function (app) {
 
             if(data.status=="ok"){
 
-                var app = new AppModel(saveObj);
-                app.save();
+								AppModel.findOne({url:url}, function(err, app) {
+										if(app){
+											app.users.push({userId:email});
+											app.save();
+										}else{
+											var sapp = new AppModel(saveObj);
+											sapp.save();
+										}
+
+
+								});
+
+
+
+
             }
             response.json({"msg":data.status});
         });
@@ -124,7 +137,7 @@ module.exports = function (app) {
     });
 
     app.get('/infos',auth.isAuthenticated('admin'), function (req, res) {
-        var query = {userId : req.user.login};
+        var query = {"users.userId" : req.user.login};
         AppModel.find(query, function(err, apps) {
             res.render('infos', {apps:apps});
         });
