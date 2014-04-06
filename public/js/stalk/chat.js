@@ -1,7 +1,8 @@
 var currentTab;
 var composeCount = 0;
 var Application = {
-      appId : $('#stalkAppId').val()
+      appId : $('#stalkAppId').val(),
+      siteName : $('#siteName').val()
 };
 var chatObj={};
 
@@ -63,7 +64,7 @@ function openChatArea(data) {
     tabContent+='    <div class="col-lg-12">                                                                                                        ';
     tabContent+='        <div class="panel panel-info">                                                                                         ';
     tabContent+='            <div class="panel-heading">                                                                                           ';
-    tabContent+='                <span class="fa fa-comment"></span> Chat                                                                          ';
+    tabContent+='                <span class="fa fa-comment"></span> '+siteName+'                                                                          ';
     tabContent+='                <div class="btn-group pull-right">                                                                                ';
     tabContent+='                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">                  ';
     tabContent+='                        <span class="fa fa-chevron-down"></span>                                                                  ';

@@ -189,6 +189,7 @@ background-color: salmon;
   </div>
   <input type="hidden" id="stalkAppId" value ='stalk-io'/>
 	<input type="hidden" id="key" value ='{key}'/>
+	<input type="hidden" id="siteName" value ='{name}'/>
   <input type="hidden" id="_csrf" name="_csrf" value="{_csrf}"/>
   <input type="hidden" id="email" name="email" value="{email}"/>
   </section>
