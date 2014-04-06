@@ -1,7 +1,36 @@
 {>"layouts/master" /}
 {<body}
 
-<style>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $('#contact-form').validate(
+	  {
+	    rules: {
+	      username: {
+	        required: true,
+	        email: true
+	      },
+	      password: {
+	      	minlength: 4,
+	        required: true
+	      }
+	    },
+			errorElement: "em",
+	    highlight: function(element) {
+	      $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+	    },
+	    success: function(element) {
+	      $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+	    },
+			submitHandler: function(form) {
+				form.submit();
+  		}
+	  });
+	});
+</script>
+
+<style type="text/css">
 	.login-panel {
 		background-color: #fff;
 		border-color: #e6e9ed;
@@ -27,7 +56,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-offset-4 col-lg-4">
-					<form id="contactform" action="/login" method="post">
+					<form id="contact-form" action="/login" method="post">
 						<div class="login-panel">													  
 						  <div class="panel-body">
 								<div class="form-group">
@@ -40,22 +69,26 @@
 				              </ul>
 			          		</div>
 			          	{/messages}	
-								</div>						  
+								</div>
 						  
 						  	<div class="row">
 									<div class="col-lg-12">
-										<input type="text" name="username" class="form-control" placeholder="* Email" data-rule="emails" data-msg="Please enter a valid email" value=""/>
-										<div class="validation">
+										<div class="form-group has-feedback">
+											<label class="control-label" for="username">Email</label>
+											<input type="text" id="username" name="username" class="form-control" />
+											<span class="glyphicon form-control-feedback"></span>
 										</div>
 									</div>
-								</div><p/>
+								</div>
 								<div class="row">
 									<div class="col-lg-12">
-										<input type="password" name="password" class="form-control" placeholder="* Password" value=""/>
-										<div class="validation">
+										<div class="form-group has-feedback">
+											<label class="control-label" for="password">Password</label>
+											<input type="password" id="password" name="password" class="form-control" />
+											<span class="glyphicon form-control-feedback"></span>
 										</div>
 									</div>
-								</div><p/>
+								</div>
 								<div class="row">
 									<div class="col-lg-offset-4 col-lg-4">
 										<input type="hidden" name="_csrf" value="{_csrf}"/>

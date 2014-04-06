@@ -4,8 +4,9 @@ var User = require('../models/user'),
 	AppModel = require('../models/app'),
     stalk = require('../config/stalk'),
     auth = require('../lib/auth'),
+		shortId = require('shortid'),
     restify = require('restify');
-    
+
 
 
 module.exports = function (app) {
@@ -17,13 +18,13 @@ module.exports = function (app) {
 
         console.log(req.user.login);
 
-        
-        var query = {userId : req.user.login};
+
+        var query = {"users.userId" : req.user.login};
         AppModel.find(query, function(err, apps) {
             res.render('info', {apps:apps});
         });
 
-    	
+
     });
 
     app.get('/info/:name/settings',auth.isAuthenticated('admin'), function (req, res) {
@@ -31,11 +32,11 @@ module.exports = function (app) {
         console.log(req.user.login);
         var name = req.param('name');
 
-        var query = {userId : req.user.login, name: name};
+        var query = {"users.userId" : req.user.login, name: name};
         AppModel.findOne(query, function(err, app) {
             res.render('info', {app:app , hostname: name});
         });
-        
+
     });
 
     /**
@@ -47,24 +48,26 @@ module.exports = function (app) {
      */
 
 /*
-            
+
            */
 
 
     app.post('/regist',auth.isAuthenticated('admin'), function (request, response) {
 
-       	var email = request.user.login;
-    	var app = request.param("app");
-    	var url = request.param("url");
+        var email = request.user.login;
+    	  var app = request.param("app");
+    	  var url = request.param("url");
         var name = request.param("name");
         var password = request.user.password;
+				var key = shortId.generate();
+
         console.log('/regist',request.param('name'));
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
             version: '*'
         });
 
-        
+
         var param = {
             app: "stalk-io",
             url : url,
@@ -77,50 +80,64 @@ module.exports = function (app) {
         var saveObj = {
             app: "stalk-io",
             url : url,
-            userId: email,
-            name: name,
-            deviceId: 'WEB',
-            password: password
+						key : key,
+            users: [{userId:email}],
+						name: name
         }
+
+
         client.post('/user/register', param, function (err, req, res, data) {
             if(err) {
                 console.log("An error ocurred:", err);
             }
 
             if(data.status=="ok"){
-                
-                var app = new AppModel(saveObj);
-                app.save();
+
+								AppModel.findOne({url:url}, function(err, app) {
+										if(app){
+											app.users.push({userId:email});
+											app.save();
+										}else{
+											var sapp = new AppModel(saveObj);
+											sapp.save();
+										}
+
+
+								});
+
+
+
+
             }
             response.json({"msg":data.status});
         });
-    	
-        
+
+
     });
 
     app.post('/delete',auth.isAuthenticated('admin'), function (request, response) {
 
-        
-        
+
+
         var deleteId = request.param("deleteId");
-        
+
         var query = {'_id':deleteId};
         console.log(query);
         AppModel.findOne(query, function(err, doc){
-    
+
             if (err) {
-                
+
             }
             console.log(doc);
             if(doc) doc.remove();
-            
+
         });
 
         response.redirect("/infos");
     });
 
     app.get('/infos',auth.isAuthenticated('admin'), function (req, res) {
-        var query = {userId : req.user.login};
+        var query = {"users.userId" : req.user.login};
         AppModel.find(query, function(err, apps) {
             res.render('infos', {apps:apps});
         });
