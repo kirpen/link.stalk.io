@@ -64,7 +64,7 @@ function openChatArea(data) {
     tabContent+='    <div class="col-lg-12">                                                                                                        ';
     tabContent+='        <div class="panel panel-info">                                                                                         ';
     tabContent+='            <div class="panel-heading">                                                                                           ';
-    tabContent+='                <span class="fa fa-comment"></span> '+siteName+'                                                                          ';
+    tabContent+='                <span class="fa fa-comment"></span> '+Application.siteName+'                                                                          ';
     tabContent+='                <div class="btn-group pull-right">                                                                                ';
     tabContent+='                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">                  ';
     tabContent+='                        <span class="fa fa-chevron-down"></span>                                                                  ';
