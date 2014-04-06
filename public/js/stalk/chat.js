@@ -320,7 +320,7 @@ var Library = {
 
   // #### Channel 참여하기.
   connect_channel_socket: function(_userId, _channel, callback) {
-    
+    alert(_channel);
     // Message Socket Server 주소 가져오기. ( /node/ [App ID] / [Channel ID] )
     API.node(Application.appId, _channel, function (data) {
       
