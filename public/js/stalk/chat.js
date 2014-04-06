@@ -2,7 +2,7 @@ var currentTab;
 var composeCount = 0;
 var Application = {
       appId : $('#stalkAppId').val()
-};  
+};
 var chatObj={};
 
 var Users = {};
@@ -44,14 +44,14 @@ function leadingZeros(n, digits) {
 
 
 function openChatArea(data) {
-    
+
     var tabId = "tab" + composeCount; //this is id on tab content div where the
     chatObj[data.channel] = tabId;
     composeCount++;
-    
-    
+
+
     var fromMessage = decodeURIComponent(data.data.message);
-    
+
     var timestamp = getTimeStamp();
     var clientId = data.data.sender;
 
@@ -85,7 +85,7 @@ function openChatArea(data) {
     tabContent+='onclick=sendMsg(';
     tabContent+='"'+tabId+'"';
     tabContent+=',"'+data.channel+'");>';
-    
+
     tabContent+='                            Send</button>                                                                                         ';
     tabContent+='                    </span>                                                                                                       ';
     tabContent+='                </div>                                                                                                            ';
@@ -111,13 +111,13 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-    tabContent+='  </div> ';*/                                                                                                                         
+    tabContent+='  </div> ';*/
     tabContent+='</div>                                                                                                                            ';
 
     $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
     $('.tab-content').append(tabContent);
 
-  
+
     $(this).tab('show');
     showTab(tabId);
     registerCloseEvent();
@@ -125,12 +125,12 @@ function openChatArea(data) {
 }
 
 function setEnterKeyEvent(tabId){
-    $('#input'+tabId).on('keydown', function(e) { 
-        if (e.which == 13) { 
-            e.preventDefault(); 
+    $('#input'+tabId).on('keydown', function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
             $('#btn'+tabId).click();
-            
-        } 
+
+        }
     });
 }
 function emailToFlatStr(em){
@@ -142,15 +142,15 @@ function registerCloseEvent() {
     $(".closeTab").click(function () {
 
         //there are multiple elements which has .closeTab icon so close the tab whose close icon is clicked
-        var tabContentId = $(this).parent().attr("href"); 
+        var tabContentId = $(this).parent().attr("href");
         $(this).parent().parent().remove(); //remove li of tab
         $('#myTab a:last').tab('show'); // Select first tab
         $(tabContentId).remove(); //remove respective tab content
-        
+
         for(var o in chatObj){
             if(chatObj[o]==tabContentId.replace("#","")){
                 Library.leaveChannel(userId,o);
-                
+
                 $("#"+emailToFlatStr(o.split("^")[2])).remove();
                 $('#recent'+emailToFlatStr(o.split("^")[2])).remove();
             }
@@ -193,8 +193,8 @@ function removeCurrentTab() {
     $currentTab.parent().remove(); //remove li of tab
     $('#myTab a:last').tab('show'); // Select first tab
     $(tabContentId).remove(); //remove respective tab content
-    
-    
+
+
 }
 
 
@@ -206,37 +206,37 @@ var API = {
   //
   // ##### <code>GET</code> /session/ [App ID] / [User ID]
   auth: function (_userId, callback) {
-    
+
     var params = {
       app:  Application.appId,
       userId: Users[_userId].userId,
       deviceId: Users[_userId].deviceId,
       _csrf:$("#_csrf").val()
-    };   
+    };
     console.log(params);
     $.post("/auth"
         , params
         , function(data) {
               callback(data, _userId);
           });
-   
+
   },
-  
+
   // #### Message Socket Server 주소 가져오기.
   // Session Server 로부터 App ID 와 Channel명을 기준으로 Message Socket Server 주소를 가져 옵니다.
   //
   // ##### <code>GET</code> /node/ [App명] / [Channel명]
   node: function (_app, _channel, callback) {
-      
+
     var url = sessionServer+'/node/'+encodeURIComponent(_app)+'/'+_channel;
-    
-    $.get(url, 
+
+    $.get(url,
         function(data) {
             callback(data);
 
         });
     }
-  
+
 };
 
 
@@ -255,8 +255,8 @@ var Library = {
     console.log(Users[_userId]);
     // Session Socket Server 주소 가져오기. ( /node/session/ [User ID] )
     API.auth(Users[_userId].userId, function (data, _userId) {
-      
-      var query = 
+
+      var query =
         'app='+Application.appId+'&'+
             'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
         'deviceId='+Users[_userId].deviceId+'&'+
@@ -265,25 +265,25 @@ var Library = {
       console.log(data.result.serverUrl+'/session?'+query, socketOptions);
       // Session Socket 연결하기.
       Users[_userId].sessionSocket = io.connect(data.result.serverUrl+'/session?'+query, socketOptions);
-      
+
       // Socket에 connect 이벤트 등록 ( connect 이벤트 발생 )
       Users[_userId].sessionSocket.on('connect', function() {
         callback();
       });
-      
+
       Users[_userId].sessionSocket.on('_event', function (data) {
             console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
-            
+
             $("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
-            
+
             playSound();
             openChatArea(data);
             joinChannel(data.channel);
       });
-      
-      
-      
-      
+
+
+
+
     });
   },
 
@@ -292,14 +292,14 @@ var Library = {
   //
   // ( **user-login** 이벤트 호출 이후에 사용 가능 ).
   channels: function(_userId, callback) {
-    
+
     // **channal-list** 이벤트 호출.
     console.log("channeeelkwlell")
     Users[_userId].sessionSocket.emit('listChannel',{key:Application.appId}, function (data) {
         console.info('\t channels : '+JSON.stringify(data));
       callback(data);
     });
-    
+
   },
 
   // #### Channel 생성하기.
@@ -320,11 +320,11 @@ var Library = {
 
   // #### Channel 참여하기.
   connect_channel_socket: function(_userId, _channel, callback) {
-    
+
     // Message Socket Server 주소 가져오기. ( /node/ [App ID] / [Channel ID] )
     API.node(Application.appId, _channel, function (data) {
-      
-      var query = 
+
+      var query =
                 'app='+Application.appId+'&'+
                 'channel='+data.result.channel+'&'+
                 'server='+data.result.server+'&'+
@@ -334,77 +334,77 @@ var Library = {
       Users[_userId][_channel] = io.connect(data.result.server.url+'/channel?'+query, socketOptions);
       Users[_userId][_channel].on('connect', function(data) {
         callback(data);
-        
+
       });
 
       Users[_userId][_channel].on('message', function (data) {
             console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
-            
+
             var chatText = '<div class="timestamp">'+getTimeStamp()+':'+data.sender+'</div>';
             var msgClass = data.sender==_userId?'from-op':'from-visitor';
-            
-            
+
+
             chatText +='<div class="message '+msgClass+'">'+decodeURIComponent(data.message)+'</div>';
 
             $('#panel'+chatObj[data.channel]).append(chatText);
-            
+
             var div_message = document.getElementById('panel'+chatObj[data.channel]);
             div_message.scrollTop = div_message.scrollHeight;
-            
+
             $('a').each(function(){
                 if($(this).attr('href')=='#'+chatObj[data.channel] && !$(this).parent().hasClass('active')){
                     blinkTab($(this).parent());
-                }   
-                
+                }
+
             });
-        
+
       });
-      
+
       Users[_userId][_channel].on('_event', function (data) {
           console.info('\t CHANNLEL SOCKET NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
-          
+
           if(data.event=="DISCONNECT"){
-              
+
               var chatText = '<div class="timestamp">'+getTimeStamp()+'</div>';
               chatText +='<div class="message from-visitor">Disconnected</div>';
-                
-              
+
+
               $('#panel'+chatObj[data.channel]).append(chatText);
               var div_message = document.getElementById('panel'+chatObj[data.channel]);
               div_message.scrollTop = div_message.scrollHeight;
-              
+
               delete chatObj[data.channel];
               $('#'+emailToFlatStr(data.userId)).remove();
               $('#recent'+emailToFlatStr(data.userId)).remove();
-              
-              
+
+
           }
-          
-          
-             
-          
+
+
+
+
       });
-      
-    
+
+
 
     });
   },
-  
+
   // #### Channel 에서 나가기.
   leaveChannel: function(_userId,_channel) {
     delete chatObj[_channel];
     Users[_userId][_channel].disconnect();
   },
-  
+
   // #### Channel 에 메시지 전송.
   sendMessage: function(_userId, _channel, _name, _datas, callback) {
-        
+
     var param = {
       app:      Application.appId,  // app : Application ID
       channel:  _channel,           // channel : Channel ID
       name:     _name,              // name : 이벤트 발생 ID
       data:     _datas };           // data : 전송할 데이터
-    
+
     Users[_userId][_channel].emit('send', param, function (data) {
       callback(data);
     });
@@ -430,15 +430,15 @@ var Library = {
 
 Library.connect_session_socket(userId, function(result){
     channels();
-    
+
 });
 
 function channels(){
     Library.channels(userId, function(result){
-        
+
         if(result.result.length<1){
             //Library.createChannel(userId, null, [userId], function(result){
-                
+
                 //joinChannel(result.result[0].channel);
              // });
         }else{
@@ -449,33 +449,33 @@ function channels(){
 
 function joinChannel(channel){
     Library.connect_channel_socket(userId,channel, function(result){
-        
+
       });
 }
 
 function sendMsg(tabId, channel){
-    
-    
+
+
     var msg = $('#input'+tabId).val();
-    msg = getEscapeHtml(msg.replace(/^\s+|\s+$/g, '')); 
-        
+    msg = getEscapeHtml(msg.replace(/^\s+|\s+$/g, ''));
+
     var spanId = emailToFlatStr(channel.split("^")[2]);
-    
-    
+
+
     if(!document.getElementById("recent"+spanId)&&chatObj[channel]){
         $("#"+spanId).remove();
         $("#recent").append("<span id=recent"+spanId+">"+channel.split("^")[2]+"<span><br/>");
-        
-        
+
+
     }
-    
+
     if(chatObj[channel]){
         Library.sendMessage(userId, channel, 'message', { message: msg, sender: userId}, function(result){});
     }
-    
+
     $('#input'+tabId).val('');
-    
-    
+
+
 }
 
 var blinkTimeout = '';
@@ -487,7 +487,7 @@ function blinkTab(aObj,isDone){
     clearInterval(blinkTimeout);
     blinkTimeout =
       setInterval(function(){
-        
+
         if(aObj.hasClass('twinkle')){
             aObj.removeClass('twinkle');
         }else{
@@ -499,15 +499,15 @@ function blinkTab(aObj,isDone){
 
 function clearTwinkle(li){
     blinkTab($(li),true);
-    
+
 }
 
 function getOperators(){
-    $.get("/operator/"+$('#stalkAppId').val(),function(data){
-        
+    $.get("/operator/"+$('#key').val(),function(data){
+
         var ophtml = "";
         var jd = data;
-        
+
         for(var d in jd){
             ophtml+=jd[d].userId;
             ophtml+="<br/>";
@@ -515,7 +515,7 @@ function getOperators(){
         $("#operator").html(ophtml);
     })
 }
-function playSound(){   
+function playSound(){
     document.getElementById("sound").innerHTML='<audio autoplay="autoplay"><source src="/audio/noti.mp3" type="audio/mpeg" /><embed hidden="true" autostart="true" loop="false" src="/audio/noti.mp3" /></audio>';
 }
 
@@ -530,11 +530,6 @@ function getEscapeHtml (html) {
 
 getOperators();
 $(function(){
-	
-    
+
+
 });
-
-
-
-
-            

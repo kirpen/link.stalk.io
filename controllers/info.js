@@ -4,8 +4,9 @@ var User = require('../models/user'),
 	AppModel = require('../models/app'),
     stalk = require('../config/stalk'),
     auth = require('../lib/auth'),
+		shortId = require('shortid'),
     restify = require('restify');
-    
+
 
 
 module.exports = function (app) {
@@ -17,13 +18,13 @@ module.exports = function (app) {
 
         console.log(req.user.login);
 
-        
+
         var query = {userId : req.user.login};
         AppModel.find(query, function(err, apps) {
             res.render('info', {apps:apps});
         });
 
-    	
+
     });
 
     app.get('/info/:name/settings',auth.isAuthenticated('admin'), function (req, res) {
@@ -35,7 +36,7 @@ module.exports = function (app) {
         AppModel.findOne(query, function(err, app) {
             res.render('info', {app:app , hostname: name});
         });
-        
+
     });
 
     /**
@@ -47,24 +48,26 @@ module.exports = function (app) {
      */
 
 /*
-            
+
            */
 
 
     app.post('/regist',auth.isAuthenticated('admin'), function (request, response) {
 
-       	var email = request.user.login;
-    	var app = request.param("app");
-    	var url = request.param("url");
+        var email = request.user.login;
+    	  var app = request.param("app");
+    	  var url = request.param("url");
         var name = request.param("name");
         var password = request.user.password;
+				var key = shortId.generate();
+
         console.log('/regist',request.param('name'));
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
             version: '*'
         });
 
-        
+
         var param = {
             app: "stalk-io",
             url : url,
@@ -77,9 +80,10 @@ module.exports = function (app) {
         var saveObj = {
             app: "stalk-io",
             url : url,
+						key : key,
             userId: email,
-            name: name,
             deviceId: 'WEB',
+						name: name,
             password: password
         }
         client.post('/user/register', param, function (err, req, res, data) {
@@ -88,32 +92,32 @@ module.exports = function (app) {
             }
 
             if(data.status=="ok"){
-                
+
                 var app = new AppModel(saveObj);
                 app.save();
             }
             response.json({"msg":data.status});
         });
-    	
-        
+
+
     });
 
     app.post('/delete',auth.isAuthenticated('admin'), function (request, response) {
 
-        
-        
+
+
         var deleteId = request.param("deleteId");
-        
+
         var query = {'_id':deleteId};
         console.log(query);
         AppModel.findOne(query, function(err, doc){
-    
+
             if (err) {
-                
+
             }
             console.log(doc);
             if(doc) doc.remove();
-            
+
         });
 
         response.redirect("/infos");

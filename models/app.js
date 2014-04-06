@@ -2,14 +2,15 @@
 var mongoose = require('mongoose');
 
 var appModel = function () {
-   	
+
    	var appSchema = mongoose.Schema({
         userId: String,
         app: String,
         url: String,
+        key: String,
         name: String,
         deviceId: String,
-        password: String        
+        password: String
     });
 
     return mongoose.model('App', appSchema);
