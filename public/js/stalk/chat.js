@@ -92,7 +92,6 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-   /* tabContent+='    <div class="col-lg-5">                                                                                                        ';
     tabContent+='    <div class="well well-sm">                                                                                                    ';
     tabContent+='        <div class="media">                                                                                                       ';
     tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
@@ -111,7 +110,6 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-    tabContent+='  </div> ';*/
     tabContent+='</div>                                                                                                                            ';
 
     $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
@@ -506,7 +504,7 @@ function getOperators(){
     $.get("/operator/"+$('#key').val(),function(data){
 
         var ophtml = "";
-        var jd = data;
+        var jd = data.users;
 
         for(var d in jd){
             ophtml+=jd[d].userId;
@@ -529,7 +527,3 @@ function getEscapeHtml (html) {
       }
 
 getOperators();
-$(function(){
-
-
-});

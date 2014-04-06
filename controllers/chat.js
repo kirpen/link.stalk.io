@@ -89,7 +89,7 @@ module.exports = function (app) {
 
         var query = {key:key};
 
-        AppModel.find(query, function(err, doc){
+        AppModel.findOne(query, function(err, doc){
 
             if (err) {
 
@@ -113,7 +113,7 @@ module.exports = function (app) {
         var opCnt = 0;
         var cnt = 0;
 
-        var host = request.headers.host.split(":")[0];
+        var host = request.headers.referer.replace("http://", '').replace( '/', '' ).split(':')[0];
 
 				AppModel.findOne({key:key}, function(err, app){
 						console.log(host);
