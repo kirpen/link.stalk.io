@@ -22,14 +22,15 @@ module.exports = function (app) {
 
         res.render('chat', {key:key, email:req.user.login});
 
-    });
+    }); 
 
-    app.post('/auth',auth.isAuthenticated('admin'), function (request, response) {
+    app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
 
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
         var password = request.user.password;
+        var b = request.params.b || true;
 
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
@@ -48,15 +49,9 @@ module.exports = function (app) {
                 console.log("An error ocurred:", err);
             }
 
-
             User.findOne({login:userId}, function(err, doc){
-
                 if (err) {}
-
                 if(doc){
-
-
-
                     var sessions = request.sessionStore.sessions;
                     var count = Object.keys(sessions).length;
                     var cnt = 0;
@@ -65,22 +60,19 @@ module.exports = function (app) {
                         var sessionObj = JSON.parse(sessions[s]);
 
                         if(sessionObj.passport.user==doc._id){
-
-                            sessionObj.passport.auth=true;
-                            sessionObj.passport.userId=doc.login;
-                            sessions[s] = JSON.stringify(sessionObj);
+                            sessionObj.passport.auth=b;
+                            if(b){
+                                sessionObj.passport.userId=doc.login;
+                                sessions[s] = JSON.stringify(sessionObj);
+                            }
                         }
                         cnt++
                     }
 
                 }
             });
-
-						response.json(data);
-
-
+				response.json(data);
         });
-
     });
 
     app.get('/operator/:key', function (request, response) {
@@ -114,10 +106,9 @@ module.exports = function (app) {
         var cnt = 0;
 
         var host = request.headers.referer.replace("http://", '').replace( '/', '' ).split(':')[0];
-				console.log(' AppModel findOne : '+ key);
+
 				AppModel.findOne({key:key}, function(err, app){
 						console.log(host);
-						console.log(app);
 						console.log(app.url);
 						if(app.url==host){
 							async.waterfall([
