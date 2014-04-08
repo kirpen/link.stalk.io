@@ -271,8 +271,8 @@ var Library = {
 
       Users[_userId].sessionSocket.on('connect', function() {
         API.auth(Users[_userId].userId, false, function (data, _userId) {
-          
-        }
+
+        });
       });
 
 
