@@ -25,13 +25,13 @@ module.exports = function (app) {
     }); 
 
     app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
-
+	
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
         var password = request.user.password;
         var b = request.params.b == 'false' ? false : true;
-
+	console.log("===== admin : /auth",request.session.auth);
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
             version: '*'
@@ -43,6 +43,7 @@ module.exports = function (app) {
             deviceId: deviceId,
             password: password
         }
+	
 
         client.post('/auth', param, function (err, req, res, data) {
             if(err) {
@@ -51,6 +52,7 @@ module.exports = function (app) {
 
             User.findOne({login:userId}, function(err, doc){
                 if (err) {}
+
                 if(doc){
                     var sessions = request.sessionStore.sessions;
                     var count = Object.keys(sessions).length;
@@ -58,13 +60,14 @@ module.exports = function (app) {
 
                     for(var s in sessions){
                         var sessionObj = JSON.parse(sessions[s]);
-
                         if(sessionObj.passport.user==doc._id){
                             sessionObj.passport.auth=b;
                             if(b){
                                 sessionObj.passport.userId=doc.login;
+                            }else{
+				delete sessionObj.passport.userId;
+				}
                                 sessions[s] = JSON.stringify(sessionObj);
-                            }
                         }
                         cnt++
                     }
