@@ -41,8 +41,6 @@ function leadingZeros(n, digits) {
 }
 
 
-
-
 function openChatArea(data) {
 
     var tabId = "tab" + composeCount; //this is id on tab content div where the
@@ -269,9 +267,8 @@ var Library = {
         callback();
       });
 
-      Users[_userId].sessionSocket.on('connect', function() {
+      Users[_userId].sessionSocket.on('disconnect', function() {
         API.auth(Users[_userId].userId, false, function (data, _userId) {
-
         });
       });
 
@@ -532,3 +529,19 @@ function getEscapeHtml (html) {
       }
 
 getOperators();
+
+function pageOut(){
+  API.auth(Users[_userId].userId, false, function (data, _userId) {
+  });
+}
+
+$(window).on('beforeunload', function(){
+      return 'Are you sure you want to leave?';
+});
+
+$(window).on('unload', function(){
+  pageOut();
+});
+
+
+
