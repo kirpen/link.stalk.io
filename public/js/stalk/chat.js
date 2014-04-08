@@ -201,9 +201,9 @@ var sessionServer = 'http://chat.stalk.io:8000';
 var API = {
   // #### Session Socket Server 주소 가져오기.
   // Session Server 로부터 App ID와 User ID를 기준으로 Session Socket Server 주소를 가져 옵니다.
-  //
-  // ##### <code>GET</code> /session/ [App ID] / [User ID]
-  auth: function (_userId, callback) {
+  // b -> connection 연결 true, connection 끊김 false
+  // ##### <code>GET</code> /session/ [App ID] / [User ID] / 
+  auth: function (_userId, b, callback) {
 
     var params = {
       app:  Application.appId,
@@ -212,7 +212,7 @@ var API = {
       _csrf:$("#_csrf").val()
     };
     console.log(params);
-    $.post("/auth"
+    $.post("/auth"+'/'+b
         , params
         , function(data) {
               callback(data, _userId);
@@ -252,7 +252,7 @@ var Library = {
     console.log(_userId);
     console.log(Users[_userId]);
     // Session Socket Server 주소 가져오기. ( /node/session/ [User ID] )
-    API.auth(Users[_userId].userId, function (data, _userId) {
+    API.auth(Users[_userId].userId, true, function (data, _userId) {
 
       var query =
         'app='+Application.appId+'&'+
@@ -268,6 +268,13 @@ var Library = {
       Users[_userId].sessionSocket.on('connect', function() {
         callback();
       });
+
+      Users[_userId].sessionSocket.on('connect', function() {
+        API.auth(Users[_userId].userId, false, function (data, _userId) {
+          
+        }
+      });
+
 
       Users[_userId].sessionSocket.on('_event', function (data) {
             console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
@@ -331,7 +338,6 @@ var Library = {
       Users[_userId][_channel] = io.connect(data.result.server.url+'/channel?'+query, socketOptions);
       Users[_userId][_channel].on('connect', function(data) {
         callback(data);
-
       });
 
       Users[_userId][_channel].on('message', function (data) {

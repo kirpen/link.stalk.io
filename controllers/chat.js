@@ -30,7 +30,7 @@ module.exports = function (app) {
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
         var password = request.user.password;
-        var b = request.params.b || true;
+        var b = request.params.b == 'false' ? false : true;
 
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
