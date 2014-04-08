@@ -114,9 +114,10 @@ module.exports = function (app) {
         var cnt = 0;
 
         var host = request.headers.referer.replace("http://", '').replace( '/', '' ).split(':')[0];
-
+				console.log(' AppModel findOne : '+ key);
 				AppModel.findOne({key:key}, function(err, app){
 						console.log(host);
+						console.log(app);
 						console.log(app.url);
 						if(app.url==host){
 							async.waterfall([
