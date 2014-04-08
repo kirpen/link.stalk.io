@@ -531,7 +531,7 @@ function getEscapeHtml (html) {
 getOperators();
 
 function pageOut(){
-  API.auth(Users[_userId].userId, false, function (data, _userId) {
+  API.auth(userId, false, function (data, _userId) {
   });
 }
 
