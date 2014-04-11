@@ -22,10 +22,14 @@ module.exports = function (app) {
 
         res.render('chat', {key:key, email:req.user.login});
 
-    }); 
+    });
 
     app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
+<<<<<<< HEAD
         console.log(request.session);	
+=======
+
+>>>>>>> bdd4416be92851bfdf16543e6042d8004fa6e290
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
@@ -44,7 +48,8 @@ module.exports = function (app) {
             deviceId: deviceId,
             password: password
         }
-	
+
+
 
         client.post('/auth', param, function (err, req, res, data) {
             if(err) {
@@ -124,6 +129,7 @@ module.exports = function (app) {
         var cnt = 0;
 
         var host = request.headers.referer.replace("http://", '').replace( '/', '' ).split(':')[0];
+
 
 				AppModel.findOne({key:key}, function(err, app){
 						console.log(host);
