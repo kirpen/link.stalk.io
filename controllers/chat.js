@@ -76,8 +76,10 @@ module.exports = function (app) {
 		    sessionObj.passport.auth = b;
 		    if(b){
 			sessionObj.passport.userId = doc.login;
+            sessionObj.passport.userNm = doc.name;
 			}else{
 			delete sessionObj.passport.userId;
+            delete sessionObj.passport.userNm;
 		    }
 		    sessions[sessionId] = JSON.stringify(sessionObj);
 		    /*
@@ -113,6 +115,9 @@ module.exports = function (app) {
             if (err) {
 
             }
+
+            console.log( "docdocdocdoco" );
+            console.log( doc );
 
             response.json(doc);
         });
@@ -179,12 +184,16 @@ module.exports = function (app) {
 														console.log(sessionObj);
 														if('user' in sessionObj.passport){
 																var userId = sessionObj.passport.userId;
+                                                                var userNm = sessionObj.passport.userNm;
+
+                                                                console.log( "sessionObj.passport" );
+                                                                console.log( sessionObj.passport );
 																if('auth' in sessionObj.passport){
 
 
 																	if(userId==userArray[i]){
 
-																		var op = {userId:userId, deviceId:'WEB'};
+																		var op = {userId:userId, deviceId:'WEB',userNm:userNm};
 																		xUsers.push(op);
 																	}
 																}

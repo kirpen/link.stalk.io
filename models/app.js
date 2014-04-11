@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var appModel = function () {
 
     var userSchema = mongoose.Schema({
-      userId: { type: String, required: true, trim: true }
+      userId: { type: String, required: true, trim: true },
+      userNm: { type: String, trim: true }
     });
 
 
