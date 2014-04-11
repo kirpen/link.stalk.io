@@ -77,13 +77,7 @@
 
                   <li><a class="nav-link" href="/logout">LOGOUT</a></li>
                 {:else}
-                	{?loginPage}
                   	<li><a class="nav-link current" href="/login">LOG IN</a></li>
-                  	<li><a class="nav-link" href="/signup">SIGN UP</a></li>
-                  {:else}
-                  	<li><a class="nav-link" href="/login">LOG IN</a></li>
-                  	<li><a class="nav-link current" href="/signup">SIGN UP</a></li>                  
-                  {/loginPage}
                 {/user}
 
             </ul>

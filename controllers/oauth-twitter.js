@@ -14,11 +14,11 @@ module.exports = function (app ) {
 
     var model = new LoginModel();
 
-    var authUrl = conf.authUrl;
-    if(_.isEmpty(conf.authUrl)) authUrl = '/auth/twitter';
+    var authUrl = conf.oauth.twitter.authUrl;
+    if(_.isEmpty(conf.oauth.twitter.authUrl)) authUrl = '/auth/twitter';
 
-    var callbackUrl = conf.callbackUrl;
-    if(_.isEmpty(conf.callbackUrl)) callbackUrl = '/auth/twitter/callback';
+    var callbackUrl = conf.oauth.twitter.callbackUrl;
+    if(_.isEmpty(conf.oauth.twitter.callbackUrl)) callbackUrl = '/auth/twitter/callback';
 
     var TwitterStrategy = require('passport-twitter').Strategy;
     passport.use(new TwitterStrategy({
@@ -40,7 +40,6 @@ module.exports = function (app ) {
         var picture = profile.profile_image_url;
 
         User.findOne({login: login}, function (err, user) {
-          console.log(user);
           if(!user){
             var u = new User({
               name: name,
