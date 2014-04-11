@@ -55,8 +55,9 @@ module.exports = function (app) {
     app.post('/regist',auth.isAuthenticated('admin'), function (request, response) {
 
         var email = request.user.login;
-    	  var app = request.param("app");
-    	  var url = request.param("url");
+        var userNm = request.user.name;
+    	var app = request.param("app");
+    	var url = request.param("url");
         var name = request.param("name");
         var password = request.user.password;
 				var key = shortId.generate();
@@ -81,7 +82,7 @@ module.exports = function (app) {
             app: "stalk-io",
             url : url,
 						key : key,
-            users: [{userId:email}],
+            users: [{userId:email,userNm:userNm}],
 						name: name
         }
 
@@ -94,7 +95,7 @@ module.exports = function (app) {
           if(data.status=="ok"){
 						AppModel.findOne({key:key}, function(err, app) {
 								if(app){
-									app.users.push({userId:email});
+									app.users.push({userId:email,userNm:userNm});
 									app.save();
 								}else{
 									var sapp = new AppModel(saveObj);

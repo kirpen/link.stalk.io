@@ -532,7 +532,7 @@ function getOperators(){
         var jd = data.users;
 
         for(var d in jd){
-            ophtml+=jd[d].userId;
+            ophtml+=jd[d].userNm;
             ophtml+="<br/>";
         }
         $("#operator").html(ophtml);

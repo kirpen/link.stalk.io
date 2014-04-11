@@ -13,7 +13,8 @@ var xpushUserModel = function () {
         userId: String,
         app: String,
         deviceId: String,
-        token: String        
+        token: String,
+        userNm:String
     });
 
     return db.model('User', xpushUserSchema);

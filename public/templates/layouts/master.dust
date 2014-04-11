@@ -41,12 +41,9 @@
               <li><a class="nav-link" href="/#services">Services</a></li>
               <li><a class="nav-link" href="/#developers">Developers</a></li>
               <li><a class="nav-link" href="/#contact">Contact</a></li>
-
-
-
                 {?user}
                 <li class="dropdown dashboard">
-	            <a class="nav-link" href="/infos">Dashboard</a>
+	            <a class="nav-link {@ne key="loginPage" value="true"}current{/ne}" href="/infos">Dashboard</a>
                     <!--a href="/infos" data-toggle="dropdown" class="dropdown-toggle">Dashboard<b class="caret"></b></a-->
 			
                     <!--ul class="dropdown-menu">
@@ -74,10 +71,18 @@
                     $('#mdlCreateNewSite').modal('show');
                   });
                 </script>
-
-                  <li><a class="nav-link" href="/logout">LOGOUT</a></li>
+                  <li class="dropdown">              
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <img src="{user.picture}" style="width:32px;height:32px;" />
+                      <span class="headerTinymanName">{user.name}</span>
+                      <b class="caret"></b>
+                      <ul class="dropdown-menu">
+                        <li><a href="/logout">Log Out</a></li>
+                      </ul>
+                    </a>              
+                  </li>
                 {:else}
-                  	<li><a class="nav-link current" href="/login">LOG IN</a></li>
+                  	<li><a class="nav-link {?loginPage}current{/loginPage}" href="/login">LOG IN</a></li>
                 {/user}
 
             </ul>
