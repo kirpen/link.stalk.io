@@ -136,6 +136,10 @@ module.exports = function (app) {
 
 
 				AppModel.findOne({key:key}, function(err, app){
+                        if(err){
+                            console.log(err);
+                            return response.send(cb+'('+JSON.stringify({error: err})+')');
+                        }
 						console.log(host);
 						console.log(app.url);
 						if(app.url==host){

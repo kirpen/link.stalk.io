@@ -6,7 +6,7 @@ var Application = {
 var chatObj={};
 
 var chatContainer = '<li>';
-chatContainer += '<div class="chatMsg ${msgClass}">';
+chatContainer += '<div class="chatMsg clearfix ${msgClass}">';
 chatContainer +=  '<div class="" style="height: 16px"><span class="sender">${sender}</span></div>';
 chatContainer +=  '<img src="#" class="msgProfileImg"></img>';
 chatContainer +=  '<div class="message ${msgClass}">${message}</div>'

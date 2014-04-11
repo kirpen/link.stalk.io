@@ -172,16 +172,27 @@ font-size: 12px;
 .twinkle{
 background-color: salmon;
 }
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
 </style>
-  <section class="chatting" id="content">
+  <!--section class="chatting" id="content"-->
   <!-- <div class="map">
     <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Kuningan,+Jakarta+Capital+Region,+Indonesia&amp;aq=3&amp;oq=kuningan+&amp;sll=37.0625,-95.677068&amp;sspn=37.410045,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Kuningan&amp;t=m&amp;z=14&amp;ll=-6.238824,106.830177&amp;output=embed">
     </iframe>
   </div> -->
 
-  <div class="container container-full">
+  <div class="container container-full" id="content">
 
 	  <div id="sound"></div>
+    <div class="row">
       <div class="col-lg-3">
 
           <div class="panel panel-default">
@@ -224,8 +235,7 @@ background-color: salmon;
         </div>
 
         </div>
-
-
+    </div>
 
   </div>
   <input type="hidden" id="stalkAppId" value ='stalk-io'/>
@@ -234,7 +244,7 @@ background-color: salmon;
   <input type="hidden" id="_csrf" name="_csrf" value="{_csrf}"/>
   <input type="hidden" id="email" name="email" value="{email}"/>
   <input type="hidden" id="picture" name="picture" value="{user.picture}"/>
-  </section>
+  <!--/section-->
   <script src="/js/socket.io.js" type="text/javascript"></script>
   <script src="/js/stalk/chat.js" type="text/javascript"></script>
 

@@ -3,11 +3,6 @@
     font-size: 30px;
 }
 
-.headerTinymanName {
-	padding-left: 8px;
-	display: inline-block;
-	max-width: 175px;
-	padding-right: 8px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
+body>.container{
+	padding-top: 20px;
+}	
