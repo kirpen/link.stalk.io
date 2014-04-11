@@ -43,6 +43,7 @@ module.exports = function (app) {
             password: password
         }
 
+
         client.post('/auth', param, function (err, req, res, data) {
             if(err) {
                 console.log("An error ocurred:", err);
@@ -54,9 +55,6 @@ module.exports = function (app) {
                 if (err) {}
 
                 if(doc){
-
-
-
                     var sessions = request.sessionStore.sessions;
                     var count = Object.keys(sessions).length;
                     var cnt = 0;
@@ -89,7 +87,7 @@ module.exports = function (app) {
 
         var query = {key:key};
 
-        AppModel.find(query, function(err, doc){
+        AppModel.findOne(query, function(err, doc){
 
             if (err) {
 
@@ -113,7 +111,7 @@ module.exports = function (app) {
         var opCnt = 0;
         var cnt = 0;
 
-        var host = request.headers.host.split(":")[0];
+        var host = request.headers.referer.split(":")[0];
 
 				AppModel.findOne({key:key}, function(err, app){
 						console.log(host);
