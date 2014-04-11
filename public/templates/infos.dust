@@ -1,10 +1,5 @@
 {>"layouts/master" /}
 {<body}
-<style>
-	body>.container{
-		padding-top: 20px;
-	}	
-</style>
 <div class="container">
 	<div class="row">
 		<div class="col-md-3"></div>
