@@ -41,8 +41,6 @@ function leadingZeros(n, digits) {
 }
 
 
-
-
 function openChatArea(data) {
 
     var tabId = "tab" + composeCount; //this is id on tab content div where the
@@ -92,7 +90,6 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-   /* tabContent+='    <div class="col-lg-5">                                                                                                        ';
     tabContent+='    <div class="well well-sm">                                                                                                    ';
     tabContent+='        <div class="media">                                                                                                       ';
     tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
@@ -111,7 +108,6 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-    tabContent+='  </div> ';*/
     tabContent+='</div>                                                                                                                            ';
 
     $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
@@ -203,9 +199,9 @@ var sessionServer = 'http://chat.stalk.io:8000';
 var API = {
   // #### Session Socket Server 주소 가져오기.
   // Session Server 로부터 App ID와 User ID를 기준으로 Session Socket Server 주소를 가져 옵니다.
-  //
-  // ##### <code>GET</code> /session/ [App ID] / [User ID]
-  auth: function (_userId, callback) {
+  // b -> connection 연결 true, connection 끊김 false
+  // ##### <code>GET</code> /session/ [App ID] / [User ID] / 
+  auth: function (_userId, b, callback) {
 
     var params = {
       app:  Application.appId,
@@ -214,7 +210,7 @@ var API = {
       _csrf:$("#_csrf").val()
     };
     console.log(params);
-    $.post("/auth"
+    $.post("/auth"+'/'+b
         , params
         , function(data) {
               callback(data, _userId);
@@ -254,7 +250,7 @@ var Library = {
     console.log(_userId);
     console.log(Users[_userId]);
     // Session Socket Server 주소 가져오기. ( /node/session/ [User ID] )
-    API.auth(Users[_userId].userId, function (data, _userId) {
+    API.auth(Users[_userId].userId, true, function (data, _userId) {
 
       var query =
         'app='+Application.appId+'&'+
@@ -270,6 +266,12 @@ var Library = {
       Users[_userId].sessionSocket.on('connect', function() {
         callback();
       });
+
+      Users[_userId].sessionSocket.on('disconnect', function() {
+        API.auth(Users[_userId].userId, false, function (data, _userId) {
+        });
+      });
+
 
       Users[_userId].sessionSocket.on('_event', function (data) {
             console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
@@ -320,7 +322,6 @@ var Library = {
 
   // #### Channel 참여하기.
   connect_channel_socket: function(_userId, _channel, callback) {
-
     // Message Socket Server 주소 가져오기. ( /node/ [App ID] / [Channel ID] )
     API.node(Application.appId, _channel, function (data) {
 
@@ -334,7 +335,6 @@ var Library = {
       Users[_userId][_channel] = io.connect(data.result.server.url+'/channel?'+query, socketOptions);
       Users[_userId][_channel].on('connect', function(data) {
         callback(data);
-
       });
 
       Users[_userId][_channel].on('message', function (data) {
@@ -506,7 +506,7 @@ function getOperators(){
     $.get("/operator/"+$('#key').val(),function(data){
 
         var ophtml = "";
-        var jd = data;
+        var jd = data.users;
 
         for(var d in jd){
             ophtml+=jd[d].userId;
@@ -529,7 +529,19 @@ function getEscapeHtml (html) {
       }
 
 getOperators();
-$(function(){
 
+function pageOut(){
+  API.auth(userId, false, function (data, _userId) {
+  });
+}
 
+$(window).on('beforeunload', function(){
+      return 'Are you sure you want to leave?';
 });
+
+$(window).on('unload', function(){
+  pageOut();
+});
+
+
+
