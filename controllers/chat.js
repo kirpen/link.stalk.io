@@ -22,10 +22,10 @@ module.exports = function (app) {
 
         res.render('chat', {key:key, email:req.user.login});
 
-    }); 
+    });
 
     app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
-	
+
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
@@ -43,7 +43,7 @@ module.exports = function (app) {
             deviceId: deviceId,
             password: password
         }
-	
+
 
 
         client.post('/auth', param, function (err, req, res, data) {
@@ -109,11 +109,8 @@ module.exports = function (app) {
         var opCnt = 0;
         var cnt = 0;
 
-<<<<<<< HEAD
-        var host = request.headers.referer.split(":")[0];
-=======
         var host = request.headers.referer.replace("http://", '').replace( '/', '' ).split(':')[0];
->>>>>>> FETCH_HEAD
+
 
 				AppModel.findOne({key:key}, function(err, app){
 						console.log(host);
