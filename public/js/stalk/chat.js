@@ -7,7 +7,7 @@ var chatObj={};
 
 var chatContainer = '<li>';
 chatContainer += '<div class="chatMsg ${msgClass}">';
-chatContainer +=  '<div class="sender">${sender}</div>';
+chatContainer +=  '<div class="" style="height: 16px"><span class="sender">${sender}</span></div>';
 chatContainer +=  '<img src="#" class="msgProfileImg"></img>';
 chatContainer +=  '<div class="message ${msgClass}">${message}</div>'
 chatContainer +=  '<div class="timestamp">${timestamp}</div>';
@@ -20,7 +20,8 @@ var userId = $('#email').val();
 Users[userId]={
                 userId : $('#email').val(),
                 password: 'qwer',
-                deviceId: 'WEB'
+                deviceId: 'WEB',
+                picture: $('#picture').val()
               };
 
 
@@ -364,7 +365,9 @@ var Library = {
 
             data.message = decodeURIComponent(data.message);
             var chat = $.tmpl(chatContainer, data);
-            console.log(chat);
+            if(data.msgClass == 'from-op'){
+              chat.find('img').attr('src',Users[userId].picture);
+            }
 
             //$('#panel'+chatObj[data.channel]).append(chatText);
             $('#panel'+chatObj[data.channel]).append(chat);
@@ -376,7 +379,6 @@ var Library = {
                 if($(this).attr('href')=='#'+chatObj[data.channel] && !$(this).parent().hasClass('active')){
                     blinkTab($(this).parent());
                 }
-
             });
 
       });

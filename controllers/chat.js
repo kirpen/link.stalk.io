@@ -16,20 +16,24 @@ module.exports = function (app) {
      * Display the login page. We also want to display any error messages that result from a failed login attempt.
      */
     app.get('/chat/:key',auth.isAuthenticated('admin'), function (req, res) {
+        console.log("===== /chat : ");
 
         var key = req.params.key;
+        var userId = req.user.login;
 
+        User.findOne({login:userId}, function(err, doc){
+            console.log("===== /chat : ",doc);
 
-        res.render('chat', {key:key, email:req.user.login});
-
+            if(err){
+                console.log(err);
+                return res.render('chat',{key:key, email : req.user.login});
+            }
+            res.render('chat', {key:key, email:req.user.login, user: doc});
+        });
+        //res.render('chat', {key:key, email:req.user.login});
     });
 
     app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
-<<<<<<< HEAD
-        console.log(request.session);	
-=======
-
->>>>>>> bdd4416be92851bfdf16543e6042d8004fa6e290
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");

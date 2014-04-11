@@ -138,28 +138,29 @@ font-size: 12px;
 .chatMsg{
   
 }
-.chatMsg.from-op > .msgProfileImg{
+.chatMsg.from-op .msgProfileImg{
   float: right;
 }
-.chatMsg.from-op > .sender{
+.chatMsg.from-op .sender{
   float: right;
 }
-.chatMsg.from-op > .timestamp{
+.chatMsg.from-op .timestamp{
   float: right;
 }
 
-.chatMsg.from-visitor > .msgProfileImg{
+.chatMsg.from-visitor .msgProfileImg{
+  border-radius: 5px;
   float: left;
 }
-.chatMsg.from-visitor > .sender{
+.chatMsg.from-visitor .sender{
   float: left;
 }
-.chatMsg.from-visitor > .timestamp{
+.chatMsg.from-visitor .timestamp{
   float: left;
 }
 
 .chatMsg > .msgProfileImg{
-  width: 32px;
+  width: 42px;
   clear: both;
   padding: 2px;
 }
@@ -232,6 +233,7 @@ background-color: salmon;
 	<input type="hidden" id="siteName" value ='{name}'/>
   <input type="hidden" id="_csrf" name="_csrf" value="{_csrf}"/>
   <input type="hidden" id="email" name="email" value="{email}"/>
+  <input type="hidden" id="picture" name="picture" value="{user.picture}"/>
   </section>
   <script src="/js/socket.io.js" type="text/javascript"></script>
   <script src="/js/stalk/chat.js" type="text/javascript"></script>
