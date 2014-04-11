@@ -44,5 +44,7 @@
       $('.btnCreateNewSite').click(function(){
         $('#mdlCreateNewSite').modal('show');
       });
+// underscore Dashboard menu
+$('.dashboard').children('a').addClass('current');
 </script>
 {/body}

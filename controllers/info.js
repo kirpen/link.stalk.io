@@ -87,29 +87,22 @@ module.exports = function (app) {
 
 
         client.post('/user/register', param, function (err, req, res, data) {
-            if(err) {
-                console.log("An error ocurred:", err);
-            }
+          if(err) {
+            console.log("An error ocurred:", err);
+          }
 
-            if(data.status=="ok"){
-
-								AppModel.findOne({url:url}, function(err, app) {
-										if(app){
-											app.users.push({userId:email});
-											app.save();
-										}else{
-											var sapp = new AppModel(saveObj);
-											sapp.save();
-										}
-
-
-								});
-
-
-
-
-            }
-            response.json({"msg":data.status});
+          if(data.status=="ok"){
+						AppModel.findOne({key:key}, function(err, app) {
+								if(app){
+									app.users.push({userId:email});
+									app.save();
+								}else{
+									var sapp = new AppModel(saveObj);
+									sapp.save();
+								}
+						});
+          }
+          response.json({"msg":data.status});
         });
 
 

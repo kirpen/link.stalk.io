@@ -38,6 +38,7 @@ module.exports = function (app) {
 
     });
 
+
      /**
      * Receive the login credentials and authenticate.
      * Successful authentications will go to /profile or if the user was trying to access a secured resource, the URL

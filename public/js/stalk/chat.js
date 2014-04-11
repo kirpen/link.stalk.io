@@ -5,6 +5,16 @@ var Application = {
 };
 var chatObj={};
 
+var chatContainer = '<li>';
+chatContainer += '<div class="chatMsg ${msgClass}">';
+chatContainer +=  '<div class="sender">${sender}</div>';
+chatContainer +=  '<img src="#" class="msgProfileImg"></img>';
+chatContainer +=  '<div class="message ${msgClass}">${message}</div>'
+chatContainer +=  '<div class="timestamp">${timestamp}</div>';
+chatContainer += '</div>';
+chatContainer += '</li>';
+
+
 var Users = {};
 var userId = $('#email').val();
 Users[userId]={
@@ -71,18 +81,20 @@ function openChatArea(data) {
     tabContent+='                    </ul>                                                                                                         ';
     tabContent+='                </div>                                                                                                            ';
     tabContent+='            </div>                                                                                                                ';
-    tabContent+='            <div id="panel'+tabId+'" class="panel-body panel-body-chat">                                                                              ';
-    tabContent+='                <div class="timestamp">'+timestamp+'</div>                                                        ';
-    tabContent+='                <div class="message from-visitor">'+fromMessage+'</div>                                                                  ';
-    tabContent+='            </div>                                                                                                                ';
+    tabContent+='            <ul id="panel'+tabId+'" class="panel-body panel-body-chat">                                                                              ';
+    tabContent+= $.tmpl(chatContainer, {timestamp : timestamp, message: fromMessage, sender: clientId, msgClass: 'from-visitor'}).get(0).outerHTML;
+    //tabContent+='                <div class="timestamp">'+timestamp+'</div>                                                        ';
+    //tabContent+='                <div class="message from-visitor">'+fromMessage+'</div>                                                                  ';
+    tabContent+='            </ul>                                                                                                                ';
     tabContent+='            <div class="panel-footer">                                                                                            ';
     tabContent+='                <div class="input-group">                                                                                         ';
     tabContent+='                    <input type="text" id="input'+tabId+'" class="form-control input-sm" placeholder="Type your message here..." />    ';
     tabContent+='                    <span class="input-group-btn">                                                                                ';
     tabContent+="                        <button class='btn btn-warning btn-sm' id='btn"+tabId+"'";
-    tabContent+='onclick=sendMsg(';
-    tabContent+='"'+tabId+'"';
-    tabContent+=',"'+data.channel+'");>';
+    //tabContent+='onclick=sendMsg(';
+    //tabContent+='"'+tabId+'"';
+    //tabContent+=',"'+data.channel+'");>';
+    tabContent+= '>';
 
     tabContent+='                            Send</button>                                                                                         ';
     tabContent+='                    </span>                                                                                                       ';
@@ -113,6 +125,9 @@ function openChatArea(data) {
     $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
     $('.tab-content').append(tabContent);
 
+    $('.tab-content').find('#btn'+tabId).click(function(){
+      sendMsg(tabId,data.channel);
+    });
 
     $(this).tab('show');
     showTab(tabId);
@@ -251,7 +266,7 @@ var Library = {
     console.log(Users[_userId]);
     // Session Socket Server 주소 가져오기. ( /node/session/ [User ID] )
     API.auth(Users[_userId].userId, true, function (data, _userId) {
-
+      console.log("===== API.auth : ",data);
       var query =
         'app='+Application.appId+'&'+
             'userId='+encodeURIComponent(Users[_userId].userId)+'&'+
@@ -339,14 +354,20 @@ var Library = {
 
       Users[_userId][_channel].on('message', function (data) {
             console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
+            data.timestamp = getTimeStamp();
+            //var chatText = '<div class="timestamp">'+getTimeStamp()+':'+data.sender+'</div>';
+            // var msgClass = data.sender==_userId?'from-op':'from-visitor';
+            data.msgClass = data.sender==_userId?'from-op':'from-visitor';
 
-            var chatText = '<div class="timestamp">'+getTimeStamp()+':'+data.sender+'</div>';
-            var msgClass = data.sender==_userId?'from-op':'from-visitor';
 
+            //chatText +='<div class="message '+msgClass+'">'+decodeURIComponent(data.message)+'</div>';
 
-            chatText +='<div class="message '+msgClass+'">'+decodeURIComponent(data.message)+'</div>';
+            data.message = decodeURIComponent(data.message);
+            var chat = $.tmpl(chatContainer, data);
+            console.log(chat);
 
-            $('#panel'+chatObj[data.channel]).append(chatText);
+            //$('#panel'+chatObj[data.channel]).append(chatText);
+            $('#panel'+chatObj[data.channel]).append(chat);
 
             var div_message = document.getElementById('panel'+chatObj[data.channel]);
             div_message.scrollTop = div_message.scrollHeight;
