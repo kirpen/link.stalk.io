@@ -18,6 +18,7 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="/js/site.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
   </head>
   <body>
 
@@ -44,9 +45,11 @@
 
 
                 {?user}
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dashboard<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                <li class="dropdown dashboard">
+	            <a class="nav-link" href="/infos">Dashboard</a>
+                    <!--a href="/infos" data-toggle="dropdown" class="dropdown-toggle">Dashboard<b class="caret"></b></a-->
+			
+                    <!--ul class="dropdown-menu">
                         <li><a href="#" id="btnCreateNewSite" >Create Site</a></li>
                         <li class="divider"></li>
                         {?apps}
@@ -54,7 +57,7 @@
                         <li><a href="/info/{name}/settings">{name}</a></li>
                             {/apps}
                         {/apps}
-                    </ul>
+                    </ul-->
                 </li>
                 <style>
                   .modal-backdrop{

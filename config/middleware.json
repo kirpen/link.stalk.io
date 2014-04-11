@@ -10,17 +10,17 @@
         "csp": false,
         "p3p": false,
         "xframe": "SAMEORIGIN"
-      }
+      },
 //
 //      "compiler": {
 //          "dust": "templates",
 //          "less": "css"
 //      },
 //
-//      "session": {
-//          "module": "memory",
-//          "secret": "1dc7bd77d6f4c695f1841ed370b78b985999f13f"
-//      },
+      "session": {
+          "module": "memory",
+          "secret": "1dc7bd77d6f4c695f1841ed370b78b985999f13f"
+      }
 //
 //      "static": {
 //          "srcRoot": "path:./public",

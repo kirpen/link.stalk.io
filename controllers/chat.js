@@ -25,12 +25,17 @@ module.exports = function (app) {
     });
 
     app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
+<<<<<<< HEAD
+        console.log(request.session);	
+=======
 
+>>>>>>> bdd4416be92851bfdf16543e6042d8004fa6e290
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
         var password = request.user.password;
         var b = request.params.b == 'false' ? false : true;
+	var sessionId = request.sessionID;
 	console.log("===== admin : /auth",request.session.auth);
         var client = restify.createJsonClient({
             url: stalk.sessionServer || 'http://chat.stalk.io:8000',
@@ -59,7 +64,21 @@ module.exports = function (app) {
                     var count = Object.keys(sessions).length;
                     var cnt = 0;
 
+		    var sessionStr = sessions[sessionId];
+		    if(sessionStr == undefined){
+			console.log("=== error sessionId : "+sessionId);
+		    }
+		    var sessionObj = JSON.parse(sessionStr);
+		    sessionObj.passport.auth = b;
+		    if(b){
+			sessionObj.passport.userId = doc.login;
+			}else{
+			delete sessionObj.passport.userId;
+		    }
+		    sessions[sessionId] = JSON.stringify(sessionObj);
+		    /*
                     for(var s in sessions){
+			console.log("===== admin key : "+s);
                         var sessionObj = JSON.parse(sessions[s]);
                         if(sessionObj.passport.user==doc._id){
                             sessionObj.passport.auth=b;
@@ -72,7 +91,7 @@ module.exports = function (app) {
                         }
                         cnt++
                     }
-
+			*/
                 }
             });
 				response.json(data);
