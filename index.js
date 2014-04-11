@@ -14,7 +14,6 @@ var kraken = require('kraken-js'),
 app.configure = function configure(nconf, next) {
     // Async method run on startup.
     db.config(nconf.get('databaseConfig'));
-
     //Add two users to the system.
    
     //Ignore errors. In this case, the errors will be for duplicate keys as we run this app more than once.

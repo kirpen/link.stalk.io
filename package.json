@@ -29,7 +29,12 @@
     "restify": "2.x.x",
     "async": "~0.2.9",
     "socket.io": "0.9.x",
-    "socket.io-client": "*"
+    "socket.io-client": "*",
+    "passport-facebook": ">= 0.0.0",
+    "passport-twitter": "~1.0.2",
+    "winston": "~0.7.3",
+    "passport-google-oauth": "~0.1.5",
+    "underscore": "1.5.x"
   },
   "devDependencies": {
     "mocha": "~1.10.0",
