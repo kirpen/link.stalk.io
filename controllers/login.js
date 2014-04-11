@@ -17,7 +17,6 @@ module.exports = function (app) {
         
         //Include any error messages that come from the login process.
         model.messages = req.flash('error');
-				model.loginPage = "true";
         res.render('login', model);
     });
 

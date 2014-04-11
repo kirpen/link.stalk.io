@@ -14,11 +14,11 @@ module.exports = function (app ) {
 
     var model = new LoginModel();
 
-    var authUrl = conf.authUrl;
-    if(_.isEmpty(conf.authUrl)) authUrl = '/auth/facebook';
+    var authUrl = conf.oauth.facebook.authUrl;
+    if(_.isEmpty(conf.oauth.facebook.authUrl)) authUrl = '/auth/facebook';
 
-    var callbackUrl = conf.callbackUrl;
-    if(_.isEmpty(conf.callbackUrl)) callbackUrl = '/auth/facebook/callback';
+    var callbackUrl = conf.oauth.facebook.callbackUrl;
+    if(_.isEmpty(conf.oauth.facebook.callbackUrl)) callbackUrl = '/auth/facebook/callback';
 
     var FacebookStrategy = require('passport-facebook').Strategy;
     passport.use(new FacebookStrategy({
@@ -39,7 +39,6 @@ module.exports = function (app ) {
         var picture = "https://graph.facebook.com/"+profile.id+"/picture"
 
         User.findOne({login: login}, function (err, user) {
-          console.log(user);
           if(!user){
             var u = new User({
               name: name,

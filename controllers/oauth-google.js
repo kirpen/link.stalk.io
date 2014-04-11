@@ -14,11 +14,11 @@ module.exports = function (app ) {
   
     var model = new LoginModel();
 
-    var authUrl = conf.authUrl;
-    if(_.isEmpty(conf.authUrl)) authUrl = '/auth/google';
+    var authUrl = conf.oauth.googleplus.authUrl;
+    if(_.isEmpty(conf.oauth.googleplus.authUrl)) authUrl = '/auth/google';
 
-    var callbackUrl = conf.callbackUrl;
-    if(_.isEmpty(conf.callbackUrl)) callbackUrl = '/auth/google/callback';
+    var callbackUrl = conf.oauth.googleplus.callbackUrl;
+    if(_.isEmpty(conf.oauth.googleplus.callbackUrl)) callbackUrl = '/auth/google/callback';
 
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     passport.use(new GoogleStrategy({
@@ -37,10 +37,9 @@ module.exports = function (app ) {
         var name = profile.name;
         var login = "G"+profile.id;
         var password = profile.id;
-        var picture = profile.picture;      
+        var picture = profile.picture;
 
         User.findOne({login: login}, function (err, user) {
-          console.log(user);
           if(!user){
             var u = new User({
               name: name,

@@ -25,11 +25,8 @@ module.exports = function (app) {
     });
 
     app.post('/auth/:b',auth.isAuthenticated('admin'), function (request, response) {
-<<<<<<< HEAD
         console.log(request.session);	
-=======
 
->>>>>>> bdd4416be92851bfdf16543e6042d8004fa6e290
         var app = request.param("app");
         var userId = request.param("userId");
         var deviceId = request.param("deviceId");
