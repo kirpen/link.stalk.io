@@ -8,12 +8,15 @@ var chatObj={};
 var chatContainer = '<li>';
 chatContainer += '<div class="chatMsg clearfix ${msgClass}">';
 chatContainer +=  '<div class="" style="height: 16px"><span class="sender">${sender}</span></div>';
-chatContainer +=  '<img src="#" class="msgProfileImg"></img>';
-chatContainer +=  '<div class="message ${msgClass}">${message}</div>'
+chatContainer +=  '<img src="${picture}" class="msgProfileImg"></img>';
+chatContainer +=  '<div class="message ${msgClass}">${message}';
 chatContainer +=  '<div class="timestamp">${timestamp}</div>';
+chatContainer +=  '</div>';
 chatContainer += '</div>';
 chatContainer += '</li>';
 
+var operatorTmpl = '<a src="#" class="list-group-item"><img src="${picture}"></img>${userNm}</a>';
+var visitorTmpl = '<a id="${id}" href="#${tabId}" onclick="showTab(\"${tabId}\")" class="list-group-item" ><img src="${image}"></img>${name}<a>'
 
 var Users = {};
 var userId = $('#email').val();
@@ -21,7 +24,8 @@ Users[userId]={
                 userId : $('#email').val(),
                 password: 'qwer',
                 deviceId: 'WEB',
-                picture: $('#picture').val()
+                picture: $('#picture').val(),
+                name: $('#name').val()
               };
 
 
@@ -62,7 +66,10 @@ function openChatArea(data) {
     var fromMessage = decodeURIComponent(data.data.message);
 
     var timestamp = getTimeStamp();
-    var clientId = data.data.sender;
+    //var clientId = data.data.sender;
+    var clientId = data.data.user.id;
+    var clientNm = data.data.user.name;
+    var pic = data.data.user.image;
 
     var location = "To-do";
     var ipAddress = "To-do";
@@ -83,7 +90,7 @@ function openChatArea(data) {
     tabContent+='                </div>                                                                                                            ';
     tabContent+='            </div>                                                                                                                ';
     tabContent+='            <ul id="panel'+tabId+'" class="panel-body panel-body-chat">                                                                              ';
-    tabContent+= $.tmpl(chatContainer, {timestamp : timestamp, message: fromMessage, sender: clientId, msgClass: 'from-visitor'}).get(0).outerHTML;
+    tabContent+= $.tmpl(chatContainer, {timestamp : timestamp, message: fromMessage, sender: clientNm, msgClass: 'from-visitor', picture: pic}).get(0).outerHTML;
     //tabContent+='                <div class="timestamp">'+timestamp+'</div>                                                        ';
     //tabContent+='                <div class="message from-visitor">'+fromMessage+'</div>                                                                  ';
     tabContent+='            </ul>                                                                                                                ';
@@ -103,30 +110,30 @@ function openChatArea(data) {
     tabContent+='            </div>                                                                                                                ';
     tabContent+='        </div>                                                                                                                    ';
     tabContent+='    </div>                                                                                                                        ';
-    tabContent+='    <div class="well well-sm">                                                                                                    ';
-    tabContent+='        <div class="media">                                                                                                       ';
-    tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
-    tabContent+='                <img class="media-object" src="http://www.gravatar.com/avatar/a13ac7aed64918b6354f48da59490e3a?s=80">             ';
-    tabContent+='            </a>                                                                                                                  ';
-    tabContent+='            <div class="media-body">                                                                                              ';
-    tabContent+='                <h3 class="media-heading">'+clientId+'</h3>                                                                      ';
-    tabContent+='                <p>'+location+'</p>                                                                                           ';
-    tabContent+='                <p><b>This is a returning customer</b></p>                                                                        ';
-    tabContent+='                <p>This is your first conversation.</p>                                                                           ';
-    tabContent+='                <p><b>Viewed 1 page since a few seconds ago</b></p>                                                               ';
-    tabContent+='                <p>looking at localhost:9000/chefServer?code=&msg=                                                                ';
-    tabContent+='                    referred from localhost:9000/chefServer/node/sw?swType=SMS</p>                                                ';
-    tabContent+='                <p><b>Advanced Info</b></p>                                                                                       ';
-    tabContent+='                <p>IP Address: '+ipAddress+'</p>                                                                                   ';
-    tabContent+='            </div>                                                                                                                ';
-    tabContent+='        </div>                                                                                                                    ';
-    tabContent+='    </div>                                                                                                                        ';
+    // tabContent+='    <div class="well well-sm">                                                                                                    ';
+    // tabContent+='        <div class="media">                                                                                                       ';
+    // tabContent+='            <a class="thumbnail pull-left" href="#">                                                                              ';
+    // tabContent+='                <img class="media-object" src="http://www.gravatar.com/avatar/a13ac7aed64918b6354f48da59490e3a?s=80">             ';
+    // tabContent+='            </a>                                                                                                                  ';
+    // tabContent+='            <div class="media-body">                                                                                              ';
+    // tabContent+='                <h3 class="media-heading">'+clientId+'</h3>                                                                      ';
+    // tabContent+='                <p>'+location+'</p>                                                                                           ';
+    // tabContent+='                <p><b>This is a returning customer</b></p>                                                                        ';
+    // tabContent+='                <p>This is your first conversation.</p>                                                                           ';
+    // tabContent+='                <p><b>Viewed 1 page since a few seconds ago</b></p>                                                               ';
+    // tabContent+='                <p>looking at localhost:9000/chefServer?code=&msg=                                                                ';
+    // tabContent+='                    referred from localhost:9000/chefServer/node/sw?swType=SMS</p>                                                ';
+    // tabContent+='                <p><b>Advanced Info</b></p>                                                                                       ';
+    // tabContent+='                <p>IP Address: '+ipAddress+'</p>                                                                                   ';
+    // tabContent+='            </div>                                                                                                                ';
+    // tabContent+='        </div>                                                                                                                    ';
+    // tabContent+='    </div>                                                                                                                        ';
     tabContent+='</div>                                                                                                                            ';
 
-    $('.nav-tabs').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientId + '</a></li>');
-    $('.tab-content').append(tabContent);
+    $('#myTab').append('<li onclick=clearTwinkle(this);showTab("'+tabId+'");><a href="#' + tabId + '"><button class="close closeTab" type="button" >×</button>' + clientNm + '</a></li>');
+    $('#chatContent').append(tabContent);
 
-    $('.tab-content').find('#btn'+tabId).click(function(){
+    $('#chatContent').find('#btn'+tabId).click(function(){
       sendMsg(tabId,data.channel);
     });
 
@@ -134,6 +141,7 @@ function openChatArea(data) {
     showTab(tabId);
     registerCloseEvent();
     setEnterKeyEvent(tabId);
+    return tabId;
 }
 
 function setEnterKeyEvent(tabId){
@@ -239,14 +247,15 @@ var API = {
   //
   // ##### <code>GET</code> /node/ [App명] / [Channel명]
   node: function (_app, _channel, callback) {
-
     var url = sessionServer+'/node/'+encodeURIComponent(_app)+'/'+_channel;
+    console.log(" == API.node == "+url);
 
-    $.get(url,
-        function(data) {
-            callback(data);
 
-        });
+    $.get(url,{},function(data) {
+          console.log(" == API.node  return == ");
+          console.log(data);
+          callback(data);
+        },'json');
     }
 
 };
@@ -291,12 +300,15 @@ var Library = {
 
       Users[_userId].sessionSocket.on('_event', function (data) {
             console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
-
-            $("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
-
+            var u = data.data.user;
+            //$("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
+            //$("#visitor").append("<span id="+name+">"+name+"<span><br/>");
             playSound();
-            openChatArea(data);
+            u.tabId = openChatArea(data);
             joinChannel(data.channel);
+
+            $("#visitor").append( $.tmpl(visitorTmpl, u) );
+
       });
 
 
@@ -339,6 +351,7 @@ var Library = {
   // #### Channel 참여하기.
   connect_channel_socket: function(_userId, _channel, callback) {
     // Message Socket Server 주소 가져오기. ( /node/ [App ID] / [Channel ID] )
+  console.log(" == connect_channel_socket == "+_userId + '  '+ _channel);
     API.node(Application.appId, _channel, function (data) {
 
       var query =
@@ -354,32 +367,40 @@ var Library = {
       });
 
       Users[_userId][_channel].on('message', function (data) {
-            console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
-            data.timestamp = getTimeStamp();
-            //var chatText = '<div class="timestamp">'+getTimeStamp()+':'+data.sender+'</div>';
-            // var msgClass = data.sender==_userId?'from-op':'from-visitor';
-            data.msgClass = data.sender==_userId?'from-op':'from-visitor';
+        console.info('\t MESSAGE ('+_userId+') : '+JSON.stringify(data));
+        data.timestamp = getTimeStamp();
+        //var chatText = '<div class="timestamp">'+getTimeStamp()+':'+data.sender+'</div>';
+        // var msgClass = data.sender==_userId?'from-op':'from-visitor';
+        data.msgClass = data.sender == 'operator' ? 'from-op':'from-visitor';
+        //chatText +='<div class="message '+msgClass+'">'+decodeURIComponent(data.message)+'</div>';
 
+        if(data.msgClass == 'from-op'){
+          data.picture = Users[userId].picture;
+        }else{
+          data.sender = data.user.name;
+          data.picture = data.user.image;
+        }
 
-            //chatText +='<div class="message '+msgClass+'">'+decodeURIComponent(data.message)+'</div>';
+        //{"message":"a","sender":"","channel":""}
+        //{"user":{"id":"","name":"","url":"","image":""},"message":"","channel":""} 
 
-            data.message = decodeURIComponent(data.message);
-            var chat = $.tmpl(chatContainer, data);
-            if(data.msgClass == 'from-op'){
-              chat.find('img').attr('src',Users[userId].picture);
+        data.message = decodeURIComponent(data.message);
+        var chat = $.tmpl(chatContainer, data);
+        // if(data.msgClass == 'from-op'){
+          // chat.find('img').attr('src',Users[userId].picture);
+        // }
+
+        //$('#panel'+chatObj[data.channel]).append(chatText);
+        $('#panel'+chatObj[data.channel]).append(chat);
+
+        var div_message = document.getElementById('panel'+chatObj[data.channel]);
+        div_message.scrollTop = div_message.scrollHeight;
+
+        $('a').each(function(){
+            if($(this).attr('href')=='#'+chatObj[data.channel] && !$(this).parent().hasClass('active')){
+                blinkTab($(this).parent());
             }
-
-            //$('#panel'+chatObj[data.channel]).append(chatText);
-            $('#panel'+chatObj[data.channel]).append(chat);
-
-            var div_message = document.getElementById('panel'+chatObj[data.channel]);
-            div_message.scrollTop = div_message.scrollHeight;
-
-            $('a').each(function(){
-                if($(this).attr('href')=='#'+chatObj[data.channel] && !$(this).parent().hasClass('active')){
-                    blinkTab($(this).parent());
-                }
-            });
+        });
 
       });
 
@@ -488,12 +509,11 @@ function sendMsg(tabId, channel){
     if(!document.getElementById("recent"+spanId)&&chatObj[channel]){
         $("#"+spanId).remove();
         $("#recent").append("<span id=recent"+spanId+">"+channel.split("^")[2]+"<span><br/>");
-
-
     }
 
     if(chatObj[channel]){
-        Library.sendMessage(userId, channel, 'message', { message: msg, sender: userId}, function(result){});
+        //Library.sendMessage(userId, channel, 'message', { message: msg, sender: userId}, function(result){});
+        Library.sendMessage(userId, channel, 'message', { message: msg, sender: 'operator', user: { id: userId, name : Users[userId].name , image: Users[userId].picture} }, function(result){});
     }
 
     $('#input'+tabId).val('');
@@ -527,15 +547,16 @@ function clearTwinkle(li){
 
 function getOperators(){
     $.get("/operator/"+$('#key').val(),function(data){
-
+        console.log("=== operator");
         var ophtml = "";
         var jd = data.users;
 
         for(var d in jd){
-            ophtml+=jd[d].userNm;
-            ophtml+="<br/>";
+          // ophtml+=jd[d].userNm;
+          // ophtml+="<br/>";
+          $("#operator").html( $.tmpl(operatorTmpl, jd[d]) );
         }
-        $("#operator").html(ophtml);
+        //$("#operator").html(ophtml);
     })
 }
 function playSound(){

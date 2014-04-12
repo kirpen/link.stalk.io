@@ -220,10 +220,10 @@ var STALK_WINDOW = {
 
       if(div_contents.style.display != 'none'){
         div_contents.style.display = 'none';
-				document.getElementById('stalk').className = 'stalk_status_compressed';
+        document.getElementById('stalk').className = 'stalk_status_compressed';
       }else{
         div_contents.style.display = 'block';
-				document.getElementById('stalk').className = 'stalk_status_expanded';
+        document.getElementById('stalk').className = 'stalk_status_expanded';
 
         el_textarea.focus();
         el_textarea.value = el_textarea.value;
@@ -246,35 +246,45 @@ var STALK_WINDOW = {
 
         if(message.length > 0){
 
-          STALK.sendMessage(
-          {
-            message : encodeURIComponent(message),
-            sender : STALK_CONFIGURATION._userId
-          }
-          );
+          STALK.sendMessage(encodeURIComponent(message));
           el_textarea.value = '';
-
+          
         }
       }
     };
   },
 
-  addMessage : function(message, from){
+  addMessage : function(message, from, sender){
+
+    var div_message = document.getElementById('stalk_conversation');
+
+    STALK_CONFIGURATION._last_id = from.id;
+    STALK_CONFIGURATION._last_sender = sender;
+    STALK_CONFIGURATION._last_count = STALK_CONFIGURATION._last_count + 1;
+    var messageId = STALK_CONFIGURATION._last_id+'-'+STALK_CONFIGURATION._last_count;
 
     var msg = '';
-    if(from && from != STALK_CONFIGURATION._userId ){
-      msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+from+' :</span>';
-    }else{
-      msg = msg + '<span class="stalk_message_me stalk_message_fg ">→</span>';
+    if( sender == 'operator' ){
+      msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+
+        '<a href="'+from.url+'" target="_blank">'+
+        '<img src="'+from.image+'" style="width: 23px;" /></a> '+from.name+' :'+
+        '</span>';
+      msg += '<span id="'+messageId+'">'+decodeURIComponent(message)+'</span>';
+    } else {
+      msg += '<span id="'+messageId+'" class="stalk_message_me_bubble">'+decodeURIComponent(message)+'</span>';
     }
-    msg = msg + '<span>'+decodeURIComponent(message)+'</span>';
 
     var chatDiv = document.createElement("p");
     chatDiv.className = 'stalk_message';
     chatDiv.innerHTML = msg;
 
-    var div_message = document.getElementById('stalk_conversation');
+    if( sender != 'operator' ){
+      chatDiv.style.textAlign = "right";
+    }
+
     div_message.appendChild(chatDiv);
+
+
     div_message.scrollTop = div_message.scrollHeight;
 
     if(document.getElementById('stalk_contents').style.display != 'block'){
@@ -284,6 +294,8 @@ var STALK_WINDOW = {
   },
 
   addNotification : function(message) {
+    STALK_CONFIGURATION._last_id = '';
+    STALK_CONFIGURATION.msg += '<span id="'+messageId+'">'+decodeURIComponent(message)+'</span>';_last_sender = '';
     var chatDiv = document.createElement("p");
     chatDiv.className = 'stalk_message';
     chatDiv.innerHTML = '<span class="stalk_message_notification">'+message+'</span>';
@@ -298,6 +310,8 @@ var STALK_WINDOW = {
   },
 
   addSysMessage : function(message) {
+    STALK_CONFIGURATION._last_id = '';
+    STALK_CONFIGURATION._last_sender = '';
     var chatDiv = document.createElement("span");
     chatDiv.className = 'stalk_message_note';
     chatDiv.innerHTML = message;
@@ -382,6 +396,7 @@ var STALK = (function(CONF, UTILS, WIN) {
       CONF._userId  = data.userId || 'unknown';
       CONF._app     = CONF.APP; // +':'+data.key;
       CONF._channel = data.key+'^'+UTILS.getUniqueKey()+'^'+data.id+'^'+CONF._userId;
+      CONF._last_count = 0;
 
       if( !CONF._channel ) return;
 
@@ -438,12 +453,8 @@ var STALK = (function(CONF, UTILS, WIN) {
       });
 
       CONF._socket.on('message', function (data) {
-        if(data.sender){
-          WIN.addMessage(data.message, data.sender);
-        }else{
-            WIN.addMessage(data.message);
-        }
 
+        WIN.addMessage(data.message, data.user, data.sender);
       });
 
       CONF._socket.on('login-facebook', function (data) {
@@ -495,14 +506,10 @@ var STALK = (function(CONF, UTILS, WIN) {
           }
 
         }
-
-
       });
 
-
-            /** create Chat window (HTML) **/
-            WIN.initWin();
-
+      /** create Chat window (HTML) **/
+      WIN.initWin();
     },
 
     sendMessage : function(msg){
@@ -510,7 +517,12 @@ var STALK = (function(CONF, UTILS, WIN) {
         app:      CONF._app,
         channel:  CONF._channel,
         name:     'message',
-        data:     msg };
+        data:     {
+          user:     CONF._user,
+          message:  msg,
+          sender : 'client'
+        }
+      };
 
       CONF._socket.emit('send', param, function (data) {
       });
@@ -524,6 +536,8 @@ var STALK = (function(CONF, UTILS, WIN) {
 
 
 })(STALK_CONFIGURATION, STALK_UTILS, STALK_WINDOW);
+
+
 
 /*! Socket.IO.js build:0.9.16, development. Copyright(c) 2011 LearnBoost <dev@learnboost.com> MIT Licensed */
 

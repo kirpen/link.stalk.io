@@ -19,6 +19,7 @@
     <![endif]-->
         <script type="text/javascript" src="/js/site.min.js"></script>
         <script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="/js/support_ie.js"></script>        
   </head>
   <body>
 

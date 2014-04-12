@@ -171,14 +171,14 @@
                 <div class="col-md-12">
                     <h3>Insert code in your site</h3>
 <pre class="prettyprint linenums">
-&lt;script src="http://www.stalk.io/stalk.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var conf = {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: '{app.key}',
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 'Page Title',
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userId: 'Your Client ID'
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STALK.init(conf);
+&lt;script src="http://link.stalk.io/stalk.js"&gt;&lt;/script&gt;<br/>
+&lt;script&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var conf = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: '{app.key}',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 'Page Title',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userId: 'Your Client ID'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STALK.init(conf);<br/>
 &lt;/script&gt;</pre>
                 </div>
             </div>
