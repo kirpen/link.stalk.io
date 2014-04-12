@@ -56,6 +56,7 @@ module.exports = function (app) {
 
         var email = request.user.login;
         var userNm = request.user.name;
+        var pic = request.user.picture;
     	var app = request.param("app");
     	var url = request.param("url");
         var name = request.param("name");
@@ -82,7 +83,7 @@ module.exports = function (app) {
             app: "stalk-io",
             url : url,
 						key : key,
-            users: [{userId:email,userNm:userNm}],
+            users: [{userId:email,userNm:userNm,pic: pic}],
 						name: name
         }
 
@@ -95,7 +96,7 @@ module.exports = function (app) {
           if(data.status=="ok"){
 						AppModel.findOne({key:key}, function(err, app) {
 								if(app){
-									app.users.push({userId:email,userNm:userNm});
+									app.users.push({userId:email,userNm:userNm,pic:pic});
 									app.save();
 								}else{
 									var sapp = new AppModel(saveObj);

@@ -5,7 +5,8 @@ var appModel = function () {
 
     var userSchema = mongoose.Schema({
       userId: { type: String, required: true, trim: true },
-      userNm: { type: String, trim: true }
+      userNm: { type: String, trim: true },
+      pic: { type: String, trim: true }
     });
 
 
@@ -15,11 +16,8 @@ var appModel = function () {
         url: String,
         key: String,
         name: String
-
     });
 
     return mongoose.model('App', appSchema);
-
 };
-
 module.exports = new appModel();
