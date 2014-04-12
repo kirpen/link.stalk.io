@@ -6,7 +6,8 @@ var User = require('../models/user'),
     stalk = require('../config/stalk'),
     auth = require('../lib/auth'),
     async   = require('async'),
-    restify = require('restify');
+    restify = require('restify'),
+    url = require('url');
 
 
 
@@ -141,17 +142,20 @@ module.exports = function (app) {
 
 
 				AppModel.findOne({key:key}, function(err, app){
-                        if(err){
-                            console.log(err);
-                            return response.send(cb+'('+JSON.stringify({error: err})+')');
-                        }
+            if(err){
+                console.log(err);
+                return response.send(cb+'('+JSON.stringify({error: err})+')');
+            }
 
-                        if( app == null || app == undefined ){
-                            return response.send(cb+'('+JSON.stringify({error: "not registerd url"})+')');
-                        }
+            if( app == null || app == undefined ){
+                return response.send(cb+'('+JSON.stringify({error: "not registerd url"})+')');
+            }
 
-						if(app.url==host ){
-							async.waterfall([
+            var appUrl = url.parse( ( app.url.toLowerCase().indexOf( "http" ) > -1 )? app.url:"http://"+app.url);
+            var refererUrl = url.parse( request.headers.referer );
+
+						if( appUrl.hostname == refererUrl.hostname ){
+							async.waterfall([ 
 									function (callback){
 											callback(null, app);
 									},
@@ -171,7 +175,6 @@ module.exports = function (app) {
 											}
 									},
 									function (userArray, callback){
-
 											XpushModel.find( { app:'stalk-io', deviceId:{$nin:['web','WEB'] }, userId:{$in:userArray} }
 																			,{ userId: 1, deviceId: 1, _id:0 }, function(err, xUsers){
 													callback(null, xUsers, userArray);
@@ -182,7 +185,7 @@ module.exports = function (app) {
 
 											var cnt=0;
 											if(count==0){
-													callback(null, xUsers);
+												callback(null, xUsers);
 											}
 											for(var i=0;i<userArray.length;i++){
 
