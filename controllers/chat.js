@@ -145,9 +145,12 @@ module.exports = function (app) {
                             console.log(err);
                             return response.send(cb+'('+JSON.stringify({error: err})+')');
                         }
-						console.log(host);
-						console.log(app.url);
-						if(app.url==host){
+
+                        if( app == null || app == undefined ){
+                            eturn response.send(cb+'('+JSON.stringify({error: "not registerd url"})+')');
+                        }
+
+						if(app.url==host ){
 							async.waterfall([
 									function (callback){
 											callback(null, app);
