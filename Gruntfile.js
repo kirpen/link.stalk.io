@@ -88,12 +88,6 @@ module.exports = function (grunt) {
                 ui: 'bdd',
                 reporter: 'spec'
             }
-        },
-        watch: {
-          src: {
-            files: 'src/*',
-            tasks: ['concat', 'uglify', 'cssmin', 'copy']
-          },
         }
     });
 
