@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     clean: {
-      files: ['public']
+      files: []
     },
     concat: {
       options: {
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['src/<%= pkg.name %>.js', 'node_modules/socket.io-client/dist/socket.io.js'],
-        dest: 'public/<%= pkg.name %>.js'
+        dest: '../public/<%= pkg.name %>.js'
       },
     },
     uglify: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'public/<%= pkg.name %>.js'
+        dest: '../public/<%= pkg.name %>.js'
       },*/
     },
     cssmin: {

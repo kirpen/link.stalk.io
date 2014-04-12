@@ -6,9 +6,9 @@
 * Copyright (c) 2014 John Kim; Licensed MIT */
 var STALK_CONFIGURATION = {
   APP: 'stalk-io',
-  STALK_URL: 'http://admin.stalk.io:8080',
+  STALK_URL: 'http://link.stalk.io',
   APP_URL: 'http://chat.stalk.io:8000',
-  CSS_URL: 'http://stalk.io/stalk.css',
+  CSS_URL: 'http://link.stalk.io/stalk.css',
   MESSAGE: {
     title: 'Leave us a Message',
     default_message: 'Questions? Come chat with us! We\'re here, send us a message!',
@@ -21,10 +21,10 @@ var STALK_UTILS = {
     for (var i = 0; i < 36; i++) s[i] = Math.floor(Math.random()*0x10);
     s[14] = 4;
     s[19] = (s[19] & 0x3) | 0x8;
-   
+
     for (var x = 0; x < 36; x++) s[x] = itoh[s[x]];
     s[8] = s[13] = s[18] = s[23] = '-';
-   
+
     return s.join('');
   },
   getEscapeHtml : function(html) {
@@ -73,7 +73,7 @@ var STALK_UTILS = {
     document.getElementsByTagName('head')[0].appendChild(link);
     return link;
   },
-  
+
   loadJson : function(url, callbackStr){
     var script = document.createElement("script");
     // Add script object attributes
@@ -97,7 +97,7 @@ var STALK_UTILS = {
     script.src = url + '&callback='+callbackStr+'&_noCacheIE=' + (new Date()).getTime();
     document.getElementsByTagName("head")[0].appendChild(script);
   },
-  
+
   hasClass : function(el, val) {
     var pattern = new RegExp("(^|\\s)" + val + "(\\s|$)");
     return pattern.test(el.className);
@@ -111,7 +111,7 @@ var STALK_UTILS = {
       ele.className = ele.className.replace(reg, ' ');
     }
   },
-  
+
   setUserInfo : function(userInfo) {
     //var date = new Date();
     //date.setDate(date.getDate() + 10);
@@ -214,22 +214,22 @@ var STALK_WINDOW = {
       event.preventDefault();
       event.stopPropagation();
 
-    };    
+    };
 
     div_titlebar.onclick = function(){
-      
+
       if(div_contents.style.display != 'none'){
         div_contents.style.display = 'none';
 				document.getElementById('stalk').className = 'stalk_status_compressed';
       }else{
         div_contents.style.display = 'block';
 				document.getElementById('stalk').className = 'stalk_status_expanded';
-        
+
         el_textarea.focus();
         el_textarea.value = el_textarea.value;
       }
     };
-    
+
     el_textarea.onkeydown = function(event) {
       self.blinkHeader(true);
 
@@ -256,11 +256,11 @@ var STALK_WINDOW = {
 
         }
       }
-    }; 
+    };
   },
-  
+
   addMessage : function(message, from){
-    
+
     var msg = '';
     if(from && from != STALK_CONFIGURATION._userId ){
       msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+from+' :</span>';
@@ -268,11 +268,11 @@ var STALK_WINDOW = {
       msg = msg + '<span class="stalk_message_me stalk_message_fg ">→</span>';
     }
     msg = msg + '<span>'+decodeURIComponent(message)+'</span>';
-        
+
     var chatDiv = document.createElement("p");
     chatDiv.className = 'stalk_message';
     chatDiv.innerHTML = msg;
-    
+
     var div_message = document.getElementById('stalk_conversation');
     div_message.appendChild(chatDiv);
     div_message.scrollTop = div_message.scrollHeight;
@@ -307,7 +307,7 @@ var STALK_WINDOW = {
     div_message.scrollTop = div_message.scrollHeight;
 
   },
-  
+
   blinkTimeout : '',
   blinkHeader : function(isDone){
     if(isDone){
@@ -343,7 +343,7 @@ var STALK_WINDOW = {
       el_textarea.value = el_textarea.value;
     }
 
-  },  
+  },
 
   setTitleBar : function(_event, data){
 
@@ -366,7 +366,7 @@ var STALK_WINDOW = {
     }
 
   }
-  
+
 };
 
 
@@ -376,7 +376,7 @@ var STALK = (function(CONF, UTILS, WIN) {
 
     init: function(data) {
 
-      if(CONF._isReady) return false; 
+      if(CONF._isReady) return false;
 
       CONF._isReady = true;
       CONF._userId  = data.userId || 'unknown';
@@ -410,7 +410,7 @@ var STALK = (function(CONF, UTILS, WIN) {
 
       if(!data.result.server) return false;
 
-      var query = 
+      var query =
           'app='+CONF._app+'&'+
           'channel='+CONF._channel+'&'+
           'server='+data.result.server.name+'&'+
@@ -423,7 +423,7 @@ var STALK = (function(CONF, UTILS, WIN) {
         CONF._user = _user;
       }else{
         CONF._user = {};
-      }          
+      }
 
       CONF._socket = io.connect(data.result.server.url+'/channel?'+query, {
         'force new connection': true
@@ -436,14 +436,14 @@ var STALK = (function(CONF, UTILS, WIN) {
       CONF._socket.on('connect', function () {
           console.log( 'connected' );
       });
-      
+
       CONF._socket.on('message', function (data) {
         if(data.sender){
-          WIN.addMessage(data.message, data.sender);  
+          WIN.addMessage(data.message, data.sender);
         }else{
-            WIN.addMessage(data.message); 
+            WIN.addMessage(data.message);
         }
-        
+
       });
 
       CONF._socket.on('login-facebook', function (data) {
@@ -472,7 +472,7 @@ var STALK = (function(CONF, UTILS, WIN) {
         UTILS.setUserInfo(CONF._user);
         WIN.setTitleBar('login');
 
-      });      
+      });
 
       CONF._socket.on('_event', function (data) {
         if (data.event == 'CONNECTION') {
@@ -482,7 +482,7 @@ var STALK = (function(CONF, UTILS, WIN) {
               console.log(data);
             });
 
-            WIN.addSysMessage(CONF.MESSAGE.default_message);  
+            WIN.addSysMessage(CONF.MESSAGE.default_message);
 
           }else{
             WIN.addSysMessage(data.userId + ' is connected.');
@@ -491,9 +491,9 @@ var STALK = (function(CONF, UTILS, WIN) {
           if( data.userId == 'CONF._userId' ) {
             WIN.addSysMessage('disconnected.');
           }else{
-            WIN.addSysMessage(data.userId + ' was disconnected.');  
+            WIN.addSysMessage(data.userId + ' was disconnected.');
           }
-          
+
         }
 
 
@@ -502,9 +502,9 @@ var STALK = (function(CONF, UTILS, WIN) {
 
             /** create Chat window (HTML) **/
             WIN.initWin();
-      
+
     },
-    
+
     sendMessage : function(msg){
       var param = {
         app:      CONF._app,
@@ -521,8 +521,8 @@ var STALK = (function(CONF, UTILS, WIN) {
     }
 
   };
-  
-  
+
+
 })(STALK_CONFIGURATION, STALK_UTILS, STALK_WINDOW);
 
 /*! Socket.IO.js build:0.9.16, development. Copyright(c) 2011 LearnBoost <dev@learnboost.com> MIT Licensed */
