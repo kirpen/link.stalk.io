@@ -147,7 +147,7 @@ module.exports = function (app) {
                         }
 
                         if( app == null || app == undefined ){
-                            eturn response.send(cb+'('+JSON.stringify({error: "not registerd url"})+')');
+                            return response.send(cb+'('+JSON.stringify({error: "not registerd url"})+')');
                         }
 
 						if(app.url==host ){
