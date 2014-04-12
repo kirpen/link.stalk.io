@@ -57,7 +57,7 @@ app.requestAfterRoute = function requestAfterRoute(server) {
 };
 
 if (require.main === module) {
-    kraken.create(app).listen(8080,function (err, server) {
+    kraken.create(app).listen(80,function (err, server) {
         if (err) {
             console.error(err);
         }
