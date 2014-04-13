@@ -268,7 +268,7 @@ var STALK_WINDOW = {
         '</span>';
       msg += '<span id="'+messageId+'">'+decodeURIComponent(message)+'</span>';
     } else {
-      msg += '<span id="'+messageId+'" class="stalk_message_me_bubble">'+decodeURIComponent(message)+'</span>';
+      msg += '<span id="'+messageId+'" class="stalk_message_mine_bubble">'+decodeURIComponent(message)+'</span>';
     }
 
     var chatDiv = document.createElement("p");
@@ -276,6 +276,7 @@ var STALK_WINDOW = {
     chatDiv.innerHTML = msg;
 
     if( sender != 'operator' ){
+      chatDiv.className = 'stalk_message_mine';
       chatDiv.style.textAlign = "right";
     }
 
