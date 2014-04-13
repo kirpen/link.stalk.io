@@ -262,21 +262,31 @@
   margin:0 0 0 20px;
   text-indent:-20px;
   overflow:visible;
-  line-height: 1.4em
+  line-height: 1.4em;
+}
+#stalk_window .small_name {
+  font-size : 11px;
+}
+#stalk_window .stalk_message_clearfix {
+  background:transparent none repeat scroll 0 0;
+  color:black;
+  padding:0;
+  overflow:visible;
+  line-height: 1.4em;
+  clear:both;
 }
 #stalk_window .stalk_message_me {
   color:#979797;
   padding-right:5px;
   display:inline
 }
-#stalk_window .stalk_message_mine {
+#stalk_window .stalk_messages_to {
   background:transparent none repeat scroll 0 0;
   color:#979797;
   padding:0;
   overflow:visible;
-  line-height: 2.1em
 }
-#stalk_window .stalk_message_mine_bubble {
+#stalk_window .messages_to {
   float: right;
   background-color: #dbedfe;
   background-image: -webkit-gradient(linear, center bottom, center top, from(#c7defe), to(#e7f1fe));
@@ -297,6 +307,27 @@
   text-align: left;
   text-shadow: rgba(255, 255, 255, .5) 0 1px 0;
 }
+#stalk_window .messages_from {
+  float:left;
+  background-color: #f7f7f7;
+  background-image: -webkit-gradient(linear, center bottom, center top, from(#f2f2f2), to(#fff));
+  background-image: -webkit-linear-gradient(bottom, #f2f2f2, #fff);  
+  border: 1px solid rgba(0, 0, 0, .18);
+  border-bottom-color: rgba(0, 0, 0, .29);
+  -webkit-border-radius: 4px;
+  -webkit-box-shadow: 0 1px 0 #dce0e6;
+  color: #3e454c;
+  padding: 2px 4px 2px 4px;
+  max-width: 216px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  text-align: left;
+  text-shadow: rgba(255, 255, 255, .5) 0 1px 0;
+  margin-left : 2px;
+}
+
 #stalk_window .stalk_message_note {
   color:#979797;
   padding-right:2px;

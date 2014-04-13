@@ -263,20 +263,20 @@ var STALK_WINDOW = {
     var msg = '';
     if( sender == 'operator' ){
       msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+
-        '<a href="'+from.url+'" target="_blank">'+
-        '<img src="'+from.image+'" style="width: 23px;" /></a> '+from.name+' :'+
-        '</span>';
-      msg += '<span id="'+messageId+'">'+decodeURIComponent(message)+'</span>';
+	'<div class="small_name">'+ from.name+'</div>'+
+        '<a href="'+from.url+'" target="_blank" style="float:left">'+
+        '<img src="'+from.image+'" style="width: 30px;" /></a>';
+      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></span>';
     } else {
-      msg += '<span id="'+messageId+'" class="stalk_message_mine_bubble">'+decodeURIComponent(message)+'</span>';
+      msg += '<span id="'+messageId+'" class="messages_to">'+decodeURIComponent(message)+'</span>';
     }
 
     var chatDiv = document.createElement("p");
-    chatDiv.className = 'stalk_message';
+    chatDiv.className = 'stalk_message_clearfix';
     chatDiv.innerHTML = msg;
 
     if( sender != 'operator' ){
-      chatDiv.className = 'stalk_message_mine';
+      chatDiv.className = 'stalk_messages_to';
       chatDiv.style.textAlign = "right";
     }
 
