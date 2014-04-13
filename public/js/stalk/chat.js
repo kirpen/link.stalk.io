@@ -18,7 +18,7 @@ chatContainer +=  '</div>';
 chatContainer += '</div>';
 chatContainer += '</li>';
 
-var operatorTmpl = '<a src="#" class="list-group-item"><img src="${picture}"></img>${userNm}</a>';
+var operatorTmpl = '<a src="#" class="list-group-item"><img src="${pic}"></img>${userNm}</a>';
 var visitorTmpl = '<a id="${id}" href="#${tabId}" onclick="showTab(\'${tabId}\',this)" class="list-group-item" ><img src="${image}"></img>${name}</a>'
 
 var Users = {};
