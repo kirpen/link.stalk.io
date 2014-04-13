@@ -6,9 +6,9 @@
         <div class="copyright clearfix">
           <p>
             <b>STALK.IO</b>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;
-            <a href="documentation.html">Documentation</a>&nbsp;&bull;&nbsp;
-            <a href="free-psd.html">Free PSD</a>
+            <a href="/">Features</a>&nbsp;&bull;&nbsp;
+            <a href="/infos">Dashboard</a>&nbsp;&bull;&nbsp;
+            <a href="/login">Login</a>
           </p>
           <p>
             &copy; 2014 <a href="http://www.flathemes.com" target="_blank">XPUSH Project</a>. All rights reserved. &nbsp;&nbsp;

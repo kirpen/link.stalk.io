@@ -1,6 +1,6 @@
-
-
-
+body{
+  background-color: rgb(241, 242, 246);
+}
 
 .social-developer {
     font-size: 30px;
@@ -9,6 +9,7 @@
 body>.container{
 	padding-top: 20px;
 	padding-bottom: 20px;
+  min-height: 500px;
 }	
 
 /*

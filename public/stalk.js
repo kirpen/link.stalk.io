@@ -1,4 +1,4 @@
-/*! stalk javascript library - v0.1.2 - 2014-04-12
+/*! stalk javascript library - v0.1.2 - 2014-04-13
 * https://stalk.io
 * Copyright (c) 2014 John Kim; Licensed MIT */
 /*! stalk javascript library - v0.1.2 - 2014-04-12
@@ -265,20 +265,21 @@ var STALK_WINDOW = {
 
     var msg = '';
     if( sender == 'operator' ){
-      msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+
-        '<a href="'+from.url+'" target="_blank">'+
-        '<img src="'+from.image+'" style="width: 23px;" /></a> '+from.name+' :'+
-        '</span>';
-      msg += '<span id="'+messageId+'">'+decodeURIComponent(message)+'</span>';
+      msg = msg + '<div class="stalk_message_from stalk_message_fg ">'+
+	'<div class="small_name">'+ from.name+'</div>'+
+        '<a href="'+from.url+'" target="_blank" style="float:left">'+
+        '<img src="'+from.image+'" style="width: 30px;" /></a>';
+      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></div>';
     } else {
-      msg += '<span id="'+messageId+'" class="stalk_message_me_bubble">'+decodeURIComponent(message)+'</span>';
+      msg += '<span id="'+messageId+'" class="messages_to">'+decodeURIComponent(message)+'</span>';
     }
 
     var chatDiv = document.createElement("p");
-    chatDiv.className = 'stalk_message';
+    chatDiv.className = 'stalk_message_clearfix';
     chatDiv.innerHTML = msg;
 
     if( sender != 'operator' ){
+      chatDiv.className = 'stalk_messages_to';
       chatDiv.style.textAlign = "right";
     }
 
@@ -313,7 +314,7 @@ var STALK_WINDOW = {
     STALK_CONFIGURATION._last_id = '';
     STALK_CONFIGURATION._last_sender = '';
     var chatDiv = document.createElement("span");
-    chatDiv.className = 'stalk_message_note';
+    chatDiv.className = 'stalk_message_note_link';
     chatDiv.innerHTML = message;
 
     var div_message = document.getElementById('stalk_conversation');
@@ -486,6 +487,7 @@ var STALK = (function(CONF, UTILS, WIN) {
       });
 
       CONF._socket.on('_event', function (data) {
+        console.log( data );
         if (data.event == 'CONNECTION') {
           if( data.userId == CONF._userId ) {
 

@@ -80,6 +80,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', /*'qunit',*/ 'clean', 'concat', 'uglify', 'cssmin', 'copy']);
+  grunt.registerTask('default', ['jshint', /*'qunit',*/ 'clean', 'concat', 'cssmin', 'copy']);
 
 };

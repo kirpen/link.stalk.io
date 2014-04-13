@@ -4,6 +4,9 @@ var Application = {
       appId : $('#stalkAppId').val()
 };
 var chatObj={};
+var viewObject= {
+  //channel : visitor(<a>)
+};
 
 var chatContainer = '<li>';
 chatContainer += '<div class="chatMsg clearfix ${msgClass}">';
@@ -16,7 +19,7 @@ chatContainer += '</div>';
 chatContainer += '</li>';
 
 var operatorTmpl = '<a src="#" class="list-group-item"><img src="${picture}"></img>${userNm}</a>';
-var visitorTmpl = '<a id="${id}" href="#${tabId}" onclick="showTab(\"${tabId}\")" class="list-group-item" ><img src="${image}"></img>${name}<a>'
+var visitorTmpl = '<a id="${id}" href="#${tabId}" onclick="showTab(\'${tabId}\',this)" class="list-group-item" ><img src="${image}"></img>${name}</a>'
 
 var Users = {};
 var userId = $('#email').val();
@@ -28,6 +31,7 @@ Users[userId]={
                 name: $('#name').val()
               };
 
+$('#chatContent').append('<div class="tab-pane active" id="empty"><div class="col-lg-12" style="text-align: center;">There is no client. waiting...<br/> We will be support mobile apps very soon.</div></div>');
 
 function getTimeStamp() {
       var d = new Date();
@@ -64,6 +68,7 @@ function openChatArea(data) {
 
 
     var fromMessage = decodeURIComponent(data.data.message);
+    var pageName = data.channel.split('^')[2];
 
     var timestamp = getTimeStamp();
     //var clientId = data.data.sender;
@@ -79,14 +84,14 @@ function openChatArea(data) {
     tabContent+='    <div class="col-lg-12">                                                                                                        ';
     tabContent+='        <div class="panel panel-info">                                                                                         ';
     tabContent+='            <div class="panel-heading">                                                                                           ';
-    tabContent+='                <span class="fa fa-comment"></span> Chat                                                                          ';
+    tabContent+='                <span class="fa fa-comment"></span>'+clientNm+'('+pageName+')';
     tabContent+='                <div class="btn-group pull-right">                                                                                ';
     tabContent+='                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">                  ';
     tabContent+='                        <span class="fa fa-chevron-down"></span>                                                                  ';
     tabContent+='                    </button>                                                                                                     ';
-    tabContent+='                    <ul class="dropdown-menu slidedown">                                                                          ';
-    tabContent+='                        <li><a href="#"><span class="fa fa-refresh"></span>Refresh</a></li>                                       ';
-    tabContent+='                    </ul>                                                                                                         ';
+    // tabContent+='                    <ul class="dropdown-menu slidedown">                                                                          ';
+    // tabContent+='                        <li><a href="#"><span class="fa fa-refresh"></span>Refresh</a></li>                                       ';
+    // tabContent+='                    </ul>                                                                                                         ';
     tabContent+='                </div>                                                                                                            ';
     tabContent+='            </div>                                                                                                                ';
     tabContent+='            <ul id="panel'+tabId+'" class="panel-body panel-body-chat">                                                                              ';
@@ -138,7 +143,7 @@ function openChatArea(data) {
     });
 
     $(this).tab('show');
-    showTab(tabId);
+    //showTab(tabId);
     registerCloseEvent();
     setEnterKeyEvent(tabId);
     return tabId;
@@ -180,8 +185,13 @@ function registerCloseEvent() {
 }
 
 //shows the tab with passed content div id..paramter tabid indicates the div where the content resides
-function showTab(tabId) {
-    $('#myTab a[href="#' + tabId + '"]').tab('show');
+function showTab(tabId,target) {
+  $('#menuTabContent a.list-group-item.active').removeClass('active');
+  $('#myTab a[href="#' + tabId + '"]').tab('show');
+  if(target) {
+    $(target).find('.badge').remove();
+    $(target).addClass('active');
+  }
 }
 //return current active tab
 function getCurrentTab() {
@@ -213,8 +223,6 @@ function removeCurrentTab() {
     $currentTab.parent().remove(); //remove li of tab
     $('#myTab a:last').tab('show'); // Select first tab
     $(tabContentId).remove(); //remove respective tab content
-
-
 }
 
 
@@ -297,23 +305,25 @@ var Library = {
         });
       });
 
-
       Users[_userId].sessionSocket.on('_event', function (data) {
-            console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
-            var u = data.data.user;
-            //$("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
-            //$("#visitor").append("<span id="+name+">"+name+"<span><br/>");
-            playSound();
-            u.tabId = openChatArea(data);
-            joinChannel(data.channel);
-
-            $("#visitor").append( $.tmpl(visitorTmpl, u) );
-
+        console.info('\t NOTIFICATION ('+_userId+') :  - '+JSON.stringify(data));
+        var u = data.data.user;
+        //$("#visitor").append("<span id="+emailToFlatStr(data.data.sender)+">"+data.data.sender+"<span><br/>");
+        //$("#visitor").append("<span id="+name+">"+name+"<span><br/>");
+        var t = viewObject[ data.channel ];
+        if( !t ){
+          t = viewObject[ data.channel ] =  {};
+          playSound();
+          u.tabId = openChatArea(data);
+          joinChannel(data.channel);
+          t.visitor = $.tmpl(visitorTmpl, u);
+          $("#visitor").append( t.visitor );
+        }
+        if( $("#visitor .active").length < 1){
+          showTab(u.tabId,t.visitor);
+        }
+        receivedMsg(data);
       });
-
-
-
-
     });
   },
 
@@ -396,12 +406,14 @@ var Library = {
         var div_message = document.getElementById('panel'+chatObj[data.channel]);
         div_message.scrollTop = div_message.scrollHeight;
 
+        receivedMsg(data);
+        /*
         $('a').each(function(){
             if($(this).attr('href')=='#'+chatObj[data.channel] && !$(this).parent().hasClass('active')){
                 blinkTab($(this).parent());
             }
         });
-
+        */
       });
 
       Users[_userId][_channel].on('_event', function (data) {
@@ -420,12 +432,7 @@ var Library = {
               delete chatObj[data.channel];
               $('#'+emailToFlatStr(data.userId)).remove();
               $('#recent'+emailToFlatStr(data.userId)).remove();
-
-
           }
-
-
-
 
       });
 
@@ -504,20 +511,31 @@ function sendMsg(tabId, channel){
     msg = getEscapeHtml(msg.replace(/^\s+|\s+$/g, ''));
 
     var spanId = emailToFlatStr(channel.split("^")[2]);
-
-
+    /*
     if(!document.getElementById("recent"+spanId)&&chatObj[channel]){
         $("#"+spanId).remove();
         $("#recent").append("<span id=recent"+spanId+">"+channel.split("^")[2]+"<span><br/>");
     }
-
+    */
     if(chatObj[channel]){
         //Library.sendMessage(userId, channel, 'message', { message: msg, sender: userId}, function(result){});
         Library.sendMessage(userId, channel, 'message', { message: msg, sender: 'operator', user: { id: userId, name : Users[userId].name , image: Users[userId].picture} }, function(result){});
     }
 
     $('#input'+tabId).val('');
+}
 
+function receivedMsg(data){
+  console.log('receivedMsg');
+  console.log(data);
+  var a = viewObject[ data.channel ].visitor;
+  if( !a.hasClass('active') ){
+    if(a.find('.badge').length>0){
+      $(a.find('.badge').get(0)).html( parseInt($(a.find('.badge').get(0)).html())+1 );
+    }else{
+      a.append ('<span class="badge badge-danger">1</span>'); 
+    }
+  }
 
 }
 
@@ -548,6 +566,7 @@ function clearTwinkle(li){
 function getOperators(){
     $.get("/operator/"+$('#key').val(),function(data){
         console.log("=== operator");
+        console.log(data);
         var ophtml = "";
         var jd = data.users;
 

@@ -14,7 +14,7 @@
     {?apps}
         {#apps}
 		<li class="media">
-			<a class="pull-left" href="/info/{name}/settings"><img class="media-object img-rounded" src="/img/apps.png"></a>
+			<a class="pull-left" href="/info/{name}/settings"><img class="media-object img-rounded" src="/img/apps.png" style="width:64px;"></a>
 			<div class="media-body">
 	          <h4 class="media-heading">{name}</h4>
 				<p>Site address : {url}</p>

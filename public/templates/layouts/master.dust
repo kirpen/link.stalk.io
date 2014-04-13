@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>STALK.IO :: real live conversations with visitors </title>
+    <title>LINK.STALK.IO :: real live conversations with visitors </title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- SmartAddon.com Verification for stalk.io --> 
     <meta name="smartaddon-verification" content="211fa07fbd5ca833b4cfd48c462138a9" />
-       <link rel="shortcut icon" href="favicon_16.ico"/>
+    <link rel="shortcut icon" href="favicon_16.ico"/>
     <link rel="bookmark" href="favicon_16.ico"/> 
     <!-- site css -->
     <link rel="stylesheet" href="/css/site.min.css">

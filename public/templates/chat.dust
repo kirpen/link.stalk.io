@@ -226,7 +226,7 @@ background-color: salmon;
         <div class="panel">
           <ul id="menuTab" class="nav nav-tabs nav-justified">
             <li class="active"><a href="#operator" data-toggle="tab">Operator</a></li>
-            <li><a href="#recent" data-toggle="tab">Conversation</a></li>
+            <!--li><a href="#recent" data-toggle="tab">Conversation</a></li-->
             <li><a href="#visitor" data-toggle="tab">Visitor</a></li>
           </ul>
           <div id="menuTabContent" class="tab-content">

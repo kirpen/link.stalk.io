@@ -484,6 +484,7 @@ var STALK = (function(CONF, UTILS, WIN) {
       });
 
       CONF._socket.on('_event', function (data) {
+        console.log( data );
         if (data.event == 'CONNECTION') {
           if( data.userId == CONF._userId ) {
 
@@ -494,7 +495,7 @@ var STALK = (function(CONF, UTILS, WIN) {
             WIN.addSysMessage(CONF.MESSAGE.default_message);
 
           }else{
-            WIN.addSysMessage(data.userNm + ' is connected.');
+            WIN.addSysMessage(data.userId + ' is connected.');
           }
         }else if (data.event == 'DISCONNECT') {
           if( data.userId == 'CONF._userId' ) {
