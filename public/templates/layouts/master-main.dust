@@ -74,8 +74,7 @@
             <a class="btn btn-primary" href="/dashboard">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
           {:else}
 
-            <a class="btn btn-primary" href="/login">Login and go to dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-danger" href="/signup">Let's Sign Up for free chat services</a>
+            <a class="btn btn-primary" href="/login">Login and go to dashboard</a>
           {/user}
 
           <span class="github github-watch">
