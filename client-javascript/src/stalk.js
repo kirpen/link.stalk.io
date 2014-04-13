@@ -262,11 +262,11 @@ var STALK_WINDOW = {
 
     var msg = '';
     if( sender == 'operator' ){
-      msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+
+      msg = msg + '<div class="stalk_message_from stalk_message_fg ">'+
 	'<div class="small_name">'+ from.name+'</div>'+
         '<a href="'+from.url+'" target="_blank" style="float:left">'+
         '<img src="'+from.image+'" style="width: 30px;" /></a>';
-      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></span>';
+      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></div>';
     } else {
       msg += '<span id="'+messageId+'" class="messages_to">'+decodeURIComponent(message)+'</span>';
     }
@@ -311,7 +311,7 @@ var STALK_WINDOW = {
     STALK_CONFIGURATION._last_id = '';
     STALK_CONFIGURATION._last_sender = '';
     var chatDiv = document.createElement("span");
-    chatDiv.className = 'stalk_message_note';
+    chatDiv.className = 'stalk_message_note_link';
     chatDiv.innerHTML = message;
 
     var div_message = document.getElementById('stalk_conversation');
@@ -494,7 +494,7 @@ var STALK = (function(CONF, UTILS, WIN) {
             WIN.addSysMessage(CONF.MESSAGE.default_message);
 
           }else{
-            WIN.addSysMessage(data.userId + ' is connected.');
+            WIN.addSysMessage(data.userNm + ' is connected.');
           }
         }else if (data.event == 'DISCONNECT') {
           if( data.userId == 'CONF._userId' ) {
