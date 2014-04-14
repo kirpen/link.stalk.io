@@ -227,18 +227,18 @@ var STALK_WINDOW = {
       }
     };
 
-    el_textarea.onkeydown = function(event) {
+    el_textarea.onkeydown = function(e) {
       self.blinkHeader(true);
 
       var e = window.event || e;
       var keyCode = (e.which) ? e.which : e.keyCode;
 
-      if(event.keyCode == 13 && !event.shiftKey) {
+      if(keyCode == 13 && !e.shiftKey) {
 
-        if(event.preventDefault) {
-          event.preventDefault();
+        if(e.preventDefault) {
+          e.preventDefault();
         }else{
-          event.returnValue = false;
+          e.returnValue = false;
         }
 
         var message = el_textarea.value;
@@ -265,11 +265,11 @@ var STALK_WINDOW = {
 
     var msg = '';
     if( sender == 'operator' ){
-      msg = msg + '<div class="stalk_message_from stalk_message_fg ">'+
-	'<div class="small_name">'+ from.name+'</div>'+
+      msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+
+	'<span class="small_name">'+ from.name+'</span>'+
         '<a href="'+from.url+'" target="_blank" style="float:left">'+
         '<img src="'+from.image+'" style="width: 30px;" /></a>';
-      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></div>';
+      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></span>';
     } else {
       msg += '<span id="'+messageId+'" class="messages_to">'+decodeURIComponent(message)+'</span>';
     }

@@ -266,6 +266,7 @@
 }
 #stalk_window .small_name {
   font-size : 11px;
+  display : block;
 }
 #stalk_window .stalk_message_clearfix {
   background:transparent none repeat scroll 0 0;
@@ -342,6 +343,7 @@
 #stalk_window .stalk_message_from {
   color:#5ba0d0;
   padding-right:5px
+  display:block;
 }
 #stalk_window .stalk_message>span:empty {
   padding-right:0
