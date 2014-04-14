@@ -180,7 +180,7 @@ var STALK_WINDOW = {
 '        </div> ' +
 '        <div style="text-transform: uppercase; font-size: 9px; letter-spacing: 2px; font-weight: bold; padding: 8px 0px !important; font-family: helvetica, sans-serif !important; text-align: center !important; color: rgb(131, 136, 135) !important; clear: both;"> ' +
 '          <a style="font-family: helvetica, sans-serif !important; text-transform: uppercase; font-size: 9px !important; letter-spacing: 2px; font-weight: bold; color: #c9362f !important; text-decoration: none; text-align:center !important;" ' +
-'          href="http://stalk.io" target="_blank">stalk.io</a> ' +
+'          href="http://link.stalk.io" target="_blank">link.stalk.io</a> ' +
 '        </div> ' +
 '      </div> ' +
 ''+
@@ -229,6 +229,9 @@ var STALK_WINDOW = {
 
     el_textarea.onkeydown = function(event) {
       self.blinkHeader(true);
+
+      var e = window.event || e;
+      var keyCode = (e.which) ? e.which : e.keyCode;
 
       if(event.keyCode == 13 && !event.shiftKey) {
 
