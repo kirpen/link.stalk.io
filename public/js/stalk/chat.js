@@ -18,7 +18,7 @@ chatContainer +=  '</div>';
 chatContainer += '</div>';
 chatContainer += '</li>';
 
-var operatorTmpl = '<a src="#" class="list-group-item"><img src="${picture}"></img>${userNm}</a>';
+var operatorTmpl = '<a src="#" class="list-group-item"><img src="${pic}"></img>${userNm}</a>';
 var visitorTmpl = '<a id="${id}" href="#${tabId}" onclick="showTab(\'${tabId}\',this)" class="list-group-item" ><img src="${image}"></img>${name}</a>'
 
 var Users = {};
@@ -82,7 +82,7 @@ function openChatArea(data) {
     var tabContent = "";
     tabContent+='<div class="tab-pane" id="' + tabId + '">                                                                                           ';
     tabContent+='    <div class="col-lg-12">                                                                                                        ';
-    tabContent+='        <div class="panel panel-info">                                                                                         ';
+    tabContent+='        <div class="panel panel-primary">                                                                                         ';
     tabContent+='            <div class="panel-heading">                                                                                           ';
     tabContent+='                <span class="fa fa-comment"></span>'+clientNm+'('+pageName+')';
     tabContent+='                <div class="btn-group pull-right">                                                                                ';
@@ -103,7 +103,7 @@ function openChatArea(data) {
     tabContent+='                <div class="input-group">                                                                                         ';
     tabContent+='                    <input type="text" id="input'+tabId+'" class="form-control input-sm" placeholder="Type your message here..." />    ';
     tabContent+='                    <span class="input-group-btn">                                                                                ';
-    tabContent+="                        <button class='btn btn-warning btn-sm' id='btn"+tabId+"'";
+    tabContent+="                        <button class='btn btn-primary btn-sm' id='btn"+tabId+"'";
     //tabContent+='onclick=sendMsg(';
     //tabContent+='"'+tabId+'"';
     //tabContent+=',"'+data.channel+'");>';
@@ -323,6 +323,7 @@ var Library = {
           showTab(u.tabId,t.visitor);
         }
         receivedMsg(data);
+        $('#tabVisitor').tab('show');
       });
     });
   },
@@ -569,7 +570,7 @@ function getOperators(){
         console.log(data);
         var ophtml = "";
         var jd = data.users;
-
+	console.log( jd );
         for(var d in jd){
           // ophtml+=jd[d].userNm;
           // ophtml+="<br/>";
