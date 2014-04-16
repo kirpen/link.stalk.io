@@ -8,10 +8,11 @@ var IndexModel = require('../models/index'),
 	restify = require('restify');
 	
 var locales = {
-	kr : 'ko_KR',
-	en : 'en_US',
-	jp : 'ja_JP'
+	kr : 'ko-KR',
+	en : 'en-US',
+	jp : 'ja-JP'
 };
+
 var defaultLocal = 'en';
 
 module.exports = function (app) {
@@ -19,20 +20,21 @@ module.exports = function (app) {
 	var model = new AppModel();
 
     app.get('/', function (req, res) {
-		res.render('redirect', model);
+		res.render('index', model);
 		//res.render('index', model);
     });
-
+    /*
 	app.get('/*', function(req, res,next){
+		console.log( req.headers["accept-language"] );
 		var path = req.params[0];
 		if( path && path.length ==2  ){
 			var locale = locales[ path.split('/')[0] ] || locales[defaultLocal];
-			res.locals.context = { locality : locale };
+			res.locals.context = { locality: locale };
 			return res.render('index', model);
 		}
 		next();
 	});
-
+*/
     app.get('/feature', function (req, res) {
 		res.render('feature', model);
     });
