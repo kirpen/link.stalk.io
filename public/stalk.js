@@ -1,4 +1,4 @@
-/*! stalk javascript library - v0.1.2 - 2014-04-13
+/*! stalk javascript library - v0.1.2 - 2014-04-14
 * https://stalk.io
 * Copyright (c) 2014 John Kim; Licensed MIT */
 /*! stalk javascript library - v0.1.2 - 2014-04-12
@@ -183,7 +183,7 @@ var STALK_WINDOW = {
 '        </div> ' +
 '        <div style="text-transform: uppercase; font-size: 9px; letter-spacing: 2px; font-weight: bold; padding: 8px 0px !important; font-family: helvetica, sans-serif !important; text-align: center !important; color: rgb(131, 136, 135) !important; clear: both;"> ' +
 '          <a style="font-family: helvetica, sans-serif !important; text-transform: uppercase; font-size: 9px !important; letter-spacing: 2px; font-weight: bold; color: #c9362f !important; text-decoration: none; text-align:center !important;" ' +
-'          href="http://stalk.io" target="_blank">stalk.io</a> ' +
+'          href="http://link.stalk.io" target="_blank">link.stalk.io</a> ' +
 '        </div> ' +
 '      </div> ' +
 ''+
@@ -230,15 +230,18 @@ var STALK_WINDOW = {
       }
     };
 
-    el_textarea.onkeydown = function(event) {
+    el_textarea.onkeydown = function(e) {
       self.blinkHeader(true);
 
-      if(event.keyCode == 13 && !event.shiftKey) {
+      var e = window.event || e;
+      var keyCode = (e.which) ? e.which : e.keyCode;
 
-        if(event.preventDefault) {
-          event.preventDefault();
+      if(keyCode == 13 && !e.shiftKey) {
+
+        if(e.preventDefault) {
+          e.preventDefault();
         }else{
-          event.returnValue = false;
+          e.returnValue = false;
         }
 
         var message = el_textarea.value;
@@ -265,11 +268,11 @@ var STALK_WINDOW = {
 
     var msg = '';
     if( sender == 'operator' ){
-      msg = msg + '<div class="stalk_message_from stalk_message_fg ">'+
-	'<div class="small_name">'+ from.name+'</div>'+
+      msg = msg + '<span class="stalk_message_from stalk_message_fg ">'+
+	'<span class="small_name">'+ from.name+'</span>'+
         '<a href="'+from.url+'" target="_blank" style="float:left">'+
         '<img src="'+from.image+'" style="width: 30px;" /></a>';
-      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></div>';
+      msg += '<span id="'+messageId+'" class="messages_from">'+decodeURIComponent(message)+'</span></span>';
     } else {
       msg += '<span id="'+messageId+'" class="messages_to">'+decodeURIComponent(message)+'</span>';
     }
