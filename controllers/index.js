@@ -20,7 +20,7 @@ module.exports = function (app) {
 
     app.get('/', function (req, res) {
 		res.render('redirect', model);
-		res.render('index', model);
+		//res.render('index', model);
     });
 
 	app.get('/*', function(req, res,next){
