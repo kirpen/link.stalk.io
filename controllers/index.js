@@ -20,21 +20,6 @@ module.exports = function (app) {
 	var model = new AppModel();
 
     app.get('/', function (req, res) {
-<<<<<<< HEAD
-		res.render('redirect', model);
-		//res.render('index', model);
-    });
-    app.get('/*', function(req, res,next){
-	var path = req.params[0];
-	if( path && path.length ==2  ){
-		var locale = locales[ path.split('/')[0] ] || locales[defaultLocal];
-		res.locals.context = { locality : locale };
-		return res.render('index', model);
-	}
-	next();
-     });
-
-=======
 		res.render('index', model);
 		//res.render('index', model);
     });
@@ -50,7 +35,6 @@ module.exports = function (app) {
 		next();
 	});
 */
->>>>>>> 999675008e4daf98fdebeba91e74bcad3848e034
     app.get('/feature', function (req, res) {
 		res.render('feature', model);
     });

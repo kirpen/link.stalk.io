@@ -74,7 +74,7 @@ app.requestAfterRoute = function requestAfterRoute(server) {
     // Run after all routes have been added.
 };
 if (require.main === module) {
-    kraken.create(app).listen(9898,function (err, server) {
+    kraken.create(app).listen(80,function (err, server) {
         if (err) {
             console.error(err);
         }

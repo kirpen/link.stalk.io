@@ -4,14 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-<<<<<<< HEAD
-              <h2>Make the sale and keep customers happy.</h2>
-              <h3><b>LINK.STALK.IO</b> is the live conversation service with visitors on your website. Experience the easiest way to boost your sales, help solve issues and understand your customers with this live chat.</h3>
-=======
               <h2>{@pre type="content" key="mainContentTitle1"/}</h2>
               <h3>{@pre type="content" key="mainContentText1"/}</h3>
->>>>>>> 999675008e4daf98fdebeba91e74bcad3848e034
-
           </div>
 
           <div class="col-md-6">
