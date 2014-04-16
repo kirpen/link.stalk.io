@@ -13,7 +13,6 @@ var kraken = require('kraken-js'),
 
 app.configure = function configure(nconf, next) {
     // Async method run on startup.
-    /*
     db.config(nconf.get('databaseConfig'));
     //Add two users to the system.
    
@@ -32,7 +31,6 @@ app.configure = function configure(nconf, next) {
             done(null, user);
         });
     });
-    */
     next(null);
 };
 
@@ -41,11 +39,15 @@ app.requestStart = function requestStart(server) {
     // Run before most express middleware has been registered.
 };
 
-var locales = {
-    kr : 'ko-KR',
-    en : 'en-US',
-    jp : 'ja-JP'
-};
+var locales = ['en-US', 'ko-KR', 'ja-JP'];
+var defaultLocale = 'en-US';
+
+function isExistLocale(local){
+    for(var i = 0 ; i < locales.length ; i++){
+        if(local == locales[i]) return true;
+    }
+    return false;
+}
 
 app.requestBeforeRoute = function requestBeforeRoute(server) {
     // Run before any routes have been added.
@@ -60,7 +62,7 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
             lang = lang.split(',')[0];
             //console.log(lang);
             lang = lang.split('-')[0] +'-'+ lang.split('-')[1].toUpperCase();
-            req.session.local = lang;
+            req.session.local = isExistLocale(lang) == true ? lang : defaultLocale;
         }
         console.log(req.session.local);
         res.locals.context = { locality: req.session.local };

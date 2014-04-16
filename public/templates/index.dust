@@ -10,10 +10,10 @@
           </div>
 
           <div class="col-md-6">
-          <h2>Let visitors chat each others on your website</h2>
-          <h3><b>LINK.STALK.IO</b> is the most beautiful and effective way to make visitors stay on your website. Just check the bottom on this page! It's super easy to install this chat widget for your website.</h3>
+          <h2>{@pre type="content" key="mainContentTitle2"/}</h2>
+          <h3>{@pre type="content" key="mainContentText2"/}</h3>
           <div class="options">
-            <a href="http://stalk.io" class="btn btn-primary" target="_blank">Visit <b>stalk.io</b> to make your website live conversation service.</a>
+            <a href="http://stalk.io" class="btn btn-primary" target="_blank">{@pre type="content" key="stalk.io-link"/}</a>
           </div>
           </div>
         </div>
@@ -23,8 +23,8 @@
 
     <div id="developers" class="previews">
       <div class="container">
-        <h2>Developers</h2>
-        <p>Developer who subconsciously views himself as an artist will enjoy what he does and will do it better. </p>
+        <h2>{@pre type="content" key="developers"/}</h2>
+        <p>{@pre type="content" key="dev_desc"/}</p>
         <div class="row">
             <div class="col-sm-4 col-md-2 centerColumn-inrow">
               <div class="thumbnail">
@@ -83,12 +83,12 @@
     </div>
     <div id="contact" class="previews">
       <div class="container">
-        <h2>Contact Us</h2>
+        <h2>{@pre type="content" key="contact_us"/}</h2>
         
       </div>
       <div class="container">
-        <h2>Thanks for watching!</h2>
-        <p>I hope you will enjoy this new product, and if you use it, do not forget to share your projects with us. I love to see all the great things you are working on!.....</p>
+        <h2>{@pre type="content" key="thanks"/}</h2>
+        <p>{@pre type="content" key="thanks_desc"/}</p>
       </div>
 
     </div>
