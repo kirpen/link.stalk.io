@@ -10,7 +10,6 @@ var kraken = require('kraken-js'),
     stalk = require('./config/stalk'),
     app = {};
 
-
 app.configure = function configure(nconf, next) {
     // Async method run on startup.
     db.config(nconf.get('databaseConfig'));
@@ -31,7 +30,6 @@ app.configure = function configure(nconf, next) {
             done(null, user);
         });
     });
-
     next(null);
 };
 
@@ -40,6 +38,15 @@ app.requestStart = function requestStart(server) {
     // Run before most express middleware has been registered.
 };
 
+var locales = ['en-US', 'ko-KR', 'ja-JP'];
+var defaultLocale = 'en-US';
+
+function isExistLocale(local){
+    for(var i = 0 ; i < locales.length ; i++){
+        if(local == locales[i]) return true;
+    }
+    return false;
+}
 
 app.requestBeforeRoute = function requestBeforeRoute(server) {
     // Run before any routes have been added.
@@ -47,8 +54,19 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
     server.use(passport.session());
     server.use(flash());
     server.use(auth.injectUser);
-    //server.use(locale({})); 
 
+    server.use(function(req,res,next){
+        if(!req.session.local){
+            var lang = req.headers["accept-language"];
+            lang = lang.split(',')[0];
+            //console.log(lang);
+            lang = lang.split('-')[0] +'-'+ lang.split('-')[1].toUpperCase();
+            req.session.local = isExistLocale(lang) == true ? lang : defaultLocale;
+        }
+        console.log(req.session.local);
+        res.locals.context = { locality: req.session.local };
+        next();
+    });
 };
 
 
@@ -56,7 +74,7 @@ app.requestAfterRoute = function requestAfterRoute(server) {
     // Run after all routes have been added.
 };
 if (require.main === module) {
-    kraken.create(app).listen(80,function (err, server) {
+    kraken.create(app).listen(9898,function (err, server) {
         if (err) {
             console.error(err);
         }

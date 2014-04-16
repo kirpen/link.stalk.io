@@ -71,9 +71,9 @@
           <div class="row">
           <div class="col-md-6">
 
-            <h2>LINK.STALK . I/O</h2>
-            <h3>live web chat service on your web pages</h3>
-            <h4>It’s a useful communication tool for your web sites that lets you create free and multi-user live chat with no Active-X and no plugins, just by very simple installation.</h4>
+            <h2>{@pre type="content" key="link.stalk.io"/}</h2>
+            <h3>{@pre type="content" key="link.stalk.io_desc"/}</h3>
+            <h4>{@pre type="content" key="link.stalk.io_desc2"/}</h4>
 
 
             {?user}
@@ -108,7 +108,7 @@
         </div>
         <div class="topic__infos">
           <div class="container">
-              You can install this right where you want it. For Wordpress, Tumblr, Blogger and your Any Web Sites
+              {@pre type="content" key="install_desc"/}
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@
                   <b>James</b> <a title="Facebook" href="https://www.facebook.com/jung.jinyung.9" target="_blank" rel="external nofollow"><i class="icon" data-icon=""></i></a> |
                   <b>Notdol</b> <a title="Facebook" href="https://www.facebook.com/notdol" target="_blank" rel="external nofollow"><i class="icon" data-icon=""></i></a> |</li>
             </ul>
-            <p>Developer who subconsciously views himself as an artist will enjoy what he does and will do it better !</p>
+            <p>{@pre type="content" key="footter_dev"/}</p>
           </div>
           <div class="col-md-5">
             <h3>Supported by </h3>
