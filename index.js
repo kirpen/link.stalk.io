@@ -8,7 +8,6 @@ var kraken = require('kraken-js'),
     User = require('./models/user'),
     io      = require('socket.io-client'),
     stalk = require('./config/stalk'),
-	locale = require('express-locale'),
     app = {};
 
 
@@ -56,7 +55,6 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
 app.requestAfterRoute = function requestAfterRoute(server) {
     // Run after all routes have been added.
 };
-
 if (require.main === module) {
     kraken.create(app).listen(80,function (err, server) {
         if (err) {
@@ -66,6 +64,4 @@ if (require.main === module) {
 
     });
 }
-
-
 module.exports = app;

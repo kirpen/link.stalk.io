@@ -20,18 +20,17 @@ module.exports = function (app) {
 
     app.get('/', function (req, res) {
 		res.render('redirect', model);
-		res.render('index', model);
+		//res.render('index', model);
     });
-
-	app.get('/*', function(req, res,next){
-		var path = req.params[0];
-		if( path && path.length ==2  ){
-			var locale = locales[ path.split('/')[0] ] || locales[defaultLocal];
-			res.locals.context = { locality : locale };
-			return res.render('index', model);
-		}
-		next();
-	});
+    app.get('/*', function(req, res,next){
+	var path = req.params[0];
+	if( path && path.length ==2  ){
+		var locale = locales[ path.split('/')[0] ] || locales[defaultLocal];
+		res.locals.context = { locality : locale };
+		return res.render('index', model);
+	}
+	next();
+     });
 
     app.get('/feature', function (req, res) {
 		res.render('feature', model);
