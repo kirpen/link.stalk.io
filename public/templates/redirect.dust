@@ -1,0 +1,25 @@
+<html>
+<head>
+<title></title>
+
+<script type="text/javascript">
+
+	var locales = {
+		"ko" : "kr",
+		"en" : "en",
+		"jp" : "jp"
+	};
+
+	var local = locales[navigator.language];
+
+	console.log(local);
+
+	if( local ) {
+		location.href = "/"+ local;
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

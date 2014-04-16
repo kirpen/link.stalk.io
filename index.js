@@ -8,6 +8,7 @@ var kraken = require('kraken-js'),
     User = require('./models/user'),
     io      = require('socket.io-client'),
     stalk = require('./config/stalk'),
+	locale = require('express-locale'),
     app = {};
 
 
@@ -47,7 +48,7 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
     server.use(passport.session());
     server.use(flash());
     server.use(auth.injectUser);
-    
+    //server.use(locale({})); 
 
 };
 
