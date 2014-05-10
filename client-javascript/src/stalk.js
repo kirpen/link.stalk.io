@@ -454,7 +454,7 @@ var STALK = (function(CONF, UTILS, WIN) {
       });
 
       CONF._socket.on('message', function (data) {
-
+	console.log( data );
         WIN.addMessage(data.message, data.user, data.sender);
       });
 

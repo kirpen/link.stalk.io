@@ -117,8 +117,6 @@ module.exports = function (app) {
 
             }
 
-            console.log( "docdocdocdoco" );
-            console.log( doc );
 
             response.json(doc);
         });
@@ -176,13 +174,12 @@ module.exports = function (app) {
 									},
 									function (userArray, callback){
 											XpushModel.find( { app:'stalk-io', deviceId:{$nin:['web','WEB'] }, userId:{$in:userArray} }
-																			,{ userId: 1, deviceId: 1, _id:0 }, function(err, xUsers){
+																			,{ userId: 1, deviceId: 1, _id:0, notiId: 1 }, function(err, xUsers){
 													callback(null, xUsers, userArray);
 											});
 
 									},
 									function (xUsers, userArray, callback){
-
 											var cnt=0;
 											if(count==0){
 												callback(null, xUsers);
@@ -203,7 +200,7 @@ module.exports = function (app) {
 
 																	if(userId==userArray[i]){
 
-																		var op = {userId:userId, deviceId:'WEB',userNm:userNm};
+																		var op = {userId:userId, notiId:'WEB', deviceId:'WEB',userNm:userNm};
 																		xUsers.push(op);
 																	}
 																}

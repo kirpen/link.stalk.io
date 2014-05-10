@@ -76,7 +76,8 @@ module.exports = function (app) {
             userId: email,
             deviceId: 'WEB',
             name : name,
-            password: password
+            password: password,
+	    notiId:'WEB'
         }
 
         var saveObj = {

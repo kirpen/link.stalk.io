@@ -59,11 +59,9 @@ app.requestBeforeRoute = function requestBeforeRoute(server) {
         if(!req.session.local){
             var lang = req.headers["accept-language"];
             lang = lang.split(',')[0];
-            //console.log(lang);
             lang = lang.split('-')[0] +'-'+ lang.split('-')[1].toUpperCase();
             req.session.local = isExistLocale(lang) == true ? lang : defaultLocale;
         }
-        console.log(req.session.local);
         res.locals.context = { locality: req.session.local };
         next();
     });

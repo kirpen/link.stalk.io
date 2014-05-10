@@ -14,6 +14,7 @@ var xpushUserModel = function () {
         app: String,
         deviceId: String,
         token: String,
+	notiId:String,
         userNm:String
     });
 

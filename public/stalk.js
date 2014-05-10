@@ -1,4 +1,4 @@
-/*! stalk javascript library - v0.1.2 - 2014-04-14
+/*! stalk javascript library - v0.1.2 - 2014-04-19
 * https://stalk.io
 * Copyright (c) 2014 John Kim; Licensed MIT */
 /*! stalk javascript library - v0.1.2 - 2014-04-12
@@ -457,7 +457,7 @@ var STALK = (function(CONF, UTILS, WIN) {
       });
 
       CONF._socket.on('message', function (data) {
-
+	console.log( data );
         WIN.addMessage(data.message, data.user, data.sender);
       });
 
